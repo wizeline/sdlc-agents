@@ -17,19 +17,40 @@ jobs:
         id: var
         run: |
           # Finds the first folder under 'skills' that changed in this push
-          SKILL=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^skills/' | cut -d/ -f2 | head -n1)
+          # Filters out hidden files (e.g. .DS_Store) to avoid invalid tag names
+          SKILL=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} \
+            | grep '^skills/' \
+            | cut -d/ -f2 \
+            | grep -v '^\.' \
+            | sort -u \
+            | head -n1)
           echo "skill_name=$SKILL" >> $GITHUB_OUTPUT
 
       - name: Create and Push Tag
         if: steps.var.outputs.skill_name != ''
         run: |
           SKILL=${{ steps.var.outputs.skill_name }}
-          # Simple logic: incrementing based on date/timestamp for uniqueness
-          # Or use a tool like 'math' to increment semantic versioning
-          VERSION="v$(date +'%Y.%m.%d-%H%M')" 
+
+          # Find the latest semantic version tag for this skill
+          LATEST=$(git tag --list "skills/$SKILL/v*" \
+            | sed "s|skills/$SKILL/v||" \
+            | sort -t. -k1,1n -k2,2n -k3,3n \
+            | tail -n1)
+
+          if [ -z "$LATEST" ]; then
+            VERSION="v1.0.0"
+          else
+            # Increment the patch version
+            MAJOR=$(echo "$LATEST" | cut -d. -f1)
+            MINOR=$(echo "$LATEST" | cut -d. -f2)
+            PATCH=$(echo "$LATEST" | cut -d. -f3)
+            VERSION="v${MAJOR}.${MINOR}.$((PATCH + 1))"
+          fi
+
           TAG_NAME="skills/$SKILL/$VERSION"
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
           
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
