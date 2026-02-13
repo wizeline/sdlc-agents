@@ -22,7 +22,10 @@ Wize Skills is a collection of agent skills built on the [Agent Skills](https://
     - [Global Installation](#global-installation)
     - [List Available Skills](#list-available-skills)
   - [Prerequisites](#prerequisites)
+  - [Versioning](#versioning)
   - [Contributing](#contributing)
+    - [Adding a New Skill](#adding-a-new-skill)
+    - [Bumping Major or Minor Versions](#bumping-major-or-minor-versions)
   - [License](#license)
 
 ---
@@ -86,9 +89,10 @@ gemini skills install https://github.com/wizeline/wize-skills.git --path skills/
 
 ## Available Skills
 
-| Skill Name          | Description                                                                 |
-| ------------------- | --------------------------------------------------------------------------- |
-| `docs-engineering`  | Documentation engineering workflows and quality assurance processes         |
+| Skill Name                 | Description                                                                 |
+| -------------------------- | --------------------------------------------------------------------------- |
+| `docs-engineering`         | Documentation engineering workflows and quality assurance processes         |
+| `dev-security-governance`  | Development security governance checks and best practices                   |
 
 > **Coming Soon**: More skills are in development. Check back regularly or watch this repository for updates.
 
@@ -139,6 +143,26 @@ npx skills add https://github.com/wizeline/wize-skills --list
 
 ---
 
+## Versioning
+
+Every skill is independently versioned using **semantic versioning** (`v1.x.x`). Tags follow the pattern:
+
+```
+skills/<skill-name>/v<MAJOR>.<MINOR>.<PATCH>
+```
+
+For example: `skills/docs-engineering/v1.0.0`, `skills/dev-security-governance/v1.2.3`.
+
+### How It Works
+
+- A **GitHub Actions workflow** (`.github/workflows/version-skills.yml`) runs on every push to `main` that modifies files under `skills/`.
+- It detects which skill changed, looks up the **latest existing tag** for that skill, and creates a new tag with the **patch version incremented** (`v1.0.0` → `v1.0.1` → `v1.0.2` …).
+- If no tag exists yet for a skill, it starts at `v1.0.0`.
+
+> **Note**: Hidden files like `.DS_Store` are automatically filtered out and will never produce tags.
+
+---
+
 ## Contributing
 
 We welcome contributions! To add a new skill or improve existing ones:
@@ -147,6 +171,36 @@ We welcome contributions! To add a new skill or improve existing ones:
 2. Create a feature branch (`git checkout -b feature/new-skill`)
 3. Follow the [Agent Skills standard](https://agentskills.io/home) for skill structure
 4. Submit a pull request
+
+### Adding a New Skill
+
+1. Create a new directory under `skills/` with your skill name (e.g., `skills/my-new-skill/`).
+2. Add a `SKILL.md` file with the required YAML frontmatter (`name`, `description`) and detailed instructions.
+3. Include any supporting directories (`scripts/`, `examples/`, `resources/`) as needed.
+4. **Seed the initial version tag** before your first merge to `main`:
+
+   ```bash
+   git tag "skills/my-new-skill/v1.0.0"
+   git push origin "skills/my-new-skill/v1.0.0"
+   ```
+
+5. After seeding, all subsequent pushes to `main` that modify your skill will **auto-increment** the patch version.
+
+### Bumping Major or Minor Versions
+
+The CI workflow only auto-increments the **patch** version. To bump the **minor** or **major** version, create the tag manually:
+
+```bash
+# Bump minor version (e.g., v1.0.5 → v1.1.0)
+git tag "skills/my-skill/v1.1.0"
+git push origin "skills/my-skill/v1.1.0"
+
+# Bump major version (e.g., v1.3.2 → v2.0.0)
+git tag "skills/my-skill/v2.0.0"
+git push origin "skills/my-skill/v2.0.0"
+```
+
+The next automated push will continue incrementing from your new tag (e.g., `v2.0.1`).
 
 ---
 
