@@ -1,0 +1,35 @@
+name: Version Skills
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'skills/**' # Only triggers if something inside 'skills' changes
+
+jobs:
+  tag-skill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required to see previous tags
+
+      - name: Identify Changed Skill
+        id: var
+        run: |
+          # Finds the first folder under 'skills' that changed in this push
+          SKILL=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^skills/' | cut -d/ -f2 | head -n1)
+          echo "skill_name=$SKILL" >> $GITHUB_OUTPUT
+
+      - name: Create and Push Tag
+        if: steps.var.outputs.skill_name != ''
+        run: |
+          SKILL=${{ steps.var.outputs.skill_name }}
+          # Simple logic: incrementing based on date/timestamp for uniqueness
+          # Or use a tool like 'math' to increment semantic versioning
+          VERSION="v$(date +'%Y.%m.%d-%H%M')" 
+          TAG_NAME="skills/$SKILL/$VERSION"
+          
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
