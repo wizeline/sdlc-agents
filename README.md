@@ -43,6 +43,8 @@ Each skill follows the Agent Skills open standard, ensuring compatibility across
 
 ### Quick Start
 
+> **💡 Tip**: For project-specific installations, navigate to your project directory in the terminal before running the installation commands.
+
 Install a specific skill interactively:
 
 ```bash
