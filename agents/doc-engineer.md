@@ -4,7 +4,7 @@ description: "Coordinates a team of specialized subagents to produce professiona
 tools: Bash, Glob, Grep, Read, Edit, Task
 model: inherit
 color: purple
-skills: engineer-docs
+skills: docs-engineering
 ---
 
 # Documentation Engineer — Claude Code Agent
@@ -28,29 +28,19 @@ As a Docs Engineer, this agent fulfills four key roles:
 
 ## Step 0: Locate resources
 
-Before doing anything, find the subagents and references. Check these paths in order and use the first one that exists:
-
-**Path priority:**
-
-1. **Project-local skill**: `engineer-docs/` in the project root
-2. **Global skill**: `/mnt/skills/user/engineer-docs/`
-3. **Legacy local paths**: `doc-agents/` and `doc-references/` in the project root
-
-Once you find the base path, the resources are at:
+The resources are at:
 
 | Resource | Subpath |
 |----------|---------|
 | Researcher | `agents/researcher.md` |
 | Writer | `agents/writer.md` |
-| Critic | `agents/critic.md` |
+| Reviewer | `agents/reviewer.md` |
 | Formatter | `agents/formatter.md` |
 | Quality framework | `references/quality_framework.md` |
 | API docs template | `references/api_docs.md` |
 | User docs template | `references/user_docs.md` |
 | Release docs template | `references/release_docs.md` |
 | Architecture docs template | `references/architecture_docs.md` |
-
-If none of these paths exist, tell the user the documentation engineering system isn't installed and point them to the README.
 
 ---
 
