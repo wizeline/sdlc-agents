@@ -16,48 +16,104 @@
 
 ## A01: Broken Access Control
 
-**Why it matters:** 94% of tested applications show some form of access control weakness. This remains the #1 risk because failures here directly expose data and functionality to unauthorized users.
+**Why it matters:** 3.73% of tested applications exhibited one or more of 40 mapped CWEs in
+this category. Remains #1 because failures directly expose data and functionality. The 2025
+edition consolidates SSRF into this category, recognizing that network-level access control
+failures often enable privilege escalation to internal services.
+
+**Attack vectors (granular):**
+
+*Horizontal privilege escalation* — Users access resources belonging to other users at the
+same privilege level by manipulating resource identifiers (e.g., changing `/profile/677` to
+`/profile/678`). Particularly prevalent in RESTful APIs with exposed IDs and GraphQL with
+nested object access that may not inherit parent-level authorization.
+
+*Vertical privilege escalation* — Regular users access administrative capabilities through
+forced browsing, client-side code analysis, or API pattern inference. API-first architectures
+expand this risk when admin endpoints lack authorization middleware.
+
+*IDOR (Insecure Direct Object References)* — Internal objects (database keys, file paths)
+exposed without access control verification. OWASP API Security Top 10 identifies the API
+variant "Broken Object Level Authorization" (BOLA) as the #1 API risk.
+
+*SSRF (consolidated from 2021 A10)* — Server-side requests to internal resources via
+manipulated URLs, enabling access to cloud metadata, internal services, and admin interfaces.
 
 **Common weaknesses:**
-- Bypassing access control checks by modifying the URL, application state, or HTML page
-- Allowing the primary key to be changed to another user's record (IDOR)
-- Elevation of privilege — acting as a user without being logged in, or acting as an admin when logged in as a user
-- CORS misconfiguration allowing access from unauthorized origins
-- Force browsing to authenticated pages or accessing API endpoints without proper tokens
+- Authentication without authorization (user is logged in but ownership not verified)
+- Client-side controls that can be bypassed by intercepting/modifying requests
+- CORS misconfiguration (wildcard origins, reflected origins, credentials with permissive origins)
+- Bulk operations/export endpoints enabling mass data access via single requests
 
 **Mitigation strategy:**
 - Deny by default — require explicit grants for every resource
 - Centralize authorization logic in a trusted service layer; never rely on client-side enforcement
 - Implement rate limiting on API and controller access to minimize automated attack impact
-- Invalidate JWT tokens on the server side on logout; use short-lived tokens
 - Log access control failures and alert administrators on repeated failures
 - Disable web server directory listing and ensure file metadata (.git) is not present in web roots
 
+**JWT token security (specific requirements):**
+
+| Requirement | Implementation | Common Failure |
+|-------------|---------------|----------------|
+| Signature verification | Strong algorithms (RS256, ES256), explicit algorithm spec | Algorithm confusion ("none", alg substitution) |
+| Token scope | Minimal claims, short expiration | Excessive permissions, long-lived tokens |
+| Invalidation | Token blacklists or short expiry + refresh rotation | Stateless tokens that cannot be revoked |
+| Secure transmission | TLS, Secure/HttpOnly/SameSite cookies | Token interception, XSS-based theft |
+
 **ASVS alignment:** V4 (Access Control), particularly V4.1 (General Access Control Design)
+**CWE mapping:** CWE-639, CWE-22, CWE-918, CWE-284, CWE-285
 
 ---
 
 ## A02: Security Misconfiguration
 
-**Why it matters:** Rose from #5 (2021) to #2 (2025). As applications move to cloud and container-based deployments, the configuration surface area has exploded, and defaults are rarely secure.
+**Why it matters:** Surged from #5 (2021) to #2 (2025). Data shows 100% of tested
+applications had some form of misconfiguration, with 3.00% having serious security-relevant
+misconfigurations across 16 mapped CWEs. The explosion of cloud-native, highly configurable
+architectures has dramatically expanded the configuration surface area.
 
 **Common weaknesses:**
-- Unnecessary features enabled (ports, services, pages, accounts, privileges)
-- Default accounts and passwords unchanged
-- Error handling reveals stack traces or overly informative error messages
-- Security headers missing or misconfigured (CSP, HSTS, X-Frame-Options)
-- Software is out of date or has known vulnerabilities in configurations
+- Default credentials on production systems (application servers, cloud consoles, container orchestration dashboards)
+- Unnecessary features enabled (sample apps, admin interfaces, debugging endpoints, unused protocols)
+- Error handling exposing stack traces, database schema, internal paths, framework versions
+- Security headers missing or misconfigured (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy)
+- CORS misconfiguration (now consolidated into A01 for access control implications, but config root cause is here)
 - Cloud storage buckets with public access
+- Container images with development tools, package managers, shell access in production
+
+**HTTP Security Headers (specific):**
+
+| Header | Protection | Common Misconfiguration |
+|--------|-----------|----------------------|
+| Content-Security-Policy | XSS mitigation, injection prevention | Missing, or `unsafe-inline`/`unsafe-eval` defeating protection |
+| Strict-Transport-Security | HTTPS enforcement, downgrade prevention | Missing, or short max-age |
+| X-Content-Type-Options | MIME sniffing prevention | Missing `nosniff` |
+| X-Frame-Options | Clickjacking prevention | Missing, or ALLOW-FROM with untrusted origins |
+| Referrer-Policy | Information leakage control | Missing, or `unsafe-url` |
+
+**Kubernetes-specific hardening:**
+
+| Security Context | Secure Config | Risk of Misconfiguration |
+|-----------------|--------------|------------------------|
+| runAsNonRoot | `true` | Root execution enables container escape |
+| readOnlyRootFilesystem | `true` | Writable root enables persistence, malware |
+| allowPrivilegeEscalation | `false` | Bypasses container isolation |
+| capabilities | Drop all, add only required | Excessive capabilities enable kernel exploitation |
+| seccompProfile | RuntimeDefault or custom restricted | Unrestricted syscalls enable container escape |
+
+Enforce Pod Security Standards (restricted, baseline, privileged) via admission controllers.
 
 **Mitigation strategy:**
-- Implement a repeatable hardening process; use infrastructure-as-code (IaC) to enforce baselines
-- Deploy a minimal platform — remove or do not install unused features and frameworks
-- Review and update configurations as part of the patch management process
-- Implement a segmented application architecture with separation between components
-- Send security directives to clients (e.g., security headers)
-- Automate configuration verification in CI/CD using tools like checkov, tfsec, or kics
+- Implement repeatable, automated hardening processes (Infrastructure-as-Code with security scanning)
+- Deploy minimal platform — remove or do not install unused features and frameworks
+- Use distroless/Alpine base images, multi-stage builds, non-root execution for containers
+- Review and update configurations as part of patch management
+- Automate configuration verification in CI/CD (checkov, tfsec, kics, cfn-nag)
+- Risk-based patch prioritization with emergency response for actively exploited vulns
 
 **ASVS alignment:** V14 (Configuration)
+**CWE mapping:** CWE-16, CWE-2, CWE-388
 
 ---
 
@@ -110,23 +166,65 @@
 
 ## A05: Injection
 
-**Why it matters:** Includes XSS. Dropped in rank as modern frameworks provide built-in protections, but remains prevalent — especially in legacy code and dynamic query construction.
+**Why it matters:** Includes XSS. Dropped from #3 to #5 as modern frameworks provide built-in protections, but remains among the most dangerous and frequently exploited vulnerabilities — especially in legacy code and dynamic query construction.
 
-**Common weaknesses:**
-- User-supplied data not validated, filtered, or sanitized
-- Dynamic queries or non-parameterized calls used without context-aware escaping
-- Hostile data used within ORM search parameters to extract additional records
-- Hostile data directly used or concatenated in SQL, OS commands, LDAP, XPath, or NoSQL queries
+### SQL Injection
+**Parameterized queries are the primary defense** — they separate SQL code from data so
+user input is treated as literal values, never executable code.
+
+| Requirement | Implementation | Verification |
+|-------------|---------------|-------------|
+| Complete parameterization | All variable query components use parameter binding | Static analysis for string concatenation in queries |
+| Framework-safe APIs | ORM query builders, criteria APIs, entity manager find methods | Code review of ORM usage patterns |
+| Avoid dangerous methods | Prohibit raw query methods, SQL fragments in order clauses | Automated detection of unsafe ORM patterns |
+| Server-side enforcement | Parameter binding through database driver APIs | Driver-level verification |
+
+**ORM safety matrix:**
+
+| Safe Patterns | Unsafe Anti-Patterns |
+|---------------|---------------------|
+| LINQ-style query builders | Raw query methods (FromSqlRaw, createSQLQuery) |
+| Criteria APIs | SQL fragments in order/sort clauses |
+| Entity manager find methods | Dynamic query construction features |
+| Named queries with parameter binding | String concatenation in query building |
+
+**Stored procedure security:** Static SQL with parameterized inputs only — no EXECUTE IMMEDIATE with concatenation. Least privilege: execute permissions on specific procedures, not direct table access.
+
+### Command Injection
+Avoid shell command execution with user-influenced parameters entirely when possible. Use native language APIs and libraries instead.
+
+When shell execution is unavoidable:
+- Allow-list validation of permitted characters and patterns
+- Array-style argument passing (separates command from arguments)
+- Reject shell metacharacters: `;`, `|`, `&`, `` ` ``, `$()`, `${}`
+- Context-appropriate validation specific to expected input type
+
+Defense-in-depth: restricted user contexts, container/sandbox isolation, network segmentation, read-only filesystems, execution timeouts.
+
+### LDAP and NoSQL Injection
+
+| Database | Injection Vector | Prevention |
+|----------|-----------------|-----------|
+| LDAP | Special characters `*`, `(`, `)`, `\`, NUL | Parameterized LDAP queries or rigorous escaping |
+| MongoDB | JavaScript `$where` clauses, operator injection | Disable JS execution, validate query structure, use official drivers |
+| CouchDB | JavaScript map/reduce functions | Input validation, sandboxed execution |
+| Redis | Command injection via concatenated arguments | Official client libraries with proper argument encoding |
+
+### XSS (Cross-Site Scripting)
+Context-specific output encoding is the primary defense. See `references/secure-coding-practices.md`
+Section 2 (Output Encoding) for detailed encoding rules by context (HTML body, attributes,
+JavaScript, CSS, URL).
 
 **Mitigation strategy:**
-- Use parameterized queries (prepared statements) for all database interactions
-- Use server-side positive allow-list input validation
-- Escape special characters using context-specific output encoding
-- Use LIMIT and other SQL controls within queries to prevent mass disclosure in case of injection
-- Apply Content Security Policy (CSP) as a defense-in-depth against XSS
-- Use modern frameworks that auto-escape output by default (React, Angular, etc.)
+- Parameterized queries for all database interactions — strongly typed
+- Server-side positive allow-list input validation on complete, canonicalized input
+- Context-specific output encoding (HTML, JS, URL, CSS contexts)
+- Content Security Policy (CSP) as defense-in-depth (not replacement for encoding)
+- Use modern frameworks with auto-escaping by default (React, Angular, Vue)
+- Use LIMIT and other SQL controls to prevent mass disclosure in case of injection
 
 **ASVS alignment:** V5 (Validation, Sanitization and Encoding)
+**CWE mapping:** CWE-79, CWE-89, CWE-78, CWE-90, CWE-943
 
 ---
 
@@ -225,21 +323,52 @@
 
 ## A10: Mishandling of Exceptional Conditions
 
-**Why it matters:** New category in 2025. Applications that don't handle errors safely can leak information, enter undefined states, or become exploitable when things go wrong.
+**Why it matters:** New category in 2025, replacing standalone SSRF (consolidated into A01).
+Reflects growing recognition that application behavior under error conditions, resource
+exhaustion, and abnormal inputs creates significant security vulnerabilities that traditional
+testing often overlooks. The central theme is **"failing open"** — security checks that
+cannot complete due to errors default to allowing access.
+
+**Information disclosure through error handling:**
+
+| Information Type | Exposure Risk | Example |
+|-----------------|-------------|---------|
+| Stack traces | Code structure, framework versions | `at com.example.UserDao.getUser(UserDao.java:47)` |
+| Database errors | Schema, query structure | `ORA-00942: table or view does not exist "ADMIN_USERS"` |
+| System paths | Directory structure, deployment layout | `/var/www/app/releases/20240115/config/database.yml` |
+| Framework identifiers | Known vulnerability targeting | `X-Powered-By: PHP/7.4.3` |
+
+**Fail-open vs. fail-secure scenarios:**
+
+| Failure Scenario | Fail-Open Risk (DANGEROUS) | Fail-Secure Alternative |
+|-----------------|--------------------------|----------------------|
+| Database error during authz check | Access granted | Access denied + logged error + alert |
+| Authentication service timeout | Anonymous access permitted | Request queued, fallback auth, or denied |
+| Encryption key unavailable | Plaintext transmission | Connection refused, service degradation |
+| Audit logging failure | Unlogged operation proceeds | Operation blocked until logging restored |
 
 **Common weaknesses:**
 - Stack traces or internal error details exposed to users
-- Application enters an undefined or insecure state after an exception
+- Application enters undefined or insecure state after exception
 - Error messages reveal database type, query structure, or file paths
 - Lack of fallback mechanisms for external service failures
-- Inconsistent error handling across the application (some paths fail open, others fail closed)
+- Inconsistent error handling (some paths fail open, others fail closed)
 
 **Mitigation strategy:**
-- Implement global exception handlers that catch unhandled errors and return safe, generic messages
-- Ensure all failure paths result in a "fail closed" (deny) state, not "fail open" (allow)
+- Implement global exception handlers returning safe, generic messages to users
+- **Fail-secure by default**: all security-critical operations deny access on any error condition
+- **Explicit failure handling**: every security check has a defined error path, no implicit continuation
 - Log detailed error information server-side while showing generic messages client-side
-- Design for graceful degradation when external dependencies are unavailable
-- Test error handling paths explicitly — include negative test cases and chaos engineering
-- Review error handling patterns in code reviews with the same rigor as business logic
+- Design for graceful degradation: reduced functionality, never security bypass
+- Test error handling paths explicitly — fault injection testing, chaos engineering
+- Review error handling in code reviews with same rigor as business logic
+- Comprehensive resource cleanup guarantees (try-finally, using statements, destructors)
+- Custom security exception types to distinguish security failures from operational errors
+
+**Real-world illustration:** The CrowdStrike incident (July 2024) — a single content update caused
+>8.5 million system crashes with >$5 billion estimated losses, representing a failure where
+automated processes became catastrophic due to insufficient validation and monitoring of
+their own critical components.
 
 **ASVS alignment:** V7 (Error Handling and Logging)
+**CWE mapping:** CWE-754, CWE-755, CWE-209, CWE-391

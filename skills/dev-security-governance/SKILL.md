@@ -1,22 +1,12 @@
 ---
 name: dev-security-governance
 description: >
-  A comprehensive skill for developer security governance covering OWASP Top 10 (2025),
-  ASVS verification, NIST SSDF lifecycle practices, CI/CD pipeline hardening, API/cloud-native
-  security, and Security Champions programs. Use this skill whenever the user asks about
-  application security standards, secure development lifecycle (SDLC), security code reviews,
-  threat modeling, security compliance mapping (ISO 27001, NIST, OWASP), vulnerability
-  management, CI/CD security, supply chain security, SBOM generation, API security, or
-  wants to assess, plan, or improve their organization's security posture. Also trigger when
-  the user mentions OWASP, ASVS, SAMM, NIST 800-218, secure coding, security governance,
-  DevSecOps, shift-left security, penetration testing strategy, or security maturity.
-  Even if the user just says "review this code for security" or "is my app secure",
-  this skill should be consulted.
+A comprehensive skill for securing the entire software development lifecycle, covering OWASP Top 10 (2025), ASVS verification, NIST SSDF practices, and 14 domains of secure coding. Use this whenever users ask about application security standards, SDLC security, code reviews, threat modeling, or compliance mapping (ISO 27001, NIST, OWASP). Triggers for vulnerability management, CI/CD pipeline hardening, supply chain security, SBOM generation, API/cloud-native security, automated testing (SAST/DAST/SCA), input validation, output encoding, XSS/SQLi prevention, cryptography, error handling, data protection, GDPR/CCPA, security metrics (MTTD/MTTR), CWE/CAPEC/CVSS, Security Champions programs, DevSecOps, shift-left security, penetration testing strategy, or security maturity assessment. Also activate for direct requests like "review this code for security," "is my app secure," or "how do I prevent injection.							 
 ---
 
 # Developer Security Governance Skill
 
-This skill enables Claude to act as a security governance advisor—helping teams assess,
+This skill enables to act as a security governance advisor—helping teams assess,
 plan, implement, and verify application security across the full software development
 lifecycle. It synthesizes OWASP, NIST, and ISO frameworks into actionable guidance
 tailored to the user's context.
@@ -33,8 +23,13 @@ tailored to the user's context.
 - LLM/AI application security concerns
 - Measuring security maturity (SAMM)
 - Creating threat models or security requirements
+- Implementing secure coding practices (input validation, output encoding, crypto, etc.)
+- Setting up automated security scanning (SAST/DAST/SCA) and CI/CD gates
+- Defining security metrics, KPIs, and reporting dashboards
+- Data protection, privacy compliance (GDPR, CCPA), and retention policies
+- Vulnerability prioritization and remediation planning
 
-## Workflow
+## Core Workflow
 
 When a user brings a security governance question, follow this decision flow:
 
@@ -54,6 +49,7 @@ Security governance operates in layers. Match the user's need to the right frame
 | User Need | Primary Framework | Reference File |
 |-----------|-------------------|----------------|
 | "What are the top risks?" | OWASP Top 10 (2025) | `references/owasp-top10-2025.md` |
+| "How do I write secure code?" | Secure Coding Practices (14 domains) | `references/secure-coding-practices.md` |
 | "What should we test for?" | ASVS 5.0 | `references/asvs-verification.md` |
 | "How do we organize our SDLC?" | NIST SSDF (800-218) | `references/nist-ssdf.md` |
 | "How mature is our program?" | OWASP SAMM | `references/samm-maturity.md` |
@@ -62,6 +58,8 @@ Security governance operates in layers. Match the user's need to the right frame
 | "Secure our CI/CD pipeline" | CI/CD hardening practices | `references/cicd-supply-chain.md` |
 | "Start a Champions program" | Security Champions Playbook | `references/security-champions.md` |
 | "AI/LLM security concerns" | OWASP LLM Top 10 | `references/llm-ai-security.md` |
+| "Automate security scanning" | Agent Implementation Framework | `references/agent-implementation.md` |
+| "What metrics should we track?" | Compliance Verification & KPIs | `references/compliance-verification-kpis.md` |
 
 Read the relevant reference file(s) before responding to ensure accuracy and depth.
 
@@ -72,12 +70,57 @@ Depending on the task, produce one of these deliverables:
 - **Security Assessment Report**: Gap analysis against a chosen standard with prioritized findings
 - **Threat Model**: Using STRIDE or similar, identifying threats to the user's architecture
 - **Compliance Mapping**: Cross-referencing controls across ISO 27001, NIST, and OWASP
-- **Secure Code Review Checklist**: Tailored to the user's language/framework
+- **Secure Code Review Checklist**: Tailored to the user's language/framework, covering 14 domains
 - **CI/CD Security Audit**: Pipeline review against CICD-SEC controls
 - **Security Roadmap**: Phased plan with SAMM maturity targets
 - **Security Champions Plan**: Organizational rollout plan
+- **Automated Scanning Strategy**: SAST/DAST/SCA tool selection, CI/CD gate design, false positive management
+- **Security Metrics Dashboard**: KPIs with targets (MTTD, MTTR, vulnerability density, coverage percentages)
+- **Remediation Guidance**: Prioritized findings with before/after code examples and fix complexity estimates
 
 Use templates from `assets/` when producing structured deliverables.
+
+## Secure Coding Practices (14 Domains)
+
+For the complete reference with implementation details, read `references/secure-coding-practices.md`.
+
+Each domain has an automation potential rating to help teams decide what to enforce
+through tooling versus manual review:
+
+| Domain | Automation Potential | Key Focus |
+|--------|---------------------|-----------|
+| Input Validation | High | Allow-list validation, canonicalization, file upload safety |
+| Output Encoding | High | Context-specific encoding (HTML/JS/CSS/URL), CSP, template safety |
+| Authentication & Session | Medium | Argon2id/bcrypt, NIST 800-63B passwords, MFA, session security |
+| Access Control | Medium | RBAC/ABAC, layered enforcement points, admin protection |
+| Cryptographic Practices | High | AES-256-GCM, TLS 1.3, key lifecycle, CSPRNG |
+| Error Handling & Logging | Medium | Fail-secure defaults, structured logging, resource cleanup |
+| Data Protection & Privacy | Low | Classification, masking/tokenization, GDPR/CCPA, retention |
+| Communication Security | High | mTLS, OAuth 2.0 + PKCE, certificate practices, rate limiting |
+| System Configuration | High | Environment separation, secrets management, IaC scanning |
+| Database Security | High | Parameterized queries, ORM safety, least privilege accounts |
+| File & Resource Management | Medium | Path traversal prevention, upload limits, temp file security |
+| Memory Management | High (native) | Buffer safety, use-after-free prevention, secure cleanup |
+| Business Logic Security | Low | Transaction integrity, domain-specific requirements |
+| Dependency & Supply Chain | High | SBOM, SCA scanning, dependency confusion prevention |
+
+## Agent Implementation Framework
+
+For automated compliance checking and scanning integration, read `references/agent-implementation.md`.
+
+Key capabilities: SAST source code pattern recognition, DAST runtime monitoring,
+detection rules mapped to all 10 OWASP categories with coverage targets (70-95%),
+CWE/CAPEC/CVSS correlation, CI/CD gate enforcement with performance targets
+(<1s for secret detection, <10s for lightweight SAST), and developer workflow
+integration (IDE plugins, PR automated review).
+
+## Security Metrics & KPIs
+
+For targets, measurement methods, and reporting templates, read `references/compliance-verification-kpis.md`.
+
+Key targets: MTTD <7 days (critical), MTTR 24 hours (critical) / 7 days (high),
+OWASP Top 10 detection coverage >90%, remediation guidance coverage >95%,
+100% quarterly assessment coverage.
 
 ## Key Principles
 
@@ -103,6 +146,11 @@ move faster with confidence, not to create paperwork.
 **Measure to Improve** — Encourage the use of SAMM assessments and security metrics
 (e.g., mean time to remediate, percentage of builds with SAST) to track progress
 and justify investment.
+
+**Fail Secure, Not Fail Open** — When a security check cannot complete (database
+error, auth service timeout, encryption key unavailable), the system must deny
+access or halt the operation — never default to allowing it. This principle applies
+to every layer: access control, authentication, encryption, and audit logging.
 
 ## OWASP Top 10 (2025) Quick Reference
 
