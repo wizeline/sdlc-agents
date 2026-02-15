@@ -1,8 +1,16 @@
 {
+<<<<<<< HEAD
 	"folders": [
 		{
 			"path": "."
 		}
 	],
 	"settings": {}
+=======
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
+>>>>>>> 433dada (feat: worskpace file created)
 }
