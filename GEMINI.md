@@ -47,19 +47,6 @@ Currently, the repository includes, but is not limited to, the following skills:
 
 Skills are independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`). A GitHub Actions workflow (`.github/workflows/version-skills.yml`) automatically increments the patch version of a skill whenever changes are pushed to `main` within its directory. Major and minor version bumps are performed manually via Git tags.
 
-## Usage with Gemini CLI
-
-To install skills from this repository using the Gemini CLI:
-
-```bash
-# Install to user scope (default: ~/.gemini/skills)
-gemini skills install https://github.com/wizeline/wize-skills.git --path skills/<skill-name>
-
-# Install to workspace scope (.gemini/skills)
-gemini skills install https://github.com/wizeline/wize-skills.git --path skills/<skill-name> --scope workspace
-```
-Replace `<skill-name>` with the desired skill directory name (e.g., `dev-security-governance`).
-
 ## Contributing
 
 Contributions are welcome. New skills can be added by creating a new directory under `skills/` with a `SKILL.md` file and any supporting resources. Refer to the `README.md` for detailed contribution guidelines and instructions on seeding initial version tags.
