@@ -1,6 +1,8 @@
 ---
 name: architecture-docs
 description: "Use when producing architecture and design documentation — Architecture Decision Records (ADRs), design documents, system architecture overviews, or technical design proposals. Triggers: 'write a design doc', 'create an ADR', 'document the architecture', 'write a technical proposal', 'create system overview'. Always load technical-docs first."
+context: fork
+agent: Explore
 ---
 
 # Architecture Docs Skill
