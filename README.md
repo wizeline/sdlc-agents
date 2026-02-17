@@ -51,14 +51,24 @@ Each skill follows the Agent Skills open standard, ensuring compatibility across
 Install a specific skill interactively:
 
 ```bash
-npx skills add https://github.com/wizeline/wize-skills --skill docs-engineering
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering
 ```
+
+Install a specific skill for a specific agent:
+
+```bash
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+```
+
+> **Note**: Point the URL directly to the skill's folder path within the repository (e.g., `.../tree/main/skills/docs-engineering`). For skills organized into subfolders (e.g., `docs-engineering/pdf`), each sub-skill must be installed individually using its full path (e.g., `.../tree/main/skills/docs-engineering/pdf`).
 
 Install all available skills:
 
 ```bash
 npx skills add https://github.com/wizeline/wize-skills --skill '*'
 ```
+
+> **⚠️ Warning**: Omitting the `-a` / `--agent` flag when using `--all` or `--skill '*'` will install skills for **every supported agent** on your machine. To limit installation to a specific agent, always pass the `-a` flag (e.g., `-a claude-code`).
 
 > **Note**: No installation of `npx skills` is required—it's a zero-install tool that runs directly via Node.js (v18+). Learn more about [npx skills](https://github.com/vercel-labs/skills/tree/main?tab=readme-ov-file#other-commands).
 
@@ -105,7 +115,7 @@ gemini skills install https://github.com/wizeline/wize-skills.git --path skills/
 Install a skill with prompts to select your AI agent:
 
 ```bash
-npx skills add https://github.com/wizeline/wize-skills --skill docs-engineering
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering
 ```
 
 ### Non-Interactive Installation
@@ -113,16 +123,26 @@ npx skills add https://github.com/wizeline/wize-skills --skill docs-engineering
 Install for Claude Code without prompts:
 
 ```bash
-npx skills add https://github.com/wizeline/wize-skills --skill docs-engineering -a claude-code -y
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
 ```
 
 ### Global Installation
 
-Install globally for multiple agents:
+Install globally for a specific agent:
 
 ```bash
-npx skills add https://github.com/wizeline/wize-skills --skill docs-engineering -g -a claude-code -y
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code -g
 ```
+
+### Install All Skills for a Specific Agent
+
+Install every available skill for a single agent:
+
+```bash
+npx skills add https://github.com/wizeline/wize-skills --skill '*' -a claude-code -y
+```
+
+> **⚠️ Warning**: Dropping the `-a` flag installs all skills for **all supported agents**. Always specify `-a <agent>` unless you intentionally want a system-wide installation.
 
 ### List Available Skills
 
@@ -207,3 +227,4 @@ The next automated push will continue incrementing from your new tag (e.g., `v2.
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+ 
