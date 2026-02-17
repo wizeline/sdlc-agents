@@ -1,0 +1,19 @@
+Copyright (c) 2026 Wizeline. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person within Wizeline
+obtaining a copy of this skill and associated documentation files, to use,
+copy, modify, and distribute the skill internally for the purpose of building
+and operating AI-assisted documentation workflows.
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the skill.
+
+This skill is proprietary to Wizeline. Redistribution outside of Wizeline,
+sublicensing, or use in external products or services is not permitted without
+prior written consent from Wizeline.
+
+THE SKILL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+WIZELINE BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM
+THE USE OF THIS SKILL.
