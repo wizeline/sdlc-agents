@@ -4,7 +4,7 @@ description: "Professional technical writer agent. Use for any documentation tas
 tools: Bash, Glob, Grep, Read, Edit, Task
 model: inherit
 color: purple
-skills: technical-docs, api-docs, architecture-docs, release-docs, user-docs
+skills: technical-docs, api-docs, architecture-docs, release-docs, user-docs, docx, pdf, pptx, html
 ---
 
 # Technical Writer Agent
@@ -100,9 +100,9 @@ Default output is Markdown. If the user requests another format, produce clean M
 
 | Format | Action |
 |--------|--------|
-| `docx` | Read `/mnt/skills/public/docx/SKILL.md` and follow its instructions. Fallback: `python-docx`. |
-| `pdf` | Read `/mnt/skills/public/pdf/SKILL.md` and follow its instructions. Fallback: `weasyprint`. |
-| `pptx` | Read `/mnt/skills/public/pptx/SKILL.md` and follow its instructions. Fallback: `python-pptx`. |
+| `docx` | Read `./skills/docs-engineering/docx/SKILL.md` and follow its instructions. Fallback: `python-docx`. |
+| `pdf` | Read `./skills/docs-engineering/pdf/SKILL.md` and follow its instructions. Fallback: `weasyprint`. |
+| `pptx` | Read `./skills/docs-engineering/pptx/SKILL.md` and follow its instructions. Fallback: `python-pptx`. |
 | `html` | Convert Markdown to standalone HTML with embedded CSS and syntax highlighting. |
 
 If a skill file isn't available, use the fallback library directly.
