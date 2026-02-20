@@ -1,5 +1,5 @@
 ---
-[Product Name]: User Manual
+[Product Name]: User Guide
 Version: [X.X]
 Last Updated: [YYYY-MM-DD]
 Audience: e.g. End Users, Product Managers
@@ -13,19 +13,18 @@ Support Contact: [support@company.com]
 1. Introduction
 2. Getting Started
 3. Core Features
-4. Advanced Usage
-5. Troubleshooting
-6. FAQ
-7. Appendix
+4. Troubleshooting
+5. FAQ
+6. Appendix
 
 ---
 
-# [Product Name] User Manual
+# [Product Name] User Guide
 
 ## 1. Introduction
 ### 1.1 Product Overview
 [Briefly explain what [Product Name] is and what problem it solves.]
-### 1.2 Who Should Use This Manual
+### 1.2 Who Should Use This Guide
 [Describe target audience and prerequisite knowledge]
 
 ## 2. Getting Started
@@ -58,13 +57,26 @@ n.	[Action step]
 
 > **Tip**: Add a helpful tip or shortcut here.
 
-## 4. Troubleshooting & FAQ
-| Problem | Possible Cause | Solution |
-| :--- | :--- | :--- |
-| Cannot log in | Incorrect password | Reset password via "Forgot Password" link. |
-| Error 500 | Server issue | Contact support at [Email]. |
+---
 
-## 5. Glossary
-*   **Term A**: Definition.
-*   **Term B**: Definition.
+## 4. Troubleshooting
 
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| [Error message] | [Cause] | [Fix] |
+| [Error message] | [Cause] | [Fix] |
+
+---
+
+## 5. FAQ
+
+**Q:** [Common question]?  
+**A:** [Clear, concise answer]
+
+---
+
+## 6. Appendix
+
+- Glossary of terms
+- Keyboard shortcuts / Quick reference cards
+- Error message reference

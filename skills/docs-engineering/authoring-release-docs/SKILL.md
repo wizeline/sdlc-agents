@@ -1,13 +1,13 @@
 ---
-name: release-docs
-description: "Use when producing release-oriented documentation — release notes, changelogs, READMEs, or migration guides. Triggers: 'write release notes', 'generate a changelog', 'create a README', 'document what changed', 'write migration guide', any task involving Jira exports, commit logs, or ticket lists that need to become user-facing documentation. Always load technical-docs first."
+name: authoring-release-docs
+description: "Use when producing release-oriented documentation — release notes, changelogs, READMEs, or migration guides. Triggers: 'write release notes', 'generate a changelog', 'create a README', 'document what changed', 'write migration guide', any task involving Jira exports, commit logs, or ticket lists that need to become user-facing documentation. Always load authoring-technical-docs first."
 ---
 
-# Release Docs Skill
+# Authoring Release Docs Action
 
 Produces release notes, changelogs, and READMEs — time-sensitive, high-visibility documentation.
 
-**Load `technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This skill provides the templates and release-specific rules.
+**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and release-specific rules.
 
 ---
 

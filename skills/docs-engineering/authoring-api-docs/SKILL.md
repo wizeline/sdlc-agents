@@ -1,13 +1,13 @@
 ---
-name: api-docs
-description: "Use when producing API reference documentation — REST endpoints, SDK/library references, CLI command references, or documentation generated from OpenAPI/Swagger specs. Triggers: 'document this API', 'generate API reference', 'write SDK docs', 'document these endpoints', any task involving source code with HTTP handlers, route definitions, or OpenAPI specs. Always load technical-docs first."
+name: authoring-api-docs
+description: "Use when producing API reference documentation — REST endpoints, SDK/library references, CLI command references, or documentation generated from OpenAPI/Swagger specs. Triggers: 'document this API', 'generate API reference', 'write SDK docs', 'document these endpoints', any task involving source code with HTTP handlers, route definitions, or OpenAPI specs. Always load authoring-technical-docs first."
 ---
 
-# API Docs Skill
+# Authoring API Docs Action
 
 Produces precise, exhaustive API reference documentation — the information-oriented quadrant of the Diátaxis framework.
 
-**Load `technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This skill provides the templates and API-specific rules.
+**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and API-specific rules.
 
 ---
 
