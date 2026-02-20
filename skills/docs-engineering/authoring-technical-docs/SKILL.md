@@ -35,11 +35,11 @@ Before writing a single word, consume every input artifact and build a structure
 
 **From OpenAPI / Swagger specs:** all endpoints with methods, paths, parameters, request/response schemas, auth requirements, rate limits.
 
-**From PRDs / product specs:** user stories, acceptance criteria, target personas, feature scope and non-goals, business context.
+**From PRDs / product specs:** user stories, acceptance criteria, target personas, feature scope and non-goals, business context. *use MCP tool to connect with Confluence*
 
 **From existing documentation:** current structure and coverage, last-updated dates, terminology used, gaps relative to codebase.
 
-**From Jira / ticket exports:** feature descriptions, bug descriptions, resolution status, linked PRs, labels.
+**From Jira / ticket exports:** feature descriptions, bug descriptions, resolution status, linked PRs, labels. *use MCP tool to connect with JIRA*
 
 ### Audience identification
 
@@ -93,7 +93,7 @@ Write the document following the style rules below and the domain action's templ
 | Jargon | Define on first use: "the payload (the data sent in the request body)" | Undefined jargon |
 | Sentences | One idea per sentence. Max ~25 words. | Long compound sentences |
 
-### YAML frontmatter (every document)
+### YAML frontmatter (most important fields)
 
 ```yaml
 ---
@@ -101,6 +101,7 @@ title: "[Document title]"
 description: "[One-line description]"
 audience: [developer | end-user | admin | operator]
 doc-type: [tutorial | how-to | reference | explanation]
+version: [X.X]
 last-updated: [YYYY-MM-DD]
 ---
 ```

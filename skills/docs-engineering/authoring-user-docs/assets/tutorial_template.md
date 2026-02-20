@@ -1,11 +1,11 @@
 ---
 title: "[Getting started with X / Build your first Y]"
 description: "[One sentence: what the reader will learn and build]"
-Difficulty: [Beginner / Intermediate / Advanced]
-Doc Type: tutorial
-Estimated Time: [e.g., 15 minutes]
-Version: [X.X]
-Last Updated: [YYYY-MM-DD]
+difficulty: [Beginner / Intermediate / Advanced]
+doc-type: tutorial
+estimated-time: [e.g., 15 minutes]
+version: [X.X]
+last-updated: [YYYY-MM-DD]
 ---
 
 ## Table of Contents

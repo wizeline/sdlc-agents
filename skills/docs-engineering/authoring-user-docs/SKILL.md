@@ -5,19 +5,19 @@ description: "Use when producing user-facing documentation — tutorials, how-to
 
 # Authoring User Docs Action
 
-Produces tutorials, how-to guides, and user guides — the learning-oriented and task-oriented quadrants of the Diátaxis framework.
+Produces tutorials, how-to guides, user guides and onboarding guides — the learning-oriented and task-oriented quadrants of the Diátaxis framework.
 
-**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and user-doc-specific rules.
+**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and user-doc-specific rules. Then, follow the creation of referenced documents in ´Templates´ section.
 
 ---
 
 ## Choosing the right type
 
-| | Tutorial | How-To Guide | User Guide |
-|---|---|---|---|
-| **Audience** | Beginners | Users who know the basics | All experience levels |
-| **Structure** | Linear journey | Task-focused | Chapter-style, comprehensive |
-| **Goal** | "I learned how this works" | "I accomplished my task" | "I understand the whole product" |
+| | Tutorial | How-To Guide | User Guide | Onboarding Guide |
+|---|---|---|---|---|
+| **Audience** | Beginners | Users who know the basics | All experience levels | New team members or developers joining a project |
+| **Structure** | Linear journey | Task-focused | Chapter-style, comprehensive | Sequential, milestone-based |
+| **Goal** | "I learned how this works" | "I accomplished my task" | "I understand the whole product" | "I'm ready to contribute to the project" |
 
 ### Best Practices for Writing Tutorials
 
@@ -100,14 +100,33 @@ When a guide covers a general workflow, describe the *logic* before the *impleme
 **5. Use Inclusive Language**
 Use gender-neutral terms throughout and avoid culturally specific idioms or stereotypes. Accessibility in language broadens your audience and reflects good authorship.
 
+### Best Practices for Writing Onboarding guides
+
+- Structure content around SDLC phases (requirements → design → dev → test → deploy → maintenance)
+- Tailor guides per role (developer, QA, DevOps, PM) with distinct onboarding paths
+- Use progressive disclosure — start with essentials, layer in process depth over time
+- Document toolchain setup explicitly (IDE, Git workflow, CI/CD, issue tracker, comms tools)
+- Embed the *why* behind conventions (branching strategy, PR rules, commit standards)
+- Include visual aids — pipeline diagrams, branching models, org charts
+- Provide end-to-end worked examples (ticket → branch → PR → staging → production)
+- Define "done" criteria clearly at each SDLC phase
+- Maintain a glossary of org-specific terms and acronyms
+- Add checklists/checkpoints after key milestones (first PR, first deploy)
+- Reference a human DRI or buddy for each phase
+- Store in version control (Confluence, Notion, GitHub Wiki) with an assigned owner
+- Collect feedback at 30/60/90-day intervals to keep content accurate
+
 ---
 
 ## Templates
+
+Follow these templates:
 
 | User Doc | Asset |
 |--------|--------|
 | `User Guide` | Read `./assets/user_guide_template.md` |
 | `Tutorial` | Read `./assets/tutorial_template.md` |
 | `How-to guide` | Read `./assets/how_to_guide_template.md` |
+| `Onboarding Guide` | Read `./assets/onboarding_guide_template.md` |
 
-Save tutorials to `docs/guides/tutorial-*.md`. Save how-to guides to `docs/guides/how-to-*.md`. Save user guides to `docs/guides/guide-*.md`.
+Save tutorials to `docs/guides/tutorial-*.md`. Save how-to guides to `docs/guides/how-to-*.md`. Save user guides to `docs/guides/guide-*.md`. Save onboarding guides to `docs/guides/onboarding-*.md`.

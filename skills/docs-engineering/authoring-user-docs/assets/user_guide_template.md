@@ -1,9 +1,9 @@
 ---
 [Product Name]: User Guide
-Version: [X.X]
-Last Updated: [YYYY-MM-DD]
-Audience: e.g. End Users, Product Managers
-Support Contact: [support@company.com]
+version: [X.X]
+last-updated: [YYYY-MM-DD]
+audience: e.g. End Users, Product Managers
+support-contact: [support@company.com]
 ---
 
 ## Table of Contents
