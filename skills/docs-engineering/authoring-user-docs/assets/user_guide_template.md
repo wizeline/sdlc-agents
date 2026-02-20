@@ -6,9 +6,6 @@ Audience: e.g. End Users, Product Managers
 Support Contact: [support@company.com]
 ---
 
-
----
-
 ## Table of Contents
 1. Introduction
 2. Getting Started
@@ -50,14 +47,12 @@ Support Contact: [support@company.com]
 ...
 n.	[Action step]
 
-- **Visual aids**: Screenshots with callouts
+**Visual aids**: Screenshots with callouts
 
 **Expected Output**:
 [Describe what users should see/experience]
 
 > **Tip**: Add a helpful tip or shortcut here.
-
----
 
 ## 4. Troubleshooting
 
@@ -66,14 +61,10 @@ n.	[Action step]
 | [Error message] | [Cause] | [Fix] |
 | [Error message] | [Cause] | [Fix] |
 
----
-
 ## 5. FAQ
 
 **Q:** [Common question]?  
 **A:** [Clear, concise answer]
-
----
 
 ## 6. Appendix
 
