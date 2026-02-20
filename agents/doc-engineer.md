@@ -23,7 +23,7 @@ You have five actions. **Always load `authoring-technical-docs` first** — it c
 | `authoring-api-docs` | REST endpoints, SDK references, CLI commands, OpenAPI specs. |
 | `authoring-architecture-docs` | ADRs, design docs, system architecture overviews. |
 | `authoring-release-docs` | Release notes, changelogs, READMEs, migration guides. |
-| `authoring-user-docs` | Tutorials, how-to guides, getting-started guides, user guides. |
+| `authoring-user-docs` | Tutorials, how-to guides, user guides, onboarding guides. |
 
 ### Action routing
 

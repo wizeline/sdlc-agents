@@ -3,181 +3,68 @@ name: authoring-release-docs
 description: "Use when producing release-oriented documentation — release notes, changelogs, READMEs, or migration guides. Triggers: 'write release notes', 'generate a changelog', 'create a README', 'document what changed', 'write migration guide', any task involving Jira exports, commit logs, or ticket lists that need to become user-facing documentation. Always load authoring-technical-docs first."
 ---
 
-# Authoring Release Docs Action
+# Authoring Release Docs
 
-Produces release notes, changelogs, and READMEs — time-sensitive, high-visibility documentation.
+Produces release notes, changelogs, and READMEs — time-sensitive, high-visibility documentation that users and developers rely on to understand what changed and how to respond.
 
-**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and release-specific rules.
-
----
-
-## Template: Release notes
-
-```markdown
----
-title: "[Product name] [version] release notes"
-description: "What's new, improved, and fixed in [version]"
-doc-type: reference
-date: [YYYY-MM-DD]
----
-
-# [Product name] [version] release notes
-
-*Released [Month Day, Year]*
-
-[One paragraph: the headline change and who benefits.]
-
-## New features
-
-### [Feature name]
-
-[2-3 sentences: what it does and why it matters. Link to full docs.]
-
-## Improvements
-
-- **[Area]:** [What improved and the user-visible effect.]
-
-## Bug fixes
-
-- Fixed an issue where [specific behavior] occurred when [trigger condition]. ([#ticket-id])
-
-## Breaking changes
-
-> **Action required:** [Exactly what users need to do to migrate.]
-
-- **[Change]:** [What changed, why, and the migration path.]
-
-## Deprecations
-
-- **[Feature/API]** is deprecated and will be removed in [version]. Use [replacement] instead.
-
-## Known issues
-
-- [Description of known issue and workaround if available.]
-
-## Upgrade instructions
-
-[Step-by-step to upgrade from previous version. Include commands.]
-```
+**Prerequisite:** Load `authoring-technical-docs` first for the multi-pass workflow, style rules, and quality framework. This skill provides release-specific templates and rules only.
 
 ---
 
-## Template: Changelog (Keep a Changelog format)
+## Templates
 
-```markdown
-# Changelog
-
-All notable changes to this project are documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
-
-## [Unreleased]
-
-### Added
-- [New feature or capability]
-
-### Changed
-- [Modification to existing functionality]
-
-### Fixed
-- [Bug fix]
-
-### Security
-- [Security-related fix]
-
-## [1.2.0] - 2026-01-15
-
-### Added
-- [Feature description]
-
-[1.2.0]: https://github.com/org/repo/compare/v1.1.0...v1.2.0
-[Unreleased]: https://github.com/org/repo/compare/v1.2.0...HEAD
-```
+Follow the asset at `./assets/release_notes_template.md` for release notes structure. For changelogs, follow [Keep a Changelog](https://keepachangelog.com) conventions unless a project-specific format is already established.
 
 ---
 
-## Template: README
+## Core rules
 
-```markdown
-# [Project name]
+**Framing**
+- Lead with user impact, not implementation detail. Write "You can now export dashboards as PDF" — not "Added PDF rendering pipeline."
+- Use past tense for all changes: "Added", "Fixed", "Removed", "Deprecated."
+- Write for two audiences simultaneously: technical users who need precision, and non-technical stakeholders who need plain-language summaries.
 
-[One sentence: what this project does.]
+**Structure**
+- Open with a one-paragraph summary of the most significant changes in this release.
+- Group changes by type in this order: Breaking Changes → New Features → Improvements → Bug Fixes → Deprecations.
+- Within each section, order by impact: most significant change first.
 
-[One sentence: why someone would use it — the key benefit.]
+**Breaking changes**
+- Breaking changes must appear in a prominent callout block — they cannot be buried or easy to miss.
+- Always include exact migration steps inline, not just a link to external docs.
+- Every deprecation must include a target removal date.
 
-## Quick start
+**Bug fixes**
+- Be specific. Write "Fixed an issue where CSV exports truncated rows with more than 50 columns" — not "Fixed export bug."
+- Include severity where relevant (e.g., data loss, crash, cosmetic).
 
-```bash
-[Minimal installation command]
-```
+**Traceability**
+- Every bug fix and feature entry must reference its issue tracker ID (e.g., Jira ticket, GitHub issue).
+- Every release must include a release date.
 
-```language
-[Smallest working example — 5 lines or fewer]
-```
-
-## Installation
-
-### Requirements
-
-- [Runtime] >= [version]
-
-### Install via [package manager]
-
-```bash
-[Install command]
-```
-
-## Usage
-
-### [Use case 1]
-
-```language
-[Example]
-```
-
-## Configuration
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `option` | What it does | `default` |
-
-## Documentation
-
-- [Link to full docs]
-- [Link to API reference]
-
-## Contributing
-
-[Brief instructions or link to CONTRIBUTING.md]
-
-## License
-
-[License name]. See [LICENSE](LICENSE).
-```
+**READMEs**
+- Must work standalone: a developer finding the repo for the first time should be able to install and run the project using only the README, without consulting any other document.
+- The quick-start section must be completable in under 30 seconds.
+- Include: project description, prerequisites, installation, quick start, configuration, links to further docs.
 
 ---
 
-## Release docs rules
+## Generating release docs from raw inputs
 
-1. **Lead with impact, not implementation.** "You can now export dashboards as PDF" — not "Added PDF rendering pipeline."
-2. **Be specific in bug fixes.** "Fixed an issue where CSV exports truncated rows with more than 50 columns" — not "Fixed export bug."
-3. **Breaking changes go in a callout box.** They must be impossible to miss. Include exact migration steps.
-4. **Link to tickets.** Every bug fix and feature references its issue tracker ID.
-5. **Use past tense for changes.** "Added", "Fixed", "Removed."
-6. **Include dates.** Every release has a date. Every deprecation has a removal target date.
-7. **READMEs must work standalone.** A developer finding the repo for the first time can install and run the project using only the README.
-8. **Keep the quick start under 30 seconds.**
+When given Jira exports, commit logs, ticket lists, or PR summaries:
+
+1. **Triage inputs** — identify the type of each item: feature, improvement, bug fix, breaking change, deprecation, or internal/non-user-facing (exclude the last category).
+2. **Rewrite for users** — commit messages and ticket titles are written for developers; release notes are written for users. Translate accordingly.
+3. **Group and prioritize** — apply the section order above; sort by impact within sections.
+4. **Resolve ambiguity conservatively** — if a ticket is too vague to describe accurately, flag it for human review rather than guessing. Do not fabricate specifics.
+5. **Verify completeness** — cross-check that every input item is either included or explicitly excluded (with a reason), so nothing is silently dropped.
 
 ---
 
-## Generating release notes from inputs
+## Output locations
 
-When given Jira exports, commit logs, or ticket lists:
-
-1. **Group by type**: features, improvements, bug fixes, breaking changes
-2. **Rewrite for users**: commit messages are for developers, release notes are for users
-3. **Prioritize by impact**: most important changes first within each section
-4. **Flag anything unclear**: if a ticket is too vague, flag for human review rather than guessing
-
-Save release notes to `docs/releases/v[version].md`. Save changelog to `CHANGELOG.md` at project root. Save README to project root.
+| Document | Path |
+|---|---|
+| Release notes | `docs/releases/v[version].md` |
+| Changelog | `CHANGELOG.md` (project root) |
+| README | `README.md` (project root) |

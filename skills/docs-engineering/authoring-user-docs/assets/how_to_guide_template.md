@@ -1,11 +1,13 @@
+```yaml
 ---
 title: "How to [accomplish specific task]"
 description: "[One sentence: the task this guide helps you complete]"
-Audience: [developer | admin | end-user]
-Doc Type: how-to
-Version: [X.X]
-Last Updated: [YYYY-MM-DD]
+audience: [developer | admin | end-user]
+doc-type: how-to
+version: [X.X]
+last-updated: [YYYY-MM-DD]
 ---
+```
 
 ## Table of Contents
 1. Prerequisites
