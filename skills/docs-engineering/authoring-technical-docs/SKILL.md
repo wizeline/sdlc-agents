@@ -1,17 +1,17 @@
 ---
-name: technical-docs
-description: "Core documentation engineering skill. Provides the quality framework, style rules, and multi-pass workflow (research → draft → review → format) that all documentation must follow. Load this first for any technical documentation task. If no domain skill matches the request, this skill alone is sufficient."
+name: authoring-technical-docs
+description: "Core documentation engineering action. Provides the quality framework, style rules, and multi-pass workflow (research → draft → review → format) that all documentation must follow. Load this first for any technical documentation task. If no domain action matches the request, this action alone is sufficient."
 context: fork
 agent: Plan
 ---
 
-# Technical Docs — Core Documentation Engineering Skill
+# Authoring Technical Docs — Core Documentation Engineering Action
 
 ## Overview
 
-This skill defines the process, quality standards, and style rules for producing professional technical documentation. It follows a multi-pass workflow: research the inputs, draft the document, self-review for quality, and format for delivery.
+This action defines the process, quality standards, and style rules for producing professional technical documentation. It follows a multi-pass workflow: research the inputs, draft the document, self-review for quality, and format for delivery.
 
-**Always load this skill first. Domain skills (api-docs, architecture-docs, release-docs, user-docs) build on this foundation.**
+**Always load this action first. Domain actions (authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs) build on this foundation.**
 
 ---
 
@@ -78,7 +78,7 @@ Share a brief research summary before proceeding to drafting.
 
 ## Phase 2: Draft
 
-Write the document following the style rules below and the domain skill's templates.
+Write the document following the style rules below and the domain action's templates.
 
 ### Non-negotiable style rules
 

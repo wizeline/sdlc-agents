@@ -1,13 +1,13 @@
 ---
-name: user-docs
-description: "Use when producing user-facing documentation — tutorials, how-to guides, user guides, getting-started guides, installation guides, or onboarding documentation. Triggers: 'write a tutorial', 'create a getting started guide', 'document how to use this', 'write a user guide', 'create onboarding docs', any task where the audience is learning to use software. Always load technical-docs first."
+name: authoring-user-docs
+description: "Use when producing user-facing documentation — tutorials, how-to guides, user guides, getting-started guides, installation guides, or onboarding documentation. Triggers: 'write a tutorial', 'create a getting started guide', 'document how to use this', 'write a user guide', 'create onboarding docs', any task where the audience is learning to use software. Always load authoring-technical-docs first."
 ---
 
-# User Docs Skill
+# Authoring User Docs Action
 
 Produces tutorials, how-to guides, and user guides — the learning-oriented and task-oriented quadrants of the Diátaxis framework.
 
-**Load `technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This skill provides the templates and user-doc-specific rules.
+**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and user-doc-specific rules.
 
 ---
 
@@ -134,58 +134,14 @@ This guide shows you how to [task]. Use this when you need to [situation].
 
 - [Link to related guide]
 - [Link to API reference]
-```
 
----
+## Templates
 
-## Template: User guide (comprehensive)
-
-```markdown
----
-title: "[Product / Feature] user guide"
-description: "[One sentence: what this guide covers]"
-audience: [end-user | admin | developer]
-doc-type: reference
-last-updated: [YYYY-MM-DD]
----
-
-# [Product / Feature] user guide
-
-## Overview
-
-[2-3 paragraphs: what this does, who it's for, what problems it solves. No jargon.]
-
-## Key concepts
-
-- **[Term 1]** — [Plain-language definition]
-- **[Term 2]** — [Plain-language definition]
-
-## Getting started
-
-[Quick-start path: minimum steps to see value.]
-
-## [Feature area 1]
-
-### [Sub-feature or task]
-
-[Instructions organized by task, not by UI element.]
-
-## Troubleshooting
-
-| Problem | Cause | Solution |
-|---------|-------|----------|
-
-## Frequently asked questions
-
-**Q: [Common question]**
-A: [Direct answer.]
-
-## Glossary
-
-[If many terms introduced, collect alphabetically.]
-```
-
----
+| User Doc | Asset |
+|--------|--------|
+| `User Guide` | Read `./assets/user_guide_template.md` |
+| `Tutorial` | Read `./assets/tutorial_template.md` |
+| `How-to guide` | Read `./assets/how_to_guide_template.md` |
 
 ## User docs rules
 
@@ -198,3 +154,14 @@ A: [Direct answer.]
 7. **Test every procedure.** If you can't follow it yourself, flag as a gap.
 
 Save tutorials to `docs/guides/tutorial-*.md`. Save how-to guides to `docs/guides/how-to-*.md`. Save user guides to `docs/guides/guide-*.md`.
+
+
+**Best Practices:**
+- Use clear, non-technical language for end-users 
+- Organize content logically with standardized structure 
+- Include visual aids (screenshots, diagrams) where helpful 
+- Keep instructions step-by-step and actionable 
+**Key Principles:**
+- **Progressive disclosure**: Start simple, add depth
+- **Visual-first**: Every major action has a screenshot
+- **Task-oriented**: Organize by what users want to achieve, not by UI layout

@@ -1,15 +1,15 @@
 ---
-name: architecture-docs
-description: "Use when producing architecture and design documentation — Architecture Decision Records (ADRs), design documents, system architecture overviews, or technical design proposals. Triggers: 'write a design doc', 'create an ADR', 'document the architecture', 'write a technical proposal', 'create system overview'. Always load technical-docs first."
+name: authoring-architecture-docs
+description: "Use when producing architecture and design documentation — Architecture Decision Records (ADRs), design documents, system architecture overviews, or technical design proposals. Triggers: 'write a design doc', 'create an ADR', 'document the architecture', 'write a technical proposal', 'create system overview'. Always load authoring-technical-docs first."
 context: fork
 agent: Explore
 ---
 
-# Architecture Docs Skill
+# Authoring Architecture Docs Action
 
 Produces architecture decision records, design documents, and system architecture overviews — the understanding-oriented quadrant of the Diátaxis framework.
 
-**Load `technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This skill provides the templates and architecture-specific rules.
+**Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and architecture-specific rules.
 
 ---
 
