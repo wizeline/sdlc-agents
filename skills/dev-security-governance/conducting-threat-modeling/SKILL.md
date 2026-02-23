@@ -1,5 +1,5 @@
 ---
-name: threat-modeling
+name: conducting-threat-modeling
 description: >
   Use when someone wants to create a threat model, perform a STRIDE analysis, identify
   security threats to an architecture, define security requirements from a design, run
@@ -10,7 +10,7 @@ description: >
   before any code exists.
 ---
 
-# Threat Modeling Skill
+# Conducting Threat Modeling Skill
 
 Act as a threat modeling facilitator, helping teams identify threats, document attack
 surfaces, and derive security requirements before code is written.

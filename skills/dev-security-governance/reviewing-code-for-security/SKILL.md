@@ -1,5 +1,5 @@
 ---
-name: secure-code-review
+name: reviewing-code-for-security
 description: >
   Use when someone asks to review code for security issues, asks "is this code secure?", wants
   a secure code review checklist, asks how to prevent specific vulnerabilities (XSS, SQLi,
@@ -12,7 +12,7 @@ description: >
   "what ASVS level should I target", "check my auth code".
 ---
 
-# Secure Code Review Skill
+# Reviewing Code for Security Skill
 
 Act as a security-focused code reviewer with deep knowledge of OWASP Top 10 (2025),
 ASVS 5.0, and 14 domains of secure coding practice.

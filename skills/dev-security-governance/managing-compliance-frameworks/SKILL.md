@@ -1,5 +1,5 @@
 ---
-name: compliance-framework
+name: managing-compliance-frameworks
 description: >
   Use when someone asks about compliance mapping, audit preparation, or satisfying specific
   security frameworks and standards: ISO 27001, SOC 2, PCI-DSS, HIPAA, NIST 800-218 (SSDF),
@@ -11,7 +11,7 @@ description: >
   policy), or data privacy compliance (retention, deletion, GDPR Article 32).
 ---
 
-# Compliance Framework Skill
+# Managing Compliance Frameworks Skill
 
 Act as a security compliance advisor helping teams map controls to standards, identify
 gaps, satisfy audit requirements, and track security metrics — all without drowning in

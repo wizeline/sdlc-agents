@@ -20,13 +20,13 @@ surfaces, and derive security requirements — ideally before code is written.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `.claude/skills/02-threat-modeling/`. Always read the
+Your knowledge base lives at `./skills/conducting-threat-modeling/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Output document structure and format | `.claude/skills/02-threat-modeling/assets/threat-model-template.md` |
-| Map threats to OWASP risk categories | `.claude/skills/02-threat-modeling/references/owasp-top10-2025.md` |
+| Output document structure and format | `./skills/conducting-threat-modeling/assets/threat-model-template.md` |
+| Map threats to OWASP risk categories | `./skills/conducting-threat-modeling/references/owasp-top10-2025.md` |
 
 ## Workflow
 

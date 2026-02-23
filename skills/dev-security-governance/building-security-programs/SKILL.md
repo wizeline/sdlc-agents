@@ -1,5 +1,5 @@
 ---
-name: security-program
+name: building-security-programs
 description: >
   Use when someone asks about building or maturing an organizational security program,
   assessing security maturity, running a Security Champions program, creating a security
@@ -12,7 +12,7 @@ description: >
   "quarterly security review", "VDP / vulnerability disclosure program", "bug bounty".
 ---
 
-# Security Program Skill
+# Building Security Programs Skill
 
 Act as an application security program advisor helping organizations build, mature, and
 sustain a security program that scales with engineering — not against it.

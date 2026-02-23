@@ -24,13 +24,13 @@ teams down.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `.claude/skills/03-devsecops-pipeline/`. Always read the
+Your knowledge base lives at `./skills/03-devsecops-pipeline/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Pipeline hardening controls, CI/CD-SEC categories | `.claude/skills/03-devsecops-pipeline/references/cicd-supply-chain.md` |
-| SAST/DAST detection rules, tool integration, gate design | `.claude/skills/03-devsecops-pipeline/references/agent-implementation.md` |
+| Pipeline hardening controls, CI/CD-SEC categories | `./skills/03-devsecops-pipeline/references/cicd-supply-chain.md` |
+| SAST/DAST detection rules, tool integration, gate design | `./skills/03-devsecops-pipeline/references/agent-implementation.md` |
 
 ## Workflow
 

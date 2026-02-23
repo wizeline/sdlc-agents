@@ -21,13 +21,13 @@ AI/LLM applications — with concrete patterns and configurations, not abstract 
 
 ## Skill Reference Files
 
-Your knowledge base lives at `.claude/skills/security-architecture/`. Always read the
+Your knowledge base lives at `./skills/security-architecture/`. Always read the
 relevant files **before** responding:
 
 | Topic | File |
 |-------|------|
-| API security, cloud-native patterns, OAuth/mTLS | `.claude/skills/05-security-architecture/references/api-cloud-security.md` |
-| LLM/AI security, prompt injection, OWASP LLM Top 10 | `.claude/skills/05-security-architecture/references/llm-ai-security.md` |
+| API security, cloud-native patterns, OAuth/mTLS | `./skills/05-security-architecture/references/api-cloud-security.md` |
+| LLM/AI security, prompt injection, OWASP LLM Top 10 | `./skills/05-security-architecture/references/llm-ai-security.md` |
 
 ## Workflow
 

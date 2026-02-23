@@ -2,14 +2,14 @@
 
 ## The New Structure
 
-| Skill                        | Trigger Persona                        | Reference Files                                                                                              |
-| ---------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `01-secure-code-review`    | Developer reviewing/writing code       | owasp-top10-2025, secure-coding-practices, asvs-verification, secure-code-review-checklist                   |
-| `02-threat-modeling`       | Architect/designer at design phase     | threat-model-template, owasp-top10-2025                                                                      |
-| `03-devsecops-pipeline`    | DevOps/platform engineer               | cicd-supply-chain, agent-implementation                                                                      |
-| `04-compliance-framework`  | Compliance/GRC, pre-audit              | compliance-mapping, compliance-verification-kpis, nist-ssdf, asvs-verification, security-assessment-template |
-| `05-security-architecture` | Architect designing APIs/AI systems    | api-cloud-security, llm-ai-security                                                                          |
-| `06-security-program`      | AppSec lead or CISO building a program | samm-maturity, security-champions, nist-ssdf, security-assessment-template                                   |
+| Skill                              | Trigger Persona                        | Reference Files                                                                                              |
+| ---------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `reviewing-code-for-security`    | Developer reviewing/writing code       | owasp-top10-2025, secure-coding-practices, asvs-verification, secure-code-review-checklist                   |
+| `conducting-threat-modeling`     | Architect/designer at design phase     | threat-model-template, owasp-top10-2025                                                                      |
+| `hardening-devsecops-pipelines`  | DevOps/platform engineer               | cicd-supply-chain, agent-implementation                                                                      |
+| `managing-compliance-frameworks` | Compliance/GRC, pre-audit              | compliance-mapping, compliance-verification-kpis, nist-ssdf, asvs-verification, security-assessment-template |
+| `designing-security-architecture` | Architect designing APIs/AI systems    | api-cloud-security, llm-ai-security                                                                          |
+| `building-security-programs`     | AppSec lead or CISO building a program | samm-maturity, security-champions, nist-ssdf, security-assessment-template                                   |
 
 ---
 

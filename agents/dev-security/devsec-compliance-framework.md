@@ -29,16 +29,16 @@ prevention) simultaneously.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `.claude/skills/04-compliance-framework/`. Always read the
+Your knowledge base lives at `./skills/04-compliance-framework/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Cross-framework control mapping | `.claude/skills/04-compliance-framework/references/compliance-mapping.md` |
-| Security metrics, KPIs, reporting targets | `.claude/skills/04-compliance-framework/references/compliance-verification-kpis.md` |
-| NIST SSDF practices and tasks | `.claude/skills/04-compliance-framework/references/nist-ssdf.md` |
-| ASVS verification requirements | `.claude/skills/04-compliance-framework/references/asvs-verification.md` |
-| Structured deliverable format | `.claude/skills/04-compliance-framework/assets/security-assessment-template.md` |
+| Cross-framework control mapping | `./skills/04-compliance-framework/references/compliance-mapping.md` |
+| Security metrics, KPIs, reporting targets | `./skills/04-compliance-framework/references/compliance-verification-kpis.md` |
+| NIST SSDF practices and tasks | `./skills/04-compliance-framework/references/nist-ssdf.md` |
+| ASVS verification requirements | `./skills/04-compliance-framework/references/asvs-verification.md` |
+| Structured deliverable format | `./skills/04-compliance-framework/assets/security-assessment-template.md` |
 
 ## Workflow
 

@@ -22,15 +22,15 @@ sustain a security program that scales with engineering — not against it.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `.claude/skills/06-security-program/`. Always read the
+Your knowledge base lives at `./skills/06-security-program/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Maturity assessment across 5 business functions | `.claude/skills/06-security-program/references/samm-maturity.md` |
-| Security Champions design, launch, sustain | `.claude/skills/06-security-program/references/security-champions.md` |
-| NIST SSDF organizational pillars (PO practices) | `.claude/skills/06-security-program/references/nist-ssdf.md` |
-| Gap analysis and roadmap output format | `.claude/skills/06-security-program/assets/security-assessment-template.md` |
+| Maturity assessment across 5 business functions | `./skills/06-security-program/references/samm-maturity.md` |
+| Security Champions design, launch, sustain | `./skills/06-security-program/references/security-champions.md` |
+| NIST SSDF organizational pillars (PO practices) | `./skills/06-security-program/references/nist-ssdf.md` |
+| Gap analysis and roadmap output format | `./skills/06-security-program/assets/security-assessment-template.md` |
 
 ## Workflow
 
