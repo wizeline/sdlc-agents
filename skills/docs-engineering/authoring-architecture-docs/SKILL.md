@@ -7,199 +7,101 @@ agent: Explore
 
 # Authoring Architecture Docs Action
 
-Produces architecture decision records, design documents, and system architecture overviews — the understanding-oriented quadrant of the Diátaxis framework.
+Produces architecture decision records, design documents, and C4 Model diagrams scoped to the appropriate level for the current SDLC phase and audience — the understanding-oriented quadrant of the Diátaxis framework.
 
 **Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and architecture-specific rules.
 
 ---
 
-## Template: Architecture Decision Record (ADR)
-
-ADRs capture the "why" behind technical decisions. They preserve context that is otherwise lost.
-
-```markdown
----
-title: "ADR-[number]: [Short decision title]"
-doc-type: explanation
-status: [proposed | accepted | deprecated | superseded by ADR-XXX]
-date: [YYYY-MM-DD]
-decision-makers: [List of people involved]
----
-
-# ADR-[number]: [Short decision title]
-
-## Status
-
-[Proposed | Accepted | Deprecated | Superseded by [ADR-XXX](link)]
-
-## Context
-
-[The situation requiring a decision. What problem? What constraints? What forces? Be specific — include numbers, timelines, technical constraints.]
-
-## Decision
-
-We will [decision].
-
-[Elaborate: what does this mean concretely?]
-
-## Consequences
-
-### Positive
-
-- [Benefit 1]
-
-### Negative
-
-- [Trade-off 1]
-
-### Neutral
-
-- [Side effect that is neither clearly good nor bad]
-
-## Alternatives considered
-
-### [Alternative 1]
-
-[What it was and why it was rejected.]
-
 ## References
 
-- [Link to related ADRs, design docs, or external resources]
+Read these before executing any step.
+
+| File | Contains |
+|------|----------|
+| `references/notation.md` | C4 abstractions, Mermaid element types, verb bank |
+| `references/level-rules.md` | Per-level rules and forbidden elements |
+| `references/sdlc-mapping.md` | SDLC phase → diagram selection, audience decision tree |
+| `references/anti-patterns.md` | Mistakes to detect and avoid |
+
+## Assets
+
+Use these as output scaffolding.
+
+| File | Use for |
+|------|---------|
+| `assets/architecture-doc.md` | Top-level ARCHITECTURE.md structure |
+| `assets/diagram-templates.md` | Per-level section templates (fill in placeholders) |
+
+---
+
+## Workflow
+
+### Step 1 — Read references
+
+Read all four files in `references/` before any other action.
+
+### Step 2 — Gather project context
+
+Extract from input. Ask only if a required field is missing.
+
+| Field | Required for |
+|-------|-------------|
+| System name and purpose | All levels |
+| Users / personas | L1+ |
+| External integrations | L1+ |
+| Tech stack | L2+ |
+| SDLC phase | Selecting diagram levels |
+| Target container name + source structure | L3 only |
+| Flow name and step-by-step description | Dynamic only |
+
+### Step 3 — Select diagram levels
+
+Consult `references/sdlc-mapping.md` → Phase Matrix and Audience Decision Tree.
+State the selection and rationale before proceeding.
+
+### Step 4 — Produce each diagram
+
+For each selected level, in order:
+
+1. Open `assets/diagram-templates.md` and copy the matching template section
+2. Fill every `{{placeholder}}` — leave none blank
+3. Apply all rules from `references/level-rules.md` for that level
+4. Scan output against `references/anti-patterns.md`
+5. Self-check against the Review Checklist in `assets/architecture-doc.md`
+
+### Step 5 — Assemble output document
+
+Open `assets/architecture-doc.md` as the document scaffold.
+Insert completed diagram sections in level order: L1 → L2 → L3 → Deployment → Dynamic.
+Complete the Key Architectural Decisions table and Change Log.
+
+### Step 6 — Save files
+
+```
+docs/architecture/ARCHITECTURE.md
+docs/architecture/diagrams/context.mermaid
+docs/architecture/diagrams/container.mermaid
+docs/architecture/diagrams/component-{{container_name}}.mermaid
+docs/architecture/diagrams/deployment.mermaid
+docs/architecture/diagrams/dynamic-{{flow_name}}.mermaid
 ```
 
----
-
-## Template: Design document
-
-```markdown
----
-title: "[Feature/System] design document"
-doc-type: explanation
-status: [draft | under review | approved | implemented]
-date: [YYYY-MM-DD]
----
-
-# [Feature/System] design document
-
-## Summary
-
-[One paragraph: what this proposes and why. A busy engineer decides whether to keep reading based on this paragraph alone.]
-
-## Goals and non-goals
-
-### Goals
-
-- [What this design aims to achieve]
-
-### Non-goals
-
-- [What this design explicitly does NOT address]
-
-## Background
-
-[Context needed to understand the proposal. Current system state, relevant history, user needs.]
-
-## Detailed design
-
-### Overview
-
-[High-level description. Include a system diagram if helpful.]
-
-### [Component / aspect 1]
-
-[Detailed description. Data models, API contracts, algorithms.]
-
-### Data model
-
-[If applicable: schema definitions, entity relationships, migration plan.]
-
-## Security considerations
-
-[Authentication, authorization, data privacy, encryption, threat model.]
-
-## Performance considerations
-
-[Expected load, latency requirements, scaling strategy.]
-
-## Testing strategy
-
-[Unit tests, integration tests, load tests, rollback plan.]
-
-## Migration / rollout plan
-
-[How to get from current state to proposed state.]
-
-## Open questions
-
-- [Question that still needs answering before implementation]
-
-## Appendix
-
-[Supporting data, benchmarks, reference implementations.]
-```
+Save only the files corresponding to the levels actually produced.
 
 ---
 
-## Template: System architecture overview
+## Inputs
 
-```markdown
----
-title: "[System name] architecture overview"
-doc-type: explanation
-audience: [new team members | architects | external integrators]
-last-updated: [YYYY-MM-DD]
----
+- Project description, README, or source code
+- SDLC phase (required)
+- Target container name and source structure (L3 only)
+- Flow name and steps (Dynamic only)
 
-# [System name] architecture overview
+## Outputs
 
-## What [system name] does
-
-[2-3 sentences: the system's purpose in business terms, not technical terms.]
-
-## Architecture diagram
-
-[Mermaid diagram]
-
-## Components
-
-### [Component 1]
-
-- **Purpose:** [What it does]
-- **Technology:** [Language, framework, infrastructure]
-- **Owns:** [What data or functionality it's responsible for]
-- **Communicates with:** [Other components and how]
-
-## Data flow
-
-1. [User/system initiates action]
-2. [Component A receives and processes]
-3. [Component A sends to Component B via protocol]
-
-## Infrastructure
-
-| Resource | Provider | Purpose |
-|----------|----------|---------|
-| [Database] | [AWS RDS] | [Primary data store] |
-
-## Key technical decisions
-
-[Link to relevant ADRs.]
-
-## Known limitations
-
-[Current constraints, tech debt, fragile areas.]
-```
-
----
-
-## Architecture docs rules
-
-1. **Separate "what is" from "what should be."** Overviews describe current state. Design docs describe proposed future.
-2. **Diagrams are not optional.** Use Mermaid — it's version-controllable.
-3. **Include the "why."** Link to ADRs.
-4. **Write for the new team member.**
-5. **Be honest about trade-offs.** Every architecture has weaknesses. Document them.
-6. **Link to code.** When describing a component, link to the relevant repo or entry point.
+- `ARCHITECTURE.md` — full assembled documentation package
+- `diagrams/*.mermaid` — one file per diagram level produced
 
 ---
 
@@ -227,5 +129,3 @@ sequenceDiagram
     DB-->>API: resource_id
     API-->>Client: 201 Created
 ```
-
-Save ADRs to `docs/architecture/adr-NNN-title.md`. Save design docs to `docs/architecture/design-title.md`.
