@@ -4,7 +4,6 @@ description: "Use when producing architecture and design documentation — Archi
 context: fork
 agent: Explore
 ---
-
 # Authoring Architecture Docs Action
 
 Produces architecture decision records, design documents, and C4 Model diagrams scoped to the appropriate level for the current SDLC phase and audience — the understanding-oriented quadrant of the Diátaxis framework.
@@ -17,21 +16,24 @@ Produces architecture decision records, design documents, and C4 Model diagrams 
 
 Read these before executing any step.
 
-| File | Contains |
-|------|----------|
-| `references/notation.md` | C4 abstractions, Mermaid element types, verb bank |
-| `references/level-rules.md` | Per-level rules and forbidden elements |
-| `references/sdlc-mapping.md` | SDLC phase → diagram selection, audience decision tree |
-| `references/anti-patterns.md` | Mistakes to detect and avoid |
+| File                           | Contains                                               |
+| ------------------------------ | ------------------------------------------------------ |
+| `references/notation.md`       | C4 abstractions, Mermaid element types, verb bank      |
+| `references/level-rules.md`    | Per-level rules and forbidden elements                 |
+| `references/sdlc-mapping.md`   | SDLC phase → diagram selection, audience decision tree |
+| `references/anti-patterns.md`  | Mistakes to detect and avoid                           |
 
 ## Assets
 
 Use these as output scaffolding.
 
-| File | Use for |
-|------|---------|
-| `assets/architecture-doc.md` | Top-level ARCHITECTURE.md structure |
-| `assets/diagram-templates.md` | Per-level section templates (fill in placeholders) |
+| File                                                    | Use for                                            |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| `assets/architecture-doc.md`                            | Top-level ARCHITECTURE.md structure                |
+| `assets/diagram-templates.md`                           | Per-level section templates (fill in placeholders) |
+| `assets/Architecture_Decision_Record_(ADR)_template.md` | Template for Architecture Decision Records (ADRs)  |
+| `assets/Design_document_template.md`                    | Template for technical design documents            |
+| `assets/System_architecture_template.md`               | Template for system architecture overviews         |
 
 ---
 
@@ -45,15 +47,15 @@ Read all four files in `references/` before any other action.
 
 Extract from input. Ask only if a required field is missing.
 
-| Field | Required for |
-|-------|-------------|
-| System name and purpose | All levels |
-| Users / personas | L1+ |
-| External integrations | L1+ |
-| Tech stack | L2+ |
-| SDLC phase | Selecting diagram levels |
-| Target container name + source structure | L3 only |
-| Flow name and step-by-step description | Dynamic only |
+| Field                                    | Required for             |
+| ---------------------------------------- | ------------------------ |
+| System name and purpose                  | All levels               |
+| Users / personas                         | L1+                      |
+| External integrations                    | L1+                      |
+| Tech stack                               | L2+                      |
+| SDLC phase                               | Selecting diagram levels |
+| Target container name + source structure | L3 only                  |
+| Flow name and step-by-step description   | Dynamic only             |
 
 ### Step 3 — Select diagram levels
 
@@ -105,9 +107,21 @@ Save only the files corresponding to the levels actually produced.
 
 ---
 
+## Architecture docs rules
+
+1. **Separate "what is" from "what should be."** Overviews describe current state. Design docs describe proposed future.
+2. **Diagrams are not optional.** Use Mermaid — it's version-controllable.
+3. **Include the "why."** Link to ADRs.
+4. **Write for the new team member.**
+5. **Be honest about trade-offs.** Every architecture has weaknesses. Document them.
+6. **Link to code.** When describing a component, link to the relevant repo or entry point.
+
+---
+
 ## Using Mermaid for diagrams
 
 **System overview:**
+
 ```mermaid
 graph TB
     User[User] --> WebApp[Web Application]
@@ -119,6 +133,7 @@ graph TB
 ```
 
 **Sequence diagram:**
+
 ```mermaid
 sequenceDiagram
     participant Client
