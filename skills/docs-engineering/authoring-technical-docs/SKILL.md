@@ -1,17 +1,17 @@
 ---
-name: technical-docs
-description: "Core documentation engineering skill. Provides the quality framework, style rules, and multi-pass workflow (research → draft → review → format) that all documentation must follow. Load this first for any technical documentation task. If no domain skill matches the request, this skill alone is sufficient."
+name: authoring-technical-docs
+description: "Core documentation engineering action. Provides the quality framework, style rules, and multi-pass workflow (research → draft → review → format) that all documentation must follow. Load this first for any technical documentation task. If no domain action matches the request, this action alone is sufficient."
 context: fork
 agent: Plan
 ---
 
-# Technical Docs — Core Documentation Engineering Skill
+# Authoring Technical Docs — Core Documentation Engineering Action
 
 ## Overview
 
-This skill defines the process, quality standards, and style rules for producing professional technical documentation. It follows a multi-pass workflow: research the inputs, draft the document, self-review for quality, and format for delivery.
+This action defines the process, quality standards, and style rules for producing professional technical documentation. It follows a multi-pass workflow: research the inputs, draft the document, self-review for quality, and format for delivery.
 
-**Always load this skill first. Domain skills (api-docs, architecture-docs, release-docs, user-docs) build on this foundation.**
+**Always load this action first. Domain actions (authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs) build on this foundation.**
 
 ---
 
@@ -35,11 +35,11 @@ Before writing a single word, consume every input artifact and build a structure
 
 **From OpenAPI / Swagger specs:** all endpoints with methods, paths, parameters, request/response schemas, auth requirements, rate limits.
 
-**From PRDs / product specs:** user stories, acceptance criteria, target personas, feature scope and non-goals, business context.
+**From PRDs / product specs:** user stories, acceptance criteria, target personas, feature scope and non-goals, business context. *use MCP tool to connect with Confluence*
 
 **From existing documentation:** current structure and coverage, last-updated dates, terminology used, gaps relative to codebase.
 
-**From Jira / ticket exports:** feature descriptions, bug descriptions, resolution status, linked PRs, labels.
+**From Jira / ticket exports:** feature descriptions, bug descriptions, resolution status, linked PRs, labels. *use MCP tool to connect with JIRA*
 
 ### Audience identification
 
@@ -78,7 +78,7 @@ Share a brief research summary before proceeding to drafting.
 
 ## Phase 2: Draft
 
-Write the document following the style rules below and the domain skill's templates.
+Write the document following the style rules below and the domain action's templates.
 
 ### Non-negotiable style rules
 
@@ -93,7 +93,7 @@ Write the document following the style rules below and the domain skill's templa
 | Jargon | Define on first use: "the payload (the data sent in the request body)" | Undefined jargon |
 | Sentences | One idea per sentence. Max ~25 words. | Long compound sentences |
 
-### YAML frontmatter (every document)
+### YAML frontmatter (most important fields)
 
 ```yaml
 ---
@@ -101,6 +101,7 @@ title: "[Document title]"
 description: "[One-line description]"
 audience: [developer | end-user | admin | operator]
 doc-type: [tutorial | how-to | reference | explanation]
+version: [X.X]
 last-updated: [YYYY-MM-DD]
 ---
 ```

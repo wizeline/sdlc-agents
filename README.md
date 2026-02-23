@@ -60,7 +60,7 @@ Install a specific skill for a specific agent:
 npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
 ```
 
-> **Note**: Point the URL directly to the skill's folder path within the repository (e.g., `.../tree/main/skills/docs-engineering`). For skills organized into subfolders (e.g., `docs-engineering/pdf`), each sub-skill must be installed individually using its full path (e.g., `.../tree/main/skills/docs-engineering/pdf`).
+> **Note**: Point the URL directly to the skill's folder path within the repository (e.g., `.../tree/main/skills/docs-engineering`). For skills organized into subfolders (e.g., `docs-engineering/processing-pdfs`), each sub-skill must be installed individually using its full path (e.g., `.../tree/main/skills/docs-engineering/processing-pdfs`).
 
 Install all available skills:
 
