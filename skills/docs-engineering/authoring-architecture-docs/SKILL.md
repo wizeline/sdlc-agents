@@ -1,12 +1,10 @@
 ---
 name: authoring-architecture-docs
 description: "Use when producing architecture and design documentation — Architecture Decision Records (ADRs), design documents, system architecture overviews, or technical design proposals. Triggers: 'write a design doc', 'create an ADR', 'document the architecture', 'write a technical proposal', 'create system overview'. Always load authoring-technical-docs first."
-context: fork
-agent: Explore
 ---
 # Authoring Architecture Docs Action
 
-Produces architecture decision records, design documents, and C4 Model diagrams scoped to the appropriate level for the current SDLC phase and audience — the understanding-oriented quadrant of the Diátaxis framework.
+Produces architecture decision records, design documents, and C4 Model diagrams scoped to the appropriate level for the current SDLC phase and audience — the understanding-oriented quadrant of the Diátaxis framework. Diagrams are scoped to the appropriate level for the current SDLC phase and audience.
 
 **Load `authoring-technical-docs` first** for the multi-pass workflow, style rules, and quality framework. This action provides the templates and architecture-specific rules.
 
@@ -16,24 +14,24 @@ Produces architecture decision records, design documents, and C4 Model diagrams 
 
 Read these before executing any step.
 
-| File                           | Contains                                               |
-| ------------------------------ | ------------------------------------------------------ |
-| `references/notation.md`       | C4 abstractions, Mermaid element types, verb bank      |
-| `references/level-rules.md`    | Per-level rules and forbidden elements                 |
-| `references/sdlc-mapping.md`   | SDLC phase → diagram selection, audience decision tree |
-| `references/anti-patterns.md`  | Mistakes to detect and avoid                           |
+| File                            | Contains                                                |
+| ------------------------------- | ------------------------------------------------------- |
+| `references/notation.md`      | C4 abstractions, Mermaid element types, verb bank       |
+| `references/level-rules.md`   | Per-level rules and forbidden elements                  |
+| `references/sdlc-mapping.md`  | SDLC phase → diagram selection, audience decision tree |
+| `references/anti-patterns.md` | Mistakes to detect and avoid                            |
 
 ## Assets
 
 Use these as output scaffolding.
 
-| File                                                    | Use for                                            |
-| ------------------------------------------------------- | -------------------------------------------------- |
+| File                                                      | Use for                                            |
+| --------------------------------------------------------- | -------------------------------------------------- |
 | `assets/architecture-doc.md`                            | Top-level ARCHITECTURE.md structure                |
 | `assets/diagram-templates.md`                           | Per-level section templates (fill in placeholders) |
 | `assets/Architecture_Decision_Record_(ADR)_template.md` | Template for Architecture Decision Records (ADRs)  |
 | `assets/Design_document_template.md`                    | Template for technical design documents            |
-| `assets/System_architecture_template.md`               | Template for system architecture overviews         |
+| `assets/System_architecture_template.md`                | Template for system architecture overviews         |
 
 ---
 
@@ -120,6 +118,8 @@ Save only the files corresponding to the levels actually produced.
 
 ## Using Mermaid for diagrams
 
+Accompany each diagram with a brief prose summary (2–4 sentences) explaining the key relationships shown.
+
 **System overview:**
 
 ```mermaid
@@ -144,3 +144,10 @@ sequenceDiagram
     DB-->>API: resource_id
     API-->>Client: 201 Created
 ```
+
+## Example Triggers
+
+- "Generate a C4 context diagram for this project"
+- "Show me the container architecture"
+- "Document the components in the auth service"
+- "Create a class diagram for the payment module"
