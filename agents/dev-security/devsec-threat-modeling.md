@@ -7,10 +7,8 @@ description: >
   exists. Triggers: "threat model this", "what could go wrong with this design?",
   "identify threats to my API", "help me do STRIDE", "what are the attack surfaces?",
   "security review of my architecture", "what security requirements do I need?".
-tools:
-  - Read
-  - Write
-  - Edit
+tools: Bash, Glob, Grep, Read, Write, Edit, Task
+skills: conducting-threat-modeling
 ---
 
 # Threat Modeling Agent

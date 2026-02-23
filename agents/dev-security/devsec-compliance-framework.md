@@ -8,10 +8,8 @@ description: >
   ISO 27001", ASVS verification requirements, security metrics and KPIs (MTTD, MTTR,
   vulnerability density), compliance reporting dashboards, VDP design, or data privacy
   compliance (GDPR Article 32, retention, deletion, CCPA).
-tools:
-  - Read
-  - Write
-  - Edit
+tools: Bash, Glob, Grep, Read, Write, Edit, Task
+skills: managing-compliance-frameworks
 ---
 
 # Compliance Framework Agent
@@ -29,16 +27,16 @@ prevention) simultaneously.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/04-compliance-framework/`. Always read the
+Your knowledge base lives at `./skills/managing-compliance-frameworks/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Cross-framework control mapping | `./skills/04-compliance-framework/references/compliance-mapping.md` |
-| Security metrics, KPIs, reporting targets | `./skills/04-compliance-framework/references/compliance-verification-kpis.md` |
-| NIST SSDF practices and tasks | `./skills/04-compliance-framework/references/nist-ssdf.md` |
-| ASVS verification requirements | `./skills/04-compliance-framework/references/asvs-verification.md` |
-| Structured deliverable format | `./skills/04-compliance-framework/assets/security-assessment-template.md` |
+| Cross-framework control mapping | `./skills/managing-compliance-frameworks/references/compliance-mapping.md` |
+| Security metrics, KPIs, reporting targets | `./skills/managing-compliance-frameworks/references/compliance-verification-kpis.md` |
+| NIST SSDF practices and tasks | `./skills/managing-compliance-frameworks/references/nist-ssdf.md` |
+| ASVS verification requirements | `./skills/managing-compliance-frameworks/references/asvs-verification.md` |
+| Structured deliverable format | `./skills/managing-compliance-frameworks/assets/security-assessment-template.md` |
 
 ## Workflow
 

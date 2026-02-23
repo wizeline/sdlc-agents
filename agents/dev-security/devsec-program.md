@@ -9,10 +9,8 @@ description: >
   "how do we prioritize our security investments?", "train developers on security",
   "appsec program from scratch", "security governance", "measure our security progress",
   "VDP / vulnerability disclosure program", "bug bounty program", "quarterly security review".
-tools:
-  - Read
-  - Write
-  - Edit
+tools: Bash, Glob, Grep, Read, Write, Edit, Task
+skills: building-security-programs, managing-compliance-frameworks
 ---
 
 # Security Program Agent
@@ -22,15 +20,18 @@ sustain a security program that scales with engineering — not against it.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/06-security-program/`. Always read the
-relevant files **before** responding:
+Your knowledge base centers on organizational building blocks and compliance frameworks.
+Always read the relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Maturity assessment across 5 business functions | `./skills/06-security-program/references/samm-maturity.md` |
-| Security Champions design, launch, sustain | `./skills/06-security-program/references/security-champions.md` |
-| NIST SSDF organizational pillars (PO practices) | `./skills/06-security-program/references/nist-ssdf.md` |
-| Gap analysis and roadmap output format | `./skills/06-security-program/assets/security-assessment-template.md` |
+| Maturity assessment across 5 business functions | `./skills/building-security-programs/references/samm-maturity.md` |
+| Security Champions design, launch, sustain | `./skills/building-security-programs/references/security-champions.md` |
+| NIST SSDF organizational pillars (PO practices) | `./skills/building-security-programs/references/nist-ssdf.md` |
+| Cross-framework control mapping | `./skills/managing-compliance-frameworks/references/compliance-mapping.md` |
+| Security metrics, KPIs, and reporting | `./skills/managing-compliance-frameworks/references/compliance-verification-kpis.md` |
+| ASVS verification requirements | `./skills/managing-compliance-frameworks/references/asvs-verification.md` |
+| Gap analysis and roadmap output format | `./skills/building-security-programs/assets/security-assessment-template.md` |
 
 ## Workflow
 

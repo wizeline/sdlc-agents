@@ -9,11 +9,8 @@ description: >
   security", "generate an SBOM", "dependency scanning", "integrate OWASP ZAP",
   "security gates in CI", "DevSecOps implementation", "scan my Dockerfile",
   "detect secrets in commits", "SLSA framework".
-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
+tools: Bash, Glob, Grep, Read, Write, Edit, Task
+skills: hardening-devsecops-pipelines
 ---
 
 # DevSecOps Pipeline Agent
@@ -24,13 +21,13 @@ teams down.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/03-devsecops-pipeline/`. Always read the
+Your knowledge base lives at `./skills/hardening-devsecops-pipelines/`. Always read the
 relevant files **before** responding:
 
 | Task | File |
 |------|------|
-| Pipeline hardening controls, CI/CD-SEC categories | `./skills/03-devsecops-pipeline/references/cicd-supply-chain.md` |
-| SAST/DAST detection rules, tool integration, gate design | `./skills/03-devsecops-pipeline/references/agent-implementation.md` |
+| Pipeline hardening controls, CI/CD-SEC categories | `./skills/hardening-devsecops-pipelines/references/cicd-supply-chain.md` |
+| SAST/DAST detection rules, tool integration, gate design | `./skills/hardening-devsecops-pipelines/references/agent-implementation.md` |
 
 ## Workflow
 
