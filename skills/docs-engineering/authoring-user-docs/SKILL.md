@@ -2,7 +2,6 @@
 name: authoring-user-docs
 description: "Use when producing user-facing documentation — tutorials, how-to guides, user guides, getting-started guides, installation guides, or onboarding documentation. Triggers: 'write a tutorial', 'create a getting started guide', 'document how to use this', 'write a user guide', 'create onboarding docs', any task where the audience is learning to use software. Always load authoring-technical-docs first."
 ---
-
 # Authoring User Docs Action
 
 Produces tutorials, how-to guides, user guides and onboarding guides — the learning-oriented and task-oriented quadrants of the Diátaxis framework.
@@ -13,11 +12,11 @@ Produces tutorials, how-to guides, user guides and onboarding guides — the lea
 
 ## Choosing the right type
 
-| | Tutorial | How-To Guide | User Guide | Onboarding Guide |
-|---|---|---|---|---|
-| **Audience** | Beginners | Users who know the basics | All experience levels | New team members or developers joining a project |
-| **Structure** | Linear journey | Task-focused | Chapter-style, comprehensive | Sequential, milestone-based |
-| **Goal** | "I learned how this works" | "I accomplished my task" | "I understand the whole product" | "I'm ready to contribute to the project" |
+|                     | Tutorial                   | How-To Guide              | User Guide                       | Onboarding Guide                                 |
+| ------------------- | -------------------------- | ------------------------- | -------------------------------- | ------------------------------------------------ |
+| **Audience**  | Beginners                  | Users who know the basics | All experience levels            | New team members or developers joining a project |
+| **Structure** | Linear journey             | Task-focused              | Chapter-style, comprehensive     | Sequential, milestone-based                      |
+| **Goal**      | "I learned how this works" | "I accomplished my task"  | "I understand the whole product" | "I'm ready to contribute to the project"         |
 
 ### Best Practices for Writing Tutorials
 
@@ -31,6 +30,7 @@ Give users a small, tangible success as soon as possible. Don't front-load pages
 Tutorials are action-heavy by nature, but provide enough context at each step so users understand the logic behind what they're doing, not just the mechanics.
 
 **4. Use Consistent Formatting**
+
 - Use **bold** for clickable UI elements (buttons, menus).
 - Use `code-style` for strings, file names, and inline commands.
 - Use fenced code blocks with syntax highlighting (e.g., ` ```python `) for all multi-line code.
@@ -93,6 +93,7 @@ Write direct, commanding sentences throughout. "Open the file" is clearer than "
 When a guide covers a general workflow, describe the *logic* before the *implementation*. If multi-language examples are needed, present the conceptual step first, then offer language-specific tabs or snippets. Only tie the guide to a specific language or tool when an example is genuinely required for clarity.
 
 **4. Format Code and UI Elements Consistently**
+
 - **Bold** for UI elements: Click **Save**, select **File > Open**.
 - `Code blocks` for file names, paths, and inline commands — always in a copy-pasteable format.
 - Mark placeholders clearly so users know what to substitute: `<YOUR_API_KEY>`, or *italics* for inline placeholders like `user_id = <your_id>`.
@@ -122,11 +123,11 @@ Use gender-neutral terms throughout and avoid culturally specific idioms or ster
 
 Follow these templates:
 
-| User Doc | Asset |
-|--------|--------|
-| `User Guide` | Read `./assets/user_guide_template.md` |
-| `Tutorial` | Read `./assets/tutorial_template.md` |
-| `How-to guide` | Read `./assets/how_to_guide_template.md` |
+| User Doc             | Asset                                          |
+| -------------------- | ---------------------------------------------- |
+| `User Guide`       | Read `./assets/user_guide_template.md`       |
+| `Tutorial`         | Read `./assets/tutorial_template.md`         |
+| `How-to guide`     | Read `./assets/how_to_guide_template.md`     |
 | `Onboarding Guide` | Read `./assets/onboarding_guide_template.md` |
 
 Save tutorials to `docs/guides/tutorial-*.md`. Save how-to guides to `docs/guides/how-to-*.md`. Save user guides to `docs/guides/guide-*.md`. Save onboarding guides to `docs/guides/onboarding-*.md`.
