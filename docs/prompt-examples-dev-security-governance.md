@@ -11,7 +11,7 @@ This core includes **6 agents** backed by **6 skills**.
 ## Agent → Skill Quick Reference
 
 | Agent | Skills Used |
-|---|---|
+| --- | --- |
 | `devsec-code-review` | `managing-compliance-frameworks` |
 | `devsec-threat-modeling` | `conducting-threat-modeling` |
 | `devsec-architecture` | `designing-security-architecture` |
@@ -23,226 +23,229 @@ This core includes **6 agents** backed by **6 skills**.
 
 ## `devsec-code-review` — Secure Code Review
 
+> **Persona:** Developer reviewing or writing code
+
 ```text
-Review this Express.js authentication middleware for security issues.
-We handle PII, so target ASVS Level 2.
+Review this Express.js authentication middleware for security vulnerabilities. We handle PII, so target ASVS Level 2.
 ```
 
 ```text
-Check if our Django views are vulnerable to SQL injection, XSS, or CSRF.
-Show exact line numbers and fixes.
+Is this SQL query safe from injection? Here's the code. Check if our Django views are also vulnerable to XSS or CSRF.
 ```
 
 ```text
-Give me a secure code review checklist tailored for our Java Spring Boot
-REST API that processes payment data.
+Check my file upload handler for path traversal and dangerous file type issues. Show exact line numbers and fixes.
 ```
 
 ```text
-How do I prevent insecure deserialization in our Python Flask service?
-Show me before/after code examples.
+What ASVS Level 2 requirements does this login flow not meet? Run a gap analysis against our current authentication implementation.
 ```
 
 ```text
-What ASVS verification level should we target for our healthcare patient
-portal? Run a gap analysis against our current authentication implementation.
+Review this React component for XSS vulnerabilities. Show me before/after code examples of the fix.
 ```
 
 ```text
-Review our Go microservice for the OWASP Top 10 (2025). Focus on input
-validation, error handling, and cryptography domains.
+Review our Go microservice for the OWASP Top 10 (2025). Focus on input validation, error handling, and cryptography domains.
 ```
 
 ---
 
 ## `devsec-threat-modeling` — Threat Modeling & STRIDE
 
+> **Persona:** Architect or designer at the design phase
+
 ```text
-Threat model this: a React SPA → API Gateway → 3 microservices → PostgreSQL,
-deployed on AWS ECS with an ALB. Users authenticate via Cognito.
+Threat model this checkout flow — here's the architecture diagram. Users authenticate via Cognito and data is stored in PostgreSQL.
 ```
 
 ```text
-Help me do STRIDE analysis on our new file upload feature. Users upload
-documents that get processed by a Lambda function and stored in S3.
+Run a STRIDE analysis on our new user authentication system. Users upload documents processed by a Lambda and stored in S3.
 ```
 
 ```text
-What could go wrong with this design? We're building a multi-tenant SaaS
-where tenants share a database but have row-level security.
+What could go wrong with this design? We're building a multi-tenant SaaS where tenants share a database but have row-level security.
 ```
 
 ```text
-Identify the attack surfaces for our mobile banking API. Users authenticate
-via biometrics + OTP and can transfer funds via the API.
+What are the attack surfaces for this public-facing REST API? Identify security threats to this design before we start coding.
 ```
 
 ```text
-What security requirements do I need for a real-time notification system
-that sends SMS and push notifications with user PII?
+What could go wrong with this data pipeline that handles PII? Identify trust boundaries and derive security requirements.
 ```
 
 ```text
-Security review of my architecture: a Kafka-based event streaming platform
-with producers in Python, consumers in Go, deployed on Kubernetes. Identify
-trust boundaries and derive requirements.
+Security review of my architecture: a Kafka-based event streaming platform with producers in Python and consumers in Go.
 ```
 
 ---
 
 ## `devsec-architecture` — API, Cloud-Native & AI/LLM Security
 
+> **Persona:** Architect designing APIs, cloud-native, or AI systems
+
 ### API & Cloud Security
 
 ```text
-Secure my REST API: we use Express.js, JWT for auth, and deploy behind Nginx.
-Walk me through OWASP API Top 10 gaps and fixes.
+Design a zero-trust architecture for our internal microservices mesh running on Kubernetes. We need mTLS, RBAC, and network policies.
 ```
 
 ```text
-Set up OAuth 2.0 with PKCE for our React SPA calling a .NET API. Show me
-the recommended flow and configuration.
+Set up OAuth 2.0 with PKCE for our mobile app's API. Show me the recommended flow and configuration.
 ```
 
 ```text
-Design a zero-trust architecture for our microservices mesh running on
-Kubernetes with Istio. We need mTLS, RBAC, and network policies.
+Design rate limiting and BOLA prevention for our REST API. Walk me through OWASP API Top 10 gaps and fixes.
 ```
 
 ```text
-We're experiencing broken object level authorization (BOLA) in our multi-tenant
-API. Audit our authorization layer and provide fixes.
+We're experiencing broken object level authorization (BOLA) in our multi-tenant API. Audit our authorization layer and provide fixes.
 ```
 
 ### AI / LLM Security
 
 ```text
-Review our LLM-powered chatbot for prompt injection risks. It uses RAG with
-a vector database and can call internal tools via function calling.
+How do I prevent prompt injection in our customer-facing LLM chatbot? It uses RAG with a vector database.
 ```
 
 ```text
-Our agentic AI system uses LangChain to call external APIs and execute code.
-Review it against the OWASP LLM Top 10 and suggest mitigations.
+What are the OWASP LLM Top 10 risks for our RAG app and how do we mitigate them? Assess our AI supply chain security.
 ```
 
 ```text
-How do I secure our RAG pipeline? Users query a knowledge base, we retrieve
-documents from Pinecone, and feed them as context to GPT-4.
+Review our agentic AI system that uses LangChain to call external APIs. What risks exist regarding data leakage between tenants?
 ```
 
 ```text
-Assess our AI application's supply chain security: we use fine-tuned models,
-third-party plugins, and an embedding service. What risks exist?
+How do I secure our RAG pipeline? Users query Pinecone and we feed results to GPT-4. Provide concrete mitigations.
 ```
 
 ---
 
 ## `devsec-ops-pipeline` — DevSecOps & CI/CD Hardening
 
+> **Persona:** DevOps or platform engineer
+
 ```text
-Set up SAST in our GitHub Actions pipeline for a Node.js TypeScript project.
-Include the YAML config with failure thresholds.
+Add SAST and dependency scanning to our GitHub Actions pipeline — here's the Node.js YAML config with failure thresholds.
 ```
 
 ```text
-Secure my CI/CD pipeline end-to-end. We use GitLab CI, Docker, Terraform,
-and deploy to AWS EKS. Give me a CI/CD-SEC gap analysis.
+How do I detect hardcoded secrets in commits before they reach the repo? Add secret scanning to pre-commit hooks and CI.
 ```
 
 ```text
-Generate an SBOM for our Python application and integrate it into our release
-process. We use GitHub Actions.
+Set up container image scanning in our GitLab CI pipeline. We deploy via Helm to Kubernetes and need automated DAST.
 ```
 
 ```text
-Add secret scanning to pre-commit hooks and CI. We use a monorepo with Go,
-Python, and Terraform code.
+Generate an SBOM for our Node.js application and integrate it into our release process following the SLSA framework.
 ```
 
 ```text
-Design security gates for our pipeline: what thresholds for Critical/High
-findings, and how should the exception workflow work?
+What security gates should we add to our deployment pipeline for SOC 2? Design thresholds for Critical/High findings.
 ```
 
 ```text
-Implement supply chain security for our project following the SLSA framework.
-Include dependency pinning, provenance, and artifact signing.
-```
-
-```text
-Integrate OWASP ZAP into our staging environment. We deploy via Helm to
-Kubernetes and need automated DAST on every nightly build.
+Implement supply chain security for our project including dependency pinning, provenance, and artifact signing.
 ```
 
 ---
 
 ## `devsec-compliance-framework` — Compliance & Metrics
 
+> **Persona:** Compliance/GRC professional, pre-audit
+
 ```text
-Map our existing security controls to ISO 27001:2022 and identify gaps.
-We need this for our upcoming SOC 2 Type II audit.
+Map our existing security controls to SOC 2 Type II and ISO 27001:2022 and identify gaps.
 ```
 
 ```text
-Run an NIST SSDF alignment assessment for our development organization.
-Map our current practices to PO/PS/PW/RV pillars.
+What controls do we need for HIPAA compliance on our patient portal? Surface cross-framework overlaps with ASVS.
 ```
 
 ```text
-Design a security metrics dashboard with KPIs: MTTD, MTTR, vulnerability
-density, and OWASP Top 10 detection rate. Include targets.
+Generate a compliance gap analysis against ISO 27001 for our startup. Map our current practices to NIST SSDF pillars.
 ```
 
 ```text
-What controls do I need for GDPR Article 32 compliance? We process EU
-customer data including health information.
+What security KPIs should we track for our quarterly board report? Include MTTD, MTTR, and vuln density.
 ```
 
 ```text
-Create a cross-framework compliance mapping between ISO 27001, NIST 800-53,
-PCI-DSS, and OWASP ASVS for our fintech platform.
+How do we satisfy GDPR Article 32 for our EU user data storage? List technical measures required for health information.
 ```
 
 ```text
-Prepare audit evidence for our SOC 2 Type II: list each control, the
-evidence artifact, and where to find it in our repo and infrastructure.
+Prepare audit evidence for our SOC 2 Type II: list each control, the evidence artifact, and its repository location.
 ```
 
 ---
 
 ## `devsec-program` — Security Program & Champions
 
+> **Persona:** AppSec lead or CISO building a program
+
 ```text
-Assess our security maturity using OWASP SAMM. We're a 200-person engineering
-org with no formal AppSec team. Give us a scorecard and roadmap.
+We're a 200-person startup with no formal security program — where do we start? Propose a roadmap and prioritization strategy.
 ```
 
 ```text
-Start a Security Champions program. We have 15 dev teams, no security team,
-and two security-aware senior engineers. Design the launch plan.
+Run an OWASP SAMM maturity assessment for our engineering org. Give us a scorecard across Governance, Design, and Implementation.
 ```
 
 ```text
-Build our appsec program from scratch. We're a Series B startup with 40
-engineers, handling financial data, and need SOC 2 in 12 months.
+How do we launch a Security Champions program across 10 engineering teams? Design the cohort selection and training plan.
 ```
 
 ```text
-Make the case to leadership: write an executive summary that justifies
-investing in a security program. Focus on risk reduction and engineering velocity.
+Build a 12-month security roadmap based on these current gaps. Include quarterly milestones leading to SOC 2 readiness.
 ```
 
 ```text
-Design a Vulnerability Disclosure Program (VDP) for our public-facing SaaS
-platform. Include the policy template and triage workflow.
+How should we prioritize security investments while preparing for SOC 2? Focus on risk reduction and engineering velocity.
 ```
 
 ```text
-We just finished a SAMM assessment at L1. Create a 12-month roadmap to
-reach L2 across Governance, Design, and Implementation functions. Include
-quarterly milestones and success metrics.
+Design a Vulnerability Disclosure Program (VDP) policy including scope, SLAs, and triage workflow.
 ```
+
+---
+
+## Universal Prompts
+
+General-purpose prompts that work across multiple security tasks:
+
+```text
+Act as a [technical writer / security architect] and help me [task].
+Here's the context: [paste code / architecture / requirements]
+```
+
+```text
+Review [this document / code / architecture] and give me:
+1. Issues or gaps found
+2. Recommended fixes  
+3. Priority order
+```
+
+```text
+I'm a [developer / compliance officer / AppSec lead / writer] working on [project].
+Help me [specific goal] — I'll share the relevant files now.
+```
+
+```text
+Use industry best practices to produce [deliverable] for [audience].
+Keep it practical — give me something I can use today.
+```
+
+**Cross-agent chaining example:**
+
+```text
+Threat model this API design, then review the existing code for security issues that match those threats, and finally document the findings as an architecture decision record.
+```
+
+*— This triggers `conducting-threat-modeling` + `reviewing-code-for-security` + `authoring-architecture-docs` in sequence.*
 
 ---
 

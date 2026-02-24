@@ -17,103 +17,136 @@ This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **8 s
 
 ---
 
-## `doc-engineer` — General Documentation
+## `doc-engineer` — Technical Documentation
+
+The `authoring-technical-docs` skill is the **core foundation** for all tasks. Use it alone for general documentation needs, or combine it with domain extensions below.
+
+### Core Documentation (`authoring-technical-docs`)
+
+*Use for general writing, specs, and refining existing documentation.*
+
+```text
+Write a technical spec for our new rate-limiting system based on these architecture notes.
+```
+
+```text
+Review this draft doc and improve it to meet professional engineering standards. Fix tone, clarity, and technical accuracy.
+```
+
+```text
+I have these Jira tickets and engineering notes — produce a polished technical document from them.
+```
+
+```text
+Audit our entire docs/ folder. Identify outdated content, broken links, missing topics, and inconsistencies with the current codebase.
+```
 
 ### API Documentation (`authoring-api-docs`)
 
+*REST endpoints, SDK references, CLI docs, OpenAPI/Swagger specs.*
+
 ```text
-Write docs for the /api/v2/orders endpoint. Include request/response schemas,
-auth requirements, error codes, and a cURL example.
+Document this Express.js router — generate a full REST API reference for each endpoint, including request/response schemas, error codes, and a cURL example.
 ```
 
 ```text
-Document this OpenAPI spec as a developer-friendly API reference with
-authentication guides and rate-limit policies.
+I have an OpenAPI spec. Turn it into a human-readable API reference doc with authentication guides and rate-limit policies.
 ```
 
 ```text
-Generate an SDK reference for our Python client library. Cover installation,
-authentication, each method signature, and a complete working example per method.
+Write SDK reference docs for this Python client library's public functions. Cover installation, methods, and a working example per method.
+```
+
+```text
+Generate API docs for this POST /users endpoint, including all error codes and a curl example.
 ```
 
 ### Architecture Documentation (`authoring-architecture-docs`)
 
+*ADRs, design docs, system overviews, C4 diagrams, technical proposals.*
+
 ```text
-Write a design doc / ADR for migrating our monolith to microservices. Cover the
-decision drivers, trade-offs, and phased rollout plan.
+Write an ADR for choosing PostgreSQL over MongoDB for our new service. Cover decision drivers, trade-offs, and the final recommendation.
 ```
 
 ```text
-Create an architecture overview document for our event-driven data pipeline
-including system context and container-level views.
+Create a C4 context diagram for our microservices payment system using Mermaid, showing external actors and system boundaries.
 ```
 
 ```text
-Document our authentication architecture: the OAuth 2.0 flow, token lifecycle,
-refresh strategy, and how services validate tokens at each trust boundary.
+Write a design doc for our proposed event-driven notification system. Include the system overview, data flow, and failure handling strategy.
+```
+
+```text
+Document this codebase's architecture as a system overview for new engineers. Cover the main components, their interactions, and the tech stack.
 ```
 
 ### Release Documentation (`authoring-release-docs`)
 
+*Release notes, changelogs, READMEs, migration guides.*
+
 ```text
-Generate release notes for v3.2.0 from the git log between tags v3.1.0 and
-v3.2.0. Group by features, fixes, and breaking changes.
+Here are 30 merged PRs — write user-facing release notes for version 2.4.0. Group by features, fixes, and breaking changes.
 ```
 
 ```text
-Create a README for this project. It should include quick start instructions,
-prerequisites, configuration, and contribution guidelines.
+Generate a changelog from this list of Jira tickets and git logs.
 ```
 
 ```text
-Write a migration guide from v2 to v3. List every breaking change, provide
-before/after code snippets, and include a step-by-step upgrade checklist.
+Write a migration guide for users upgrading from v1 to v2 — list every breaking change, provide before/after code snippets, and include an upgrade checklist.
+```
+
+```text
+Create a comprehensive README for this open-source CLI tool including setup, configuration, and contribution guides.
 ```
 
 ### User Documentation (`authoring-user-docs`)
 
+*Tutorials, how-to guides, onboarding, getting-started.*
+
 ```text
-Write a tutorial for setting up local development, from cloning the repo to
-running the first test suite successfully.
+Write a beginner tutorial for setting up our SDK — assume zero prior experience and cover everything from cloning to the first "hello world".
 ```
 
 ```text
-Create a how-to guide for configuring SSO with Azure AD in our application,
-with step-by-step instructions and screenshots.
+Create a how-to guide for connecting our app to a Slack workspace, explaining the configuration steps and bot permissions.
 ```
 
 ```text
-Write a getting-started guide for new team members. Cover repo setup, dev
-environment, running the app locally, and making their first contribution.
-```
-
-### Documentation Review (`authoring-technical-docs`)
-
-```text
-Review these docs in docs/architecture/ for completeness, accuracy, and style.
-Classify issues by severity (Blocker / Major / Minor).
+Write an onboarding guide for new developers joining this project. Cover environment setup, running the app locally, and making their first PR.
 ```
 
 ```text
-Audit our entire docs/ folder. Identify outdated content, broken links,
-missing topics, and inconsistencies with the current codebase.
+Document how to use the dashboard's filter feature as a user guide chapter for non-technical users.
 ```
 
-### Format Conversion (`editing-docx-files` / `processing-pdfs` / `editing-pptx-files`)
+### Format Skills (`editing-docx-files` / `processing-pdfs` / `editing-pptx-files`)
+
+*Create, edit, or manipulate specific file formats.*
 
 ```text
-Convert the architecture document at docs/system-design.md into a Word document
-using the company brand template.
-```
-
-```text
-Export the API reference to PDF with syntax-highlighted code blocks and a
-table of contents.
+Create a professional memo in Word format (.docx) summarizing these meeting notes. Update the table of contents and fix the formatting.
 ```
 
 ```text
-Create a PowerPoint presentation summarizing our system architecture for the
-stakeholder meeting.
+Convert this markdown file into a polished Word document with professional headings, page numbers, and our company brand styles.
+```
+
+```text
+Create a 10-slide pitch deck (.pptx) based on these bullet points. Include slides for problem, solution, architecture, and roadmap.
+```
+
+```text
+Extract and summarize all text from this uploaded presentation, then update slide 5 to reflect our new Q4 sales figures.
+```
+
+```text
+Merge these three PDF reports into one document, extract all text from the scanned invoice page, and add a "CONFIDENTIAL" watermark to every page.
+```
+
+```text
+Fill in this PDF form with the data from this JSON file and export the final result.
 ```
 
 ---
