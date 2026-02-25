@@ -12,7 +12,7 @@ This core includes **6 agents** backed by **6 skills**.
 
 | Agent | Skills Used |
 | --- | --- |
-| `devsec-code-review` | `managing-compliance-frameworks` |
+| `devsec-code-review` | `reviewing-code-for-security` |
 | `devsec-threat-modeling` | `conducting-threat-modeling` |
 | `devsec-architecture` | `designing-security-architecture` |
 | `devsec-ops-pipeline` | `hardening-devsecops-pipelines` |
@@ -21,12 +21,33 @@ This core includes **6 agents** backed by **6 skills**.
 
 ---
 
+## Skill Outputs Quick Reference
+
+Each skill produces one or more named output artifacts. Use the prompts below to request them explicitly.
+
+| Output Type | Produced By | What It Contains |
+| --- | --- | --- |
+| **Real-Time Report** | `devsec-code-review` | Instant prioritized findings with OWASP/ASVS mapping and in-language code fixes |
+| **Vulnerability Map** | `devsec-threat-modeling` | Attack surface inventory, STRIDE threat table, deprecated/CVE library risks, risk register |
+| **Remediation Guide** | `devsec-code-review` | Step-by-step fix instructions: scope → fix → test → prevent → verify |
+| **Compliance Log** | `devsec-compliance-framework` | Audit-ready ledger of control activities, finding SLAs, KPIs, and evidence index |
+
+---
+
 ## `devsec-code-review` — Secure Code Review
 
 > **Persona:** Developer reviewing or writing code
 
+### Real-Time Report
+
 ```text
 Review this Express.js authentication middleware for security vulnerabilities. We handle PII, so target ASVS Level 2.
+Produce a Real-Time Report: prioritized findings (Critical → Low), each mapped to an OWASP Top 10 (2025) category and ASVS 5.0 requirement, with before/after code fixes in Express.js.
+```
+
+```text
+Review our Go microservice for the OWASP Top 10 (2025). Focus on input validation, error handling, and cryptography domains.
+Output a Real-Time Report with the full OWASP Top 10 coverage table showing which categories were checked.
 ```
 
 ```text
@@ -45,8 +66,14 @@ What ASVS Level 2 requirements does this login flow not meet? Run a gap analysis
 Review this React component for XSS vulnerabilities. Show me before/after code examples of the fix.
 ```
 
+### Remediation Guide
+
 ```text
-Review our Go microservice for the OWASP Top 10 (2025). Focus on input validation, error handling, and cryptography domains.
+Generate a Remediation Guide for the SQL injection finding in our order service. Walk me through: scope the affected queries, show the parameterized query fix in Python/SQLAlchemy, provide a security test that confirms the injection is closed, and list the SAST rule to add so this can't recur.
+```
+
+```text
+We found a missing authorization check on our /api/users/{id} endpoint (OWASP A01, CWE-862). Produce a step-by-step Remediation Guide with the fix in FastAPI, a test for the IDOR attack vector, and a prevention checklist.
 ```
 
 ---
@@ -54,6 +81,8 @@ Review our Go microservice for the OWASP Top 10 (2025). Focus on input validatio
 ## `devsec-threat-modeling` — Threat Modeling & STRIDE
 
 > **Persona:** Architect or designer at the design phase
+
+### Threat Model Document
 
 ```text
 Threat model this checkout flow — here's the architecture diagram. Users authenticate via Cognito and data is stored in PostgreSQL.
@@ -68,15 +97,21 @@ What could go wrong with this design? We're building a multi-tenant SaaS where t
 ```
 
 ```text
-What are the attack surfaces for this public-facing REST API? Identify security threats to this design before we start coding.
-```
-
-```text
 What could go wrong with this data pipeline that handles PII? Identify trust boundaries and derive security requirements.
 ```
 
 ```text
 Security review of my architecture: a Kafka-based event streaming platform with producers in Python and consumers in Go.
+```
+
+### Vulnerability Map
+
+```text
+Produce a Vulnerability Map for our public-facing REST API. List every external and internal entry point with protocol and trust level, draw the trust boundary map, run STRIDE per component, and include a table of any deprecated or CVE-affected dependencies with recommended actions.
+```
+
+```text
+What are the attack surfaces for this architecture? Produce a Vulnerability Map covering the full attack surface inventory, STRIDE threat table, and a prioritized risk register with owner and remediation timelines.
 ```
 
 ---
@@ -157,6 +192,8 @@ Implement supply chain security for our project including dependency pinning, pr
 
 > **Persona:** Compliance/GRC professional, pre-audit
 
+### Gap Analysis & Control Mapping
+
 ```text
 Map our existing security controls to SOC 2 Type II and ISO 27001:2022 and identify gaps.
 ```
@@ -177,8 +214,14 @@ What security KPIs should we track for our quarterly board report? Include MTTD,
 How do we satisfy GDPR Article 32 for our EU user data storage? List technical measures required for health information.
 ```
 
+### Compliance Log
+
 ```text
-Prepare audit evidence for our SOC 2 Type II: list each control, the evidence artifact, and its repository location.
+Produce a Compliance Log for our Q1 audit. Record every security control activity this quarter (SAST scans, pen test, training, access review) with evidence links and map each activity to ISO 27001:2022, SOC 2, NIST SSDF, and OWASP ASVS in a single table. Include the vulnerability finding log with SLA compliance rates and an evidence index.
+```
+
+```text
+Create a Compliance Log that tracks all findings from our last pen test and SAST scan cycle. For each finding include severity, OWASP category, SLA target, actual remediation date, and evidence link. Calculate our MTTD and MTTR against the targets in our compliance framework.
 ```
 
 ---
@@ -269,16 +312,25 @@ Please perform a complete security assessment covering every domain below:
 1. Secure Code Review (devsec-code-review)
    Review our FastAPI authentication middleware and the tenant isolation
    layer for security issues. Target ASVS Level 2 given we handle PHI
-   (Protected Health Information). Produce prioritized findings with
-   OWASP category, CWE ID, and before/after code fixes. Also generate a
-   secure code review checklist tailored to our Python/FastAPI stack.
+   (Protected Health Information).
+   → Produce a Real-Time Report: prioritized findings (Critical → Low)
+     each mapped to an OWASP Top 10 (2025) category, CWE ID, and ASVS
+     5.0 requirement, with before/after code fixes in Python/FastAPI.
+     Include the full OWASP Top 10 coverage table and automation notes.
+   → For every Critical finding, also produce a Remediation Guide with
+     step-by-step fix, security test, and prevention mechanism.
+   → Generate a secure code review checklist tailored to Python/FastAPI.
 
 2. Threat Modeling (devsec-threat-modeling)
    Threat model the full architecture: React SPA → Auth0 → API Gateway →
    FastAPI services → PostgreSQL + Pinecone → GPT-4 (external). Apply
    STRIDE per component. Identify trust boundaries, prioritize threats by
    exploitability × impact, and derive testable security requirements.
-   Produce the threat model document using the standard template.
+   → Produce the Threat Model Document using the standard template.
+   → Also produce a Vulnerability Map: full attack surface inventory,
+     trust boundary diagram, STRIDE threat table per component, deprecated
+     and CVE-affected dependency table (maps to OWASP A06), and a
+     prioritized risk register with owner and remediation timelines.
 
 3. Security Architecture Review (devsec-architecture)
    a) API & Cloud Security: Audit our REST API against the OWASP API Top
@@ -310,8 +362,11 @@ Please perform a complete security assessment covering every domain below:
      density, OWASP Top 10 detection rate, training completion. Include
      quarterly targets.
    - List GDPR Article 32 technical measures required for EU patient data.
-   - Prepare an audit evidence checklist for SOC 2 Type II: each control,
-     the evidence artifact, and where to find it.
+   → Produce a Compliance Log: record every security control activity
+     (scans, reviews, training) with evidence links mapped to ISO 27001,
+     SOC 2, NIST SSDF, ASVS, and GDPR Article in a single audit-ready
+     table. Include the vulnerability SLA log, KPI dashboard, and an
+     evidence index organized for SOC 2 Type II auditors.
 
 6. Security Program Design (devsec-program)
    - Run an OWASP SAMM assessment based on the context provided. Produce
@@ -333,15 +388,15 @@ GitHub Actions) — not generic advice.
 
 ### What This Prompt Activates
 
-| Step | Agent | Skill(s) |
-| ---- | ----- | -------- |
-| 1. Code Review | `devsec-code-review` | `managing-compliance-frameworks` (OWASP Top 10, ASVS, secure coding practices) |
-| 2. Threat Model | `devsec-threat-modeling` | `conducting-threat-modeling` (STRIDE, threat model template) |
-| 3a. API & Cloud | `devsec-architecture` | `designing-security-architecture` (API/cloud security patterns) |
-| 3b. AI/LLM | `devsec-architecture` | `designing-security-architecture` (LLM/AI security, OWASP LLM Top 10) |
-| 4. Pipeline | `devsec-ops-pipeline` | `hardening-devsecops-pipelines` (CI/CD-SEC, SAST/DAST, SBOM) |
-| 5. Compliance | `devsec-compliance-framework` | `managing-compliance-frameworks` (compliance mapping, NIST SSDF, ASVS, KPIs) |
-| 6. Program | `devsec-program` | `building-security-programs` + `managing-compliance-frameworks` (SAMM, Champions, roadmap) |
+| Step | Agent | Skill(s) | Output Type |
+| ---- | ----- | -------- | ----------- |
+| 1. Code Review | `devsec-code-review` | `reviewing-code-for-security` (OWASP Top 10, ASVS, secure coding practices) | **Real-Time Report** + **Remediation Guides** |
+| 2. Threat Model | `devsec-threat-modeling` | `conducting-threat-modeling` (STRIDE, threat model template) | Threat Model Doc + **Vulnerability Map** |
+| 3a. API & Cloud | `devsec-architecture` | `designing-security-architecture` (API/cloud security patterns) | Architecture review |
+| 3b. AI/LLM | `devsec-architecture` | `designing-security-architecture` (LLM/AI security, OWASP LLM Top 10) | Architecture review |
+| 4. Pipeline | `devsec-ops-pipeline` | `hardening-devsecops-pipelines` (CI/CD-SEC, SAST/DAST, SBOM) | Pipeline config (YAML) |
+| 5. Compliance | `devsec-compliance-framework` | `managing-compliance-frameworks` (compliance mapping, NIST SSDF, ASVS, KPIs) | **Compliance Log** |
+| 6. Program | `devsec-program` | `building-security-programs` + `managing-compliance-frameworks` (SAMM, Champions, roadmap) | Roadmap + SAMM scorecard |
 
 > **💡 Tip**: This is a very large prompt that spans all 6 agents. Depending on your AI assistant's capabilities, it may process domains sequentially or ask you to confirm before proceeding. You can also extract individual numbered sections as standalone prompts — each one maps to a specific agent.
 
