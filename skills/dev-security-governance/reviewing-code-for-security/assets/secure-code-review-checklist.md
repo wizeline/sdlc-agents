@@ -53,6 +53,7 @@
 
 ## Dependency Security
 - [ ] No known vulnerable dependencies (SCA scan clean)
+- [ ] No deprecated or End-of-Life (EOL) libraries or components used
 - [ ] Dependencies pinned to specific versions
 - [ ] Lockfile present and committed
 - [ ] Third-party scripts use Subresource Integrity (SRI)

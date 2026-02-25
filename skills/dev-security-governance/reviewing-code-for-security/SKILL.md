@@ -9,7 +9,8 @@ description: >
   handling, data protection, communication security, system configuration, database security,
   file/resource management, memory management, business logic, or dependency management).
   Also triggers for: "how do I prevent injection", "review this function for vulnerabilities",
-  "what ASVS level should I target", "check my auth code".
+  "what ASVS level should I target", "check my auth code", "scan for deprecated libraries",
+  "check for old or outdated code", "identify EOL components".
 ---
 
 # Reviewing Code for Security Skill
@@ -31,24 +32,26 @@ Before reviewing, determine:
 
 Always read the relevant reference before responding:
 
-| Task | Read |
-|------|------|
-| Identify which OWASP risks apply | `references/owasp-top10-2025.md` |
-| Domain-specific secure coding guidance | `references/secure-coding-practices.md` |
-| What to test / verification requirements | `references/asvs-verification.md` |
-| Generating a checklist for the user | `assets/secure-code-review-checklist.md` |
-| Real-Time Report format | `assets/real-time-report-template.md` |
-| Remediation Guide format | `assets/remediation-guide-template.md` |
+| Task                                     | Read                                      |
+| ---------------------------------------- | ----------------------------------------- |
+| Identify which OWASP risks apply         | `references/owasp-top10-2025.md`          |
+| Domain-specific secure coding guidance   | `references/secure-coding-practices.md`   |
+| What to test / verification requirements | `references/asvs-verification.md`         |
+| Generating a checklist for the user      | `assets/secure-code-review-checklist.md`  |
+| Real-Time Report format                  | `assets/real-time-report-template.md`     |
+| Remediation Guide format                 | `assets/remediation-guide-template.md`    |
 
 ### 3. Structure Your Review
 
 Produce findings in this order:
+
 1. **Critical** — Exploitable with direct impact (e.g., SQLi, auth bypass, command injection)
 2. **High** — Significant risk requiring prompt remediation (e.g., missing authz check, weak crypto)
 3. **Medium** — Meaningful weaknesses (e.g., verbose error messages, missing rate limiting)
 4. **Low / Informational** — Best practice gaps with limited immediate impact
 
 For each finding, provide:
+
 - **What**: The vulnerability and the specific line/pattern
 - **Why it matters**: Business/data impact if exploited
 - **Fix**: Concrete before/after code example in the user's language
@@ -58,13 +61,13 @@ For each finding, provide:
 
 This skill produces four explicit output types. Select based on what the user requests:
 
-| Request | Output Type | Template |
-|---------|-------------|----------|
-| "Review this code" / "Is this code secure?" | **Real-Time Report** | `assets/real-time-report-template.md` |
-| "Give me a checklist" | Tailored Checklist | `assets/secure-code-review-checklist.md` |
-| "What ASVS level?" | Level recommendation + gap list | `references/asvs-verification.md` |
-| "How do I prevent X?" | Domain guidance | `references/secure-coding-practices.md` |
-| "How do I fix this?" / "Step-by-step fix" | **Remediation Guide** | `assets/remediation-guide-template.md` |
+| Request                                     | Output Type                     | Template                                 |
+| ------------------------------------------- | ------------------------------- | ---------------------------------------- |
+| "Review this code" / "Is this code secure?" | **Real-Time Report**            | `assets/real-time-report-template.md`    |
+| "Give me a checklist"                       | Tailored Checklist              | `assets/secure-code-review-checklist.md` |
+| "What ASVS level?"                          | Level recommendation + gap list | `references/asvs-verification.md`        |
+| "How do I prevent X?"                       | Domain guidance                 | `references/secure-coding-practices.md`  |
+| "How do I fix this?" / "Step-by-step fix"   | **Remediation Guide**           | `assets/remediation-guide-template.md`   |
 
 ### 5. Output Format
 

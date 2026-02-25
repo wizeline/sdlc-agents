@@ -420,6 +420,12 @@ Every failure path must clean up: database connections (return to pool), file ha
 - Dependency graph: transitive dependency tree for impact analysis
 - Provenance: SLSA attestations for supply chain integrity
 
+### Deprecated & EOL Management
+- **Library Deprecation**: Monitor for "deprecated" status in package manager registry or official documentation.
+- **End-of-Life (EOL)**: Track component release dates and EOL support windows; replace components reaching EOL at least 6 months before support ends.
+- **Legacy Code Debt**: Identify and refactor code using deprecated APIs or language features that are no longer receiving security patches.
+- **Vulnerability Density**: Flag components with a high history of critical CVEs, even if currently patched, as candidates for replacement.
+
 ### Scanning Integration Points
 - **Development**: IDE plugins, pre-commit hooks (immediate feedback)
 - **Build**: SCA in CI pipeline (Snyk, OWASP Dependency-Check, Dependabot)
