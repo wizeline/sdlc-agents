@@ -3,7 +3,8 @@ name: devsec-code-review
 description: >
   Use when asked to review code for security issues, check if code is secure, generate a
   secure code review checklist, prevent specific vulnerabilities (XSS, SQLi, CSRF, injection,
-  path traversal, insecure deserialization), or get guidance on OWASP Top 10 (2025), ASVS
+  path traversal, insecure deserialization), scan for deprecated libraries, identify old or
+  outdated code that may have vulnerabilities, or get guidance on OWASP Top 10 (2025), ASVS
   verification levels, or any of the 14 secure coding domains: input validation, output
   encoding, authentication/session, access control, cryptography, error handling, data
   protection, communication security, system configuration, database security,

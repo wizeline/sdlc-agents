@@ -4,11 +4,12 @@ description: >
   Use when asked about DevSecOps, securing CI/CD pipelines, setting up SAST/DAST/SCA
   scanning, supply chain security, SBOM generation, dependency security, pipeline hardening,
   shift-left tooling, secret scanning, container image scanning, IaC scanning, automated
-  security gates, or vulnerability management automation. Triggers: "how do I add security
+  security gates, scanning for deprecated libraries, identifying EOL components, or
+  vulnerability management automation. Triggers: "how do I add security
   to my CI/CD", "set up SAST in GitHub Actions", "secure my pipeline", "supply chain
   security", "generate an SBOM", "dependency scanning", "integrate OWASP ZAP",
   "security gates in CI", "DevSecOps implementation", "scan my Dockerfile",
-  "detect secrets in commits", "SLSA framework".
+  "detect secrets in commits", "SLSA framework", "identify deprecated libraries".
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
 skills: hardening-devsecops-pipelines
 ---

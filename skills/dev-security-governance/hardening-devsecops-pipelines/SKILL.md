@@ -8,7 +8,7 @@ description: >
   to my CI/CD", "set up SAST in GitHub Actions", "secure my pipeline", "supply chain
   security", "generate an SBOM", "dependency scanning", "automate security testing",
   "integrate OWASP ZAP", "security gates in CI", "DevSecOps implementation", "scan my
-  Dockerfile", "detect secrets in commits".
+  Dockerfile", "detect secrets in commits", "deprecated libraries", "EOL components".
 ---
 
 # Hardening DevSecOps Pipelines Skill
@@ -31,43 +31,44 @@ Before recommending tools or configurations, determine:
 
 Always read the relevant reference before responding:
 
-| Task | Read |
-|------|------|
-| Pipeline hardening controls, CI/CD-SEC categories | `references/cicd-supply-chain.md` |
+| Task                                                     | Read                              |
+| -------------------------------------------------------- | --------------------------------- |
+| Pipeline hardening controls, CI/CD-SEC categories       | `references/cicd-supply-chain.md` |
 | SAST/DAST detection rules, tool integration, gate design | `references/agent-implementation.md` |
 
 ### 3. Design the Security Pipeline
 
 Structure recommendations across pipeline stages:
 
-**Pre-commit / IDE**
+#### Pre-commit / IDE
 - Secret scanning (Gitleaks, TruffleHog) — target: <1s
 - Lightweight linting (language-specific security rules)
 
-**Pull Request / Build**
-- SAST: Pattern-based static analysis against OWASP Top 10 categories
-- SCA: Dependency vulnerability scanning + license compliance
-- Container image scanning (if applicable)
-- IaC scanning (Checkov, tfsec, Trivy) if Terraform/Helm used
+#### Pull Request / Build
+- **SAST**: Pattern-based static analysis against OWASP Top 10 categories
+- **SCA**: Dependency vulnerability scanning + license compliance
+- **Deprecated/EOL Scanning**: Check for components reaching End-of-Life (EOL) or officially deprecated versions
+- **Container image scanning**: Scan for vulnerabilities in base images and layers
+- **IaC scanning**: (Checkov, tfsec, Trivy) if Terraform/Helm used
 
-**Pre-deploy / Staging**
-- DAST: Runtime scanning against deployed test environment (OWASP ZAP, Nuclei)
-- API security testing
+#### Pre-deploy / Staging
+- **DAST**: Runtime scanning against deployed test environment (OWASP ZAP, Nuclei)
+- **API security testing**
 
-**Release Gate**
-- Enforce fail/warn thresholds (Critical findings = hard fail; High = soft fail with exception workflow)
-- SBOM generation and signing
-- Artifact provenance (SLSA framework)
+#### Release Gate
+- **Enforce fail/warn thresholds**: (Critical findings = hard fail; High = soft fail with exception workflow)
+- **SBOM generation and signing**
+- **Artifact provenance**: (SLSA framework)
 
 ### 4. Deliverable Options
 
-| Request | Output |
-|---------|--------|
-| "Set up SAST" | Tool selection + pipeline config snippet for their CI platform |
-| "Secure my pipeline" | CI/CD-SEC gap analysis with prioritized controls |
-| "Generate SBOM" | SBOM tooling choice + integration steps |
-| "Security gates" | Gate configuration with thresholds and exception workflow |
-| "Supply chain security" | Dependency pinning, provenance, signing strategy |
+| Request                   | Output                                                         |
+| ------------------------- | -------------------------------------------------------------- |
+| "Set up SAST"             | Tool selection + pipeline config snippet for their CI platform |
+| "Secure my pipeline"      | CI/CD-SEC gap analysis with prioritized controls               |
+| "Generate SBOM"           | SBOM tooling choice + integration steps                        |
+| "Security gates"          | Gate configuration with thresholds and exception workflow      |
+| "Supply chain security"   | Dependency pinning, provenance, signing strategy               |
 
 ### 5. Output Format
 

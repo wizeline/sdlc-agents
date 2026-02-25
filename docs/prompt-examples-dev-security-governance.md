@@ -66,6 +66,10 @@ What ASVS Level 2 requirements does this login flow not meet? Run a gap analysis
 Review this React component for XSS vulnerabilities. Show me before/after code examples of the fix.
 ```
 
+```text
+Scan our backend for deprecated libraries, old or outdated code, and any EOL components. Produce a Real-Time Report with a plan to refactor or replace these legacy parts.
+```
+
 ### Remediation Guide
 
 ```text
@@ -183,7 +187,11 @@ What security gates should we add to our deployment pipeline for SOC 2? Design t
 ```
 
 ```text
-Implement supply chain security for our project including dependency pinning, provenance, and artifact signing.
+Implement supply chain security for our project including dependency pinning, provenance, artifact signing, and automated scanning for deprecated or EOL components.
+```
+
+```text
+Help me set up a security gate in GitHub Actions that identifies and blocks any new PRs that introduce libraries or frameworks that are officially deprecated or reaching End-of-Life (EOL).
 ```
 
 ---
@@ -346,6 +354,7 @@ Please perform a complete security assessment covering every domain below:
    Secure our GitHub Actions CI/CD pipeline end-to-end:
    - Add SAST for Python (with YAML config and failure thresholds)
    - Add SCA for dependency vulnerability scanning
+   - Add automated scanning for deprecated libraries and EOL components
    - Add secret scanning to pre-commit hooks and CI
    - Add container image scanning for our Docker images
    - Generate an SBOM and integrate artifact signing (SLSA framework)
@@ -407,16 +416,16 @@ If you prefer a concise prompt that still triggers every agent and skill:
 ```text
 Our "HealthBridge" SaaS (Python/FastAPI, React, Auth0, PostgreSQL, AWS EKS,
 GitHub Actions) handles PHI and has a RAG+GPT-4 clinical summarizer. SOC 2
-audit in 6 months, no AppSec team. Perform: (1) secure code review of our
-auth middleware and tenant isolation, ASVS L2, with fixes and a checklist;
-(2) STRIDE threat model of the full architecture with security requirements;
-(3) OWASP API Top 10 audit, OAuth/JWT review, zero-trust recommendations,
-plus OWASP LLM Top 10 review of the RAG pipeline; (4) GitHub Actions pipeline
-hardening — SAST, SCA, secrets, container scanning, SBOM, security gates with
-YAML configs; (5) compliance mapping to ISO 27001, NIST SSDF, HIPAA, ASVS L2
-gap analysis, metrics dashboard, and SOC 2 evidence checklist; (6) SAMM
-assessment, Security Champions launch plan, 12-month roadmap, VDP policy,
-and executive summary for the CTO.
+audit in 6 months, no AppSec team. Perform: (1) secure code review of our 
+auth middleware and tenant isolation, plus a scan for deprecated/EOL code, 
+ASVS L2, with fixes and a checklist; (2) STRIDE threat model of the full 
+architecture with security requirements; (3) OWASP API Top 10 audit, OAuth/JWT 
+review, zero-trust recommendations, plus OWASP LLM Top 10 review of the RAG 
+pipeline; (4) GitHub Actions pipeline hardening — SAST, SCA, secrets, container 
+scanning, SBOM, EOL checks, and security gates with YAML configs; (5) compliance 
+mapping to ISO 27001, NIST SSDF, HIPAA, ASVS L2 gap analysis, metrics dashboard, 
+and SOC 2 evidence checklist; (6) SAMM assessment, Security Champions launch 
+plan, 12-month roadmap, VDP policy, and executive summary for the CTO.
 ```
 
 ### For Non-Technical Users
