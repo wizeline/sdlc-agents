@@ -32,7 +32,9 @@ trust boundaries from it.
 ### 2. Load Reference Material
 
 Before analyzing, read:
-- `assets/threat-model-template.md` — Structure and format for the output document
+
+- `assets/threat-model-template.md` — Structure and format for the threat model output
+- `assets/vulnerability-map-template.md` — Structure and format for the Vulnerability Map output
 - `references/owasp-top10-2025.md` — To map identified threats to known categories
 
 ### 3. Apply STRIDE
@@ -55,15 +57,36 @@ For each identified threat:
 2. **Identify mitigations**: Specific controls that reduce or eliminate the threat
 3. **Derive requirements**: Turn mitigations into testable security requirements
 
-### 5. Produce the Threat Model Document
+### 5. Produce the Outputs
+
+This skill produces two complementary outputs for every engagement:
+
+#### Threat Model Document
 
 Use `assets/threat-model-template.md` as the structure. Include:
+
 - System overview and scope
 - Trust boundaries and data flows (in prose or ASCII diagram if helpful)
 - Threat inventory (STRIDE table per component)
 - Prioritized risk register
 - Security requirements traceable to threats
 - Out-of-scope items
+
+#### Vulnerability Map
+
+Use `assets/vulnerability-map-template.md` for a structured, scannable artifact that:
+
+- **Attack Surface Inventory**: Lists every external and internal entry point with protocol,
+  authentication mechanism, and trust level
+- **Trust Boundary Map**: Visual or ASCII diagram of trust zones and data flows
+- **STRIDE Threat Inventory**: Per-component table mapping each STRIDE threat to likelihood,
+  impact, risk rating, and specific mitigation
+- **Deprecated & Vulnerable Library Risks**: Table of known-vulnerable or end-of-life
+  dependencies with CVE, CVSS score, and recommended action — maps to OWASP A06:2025
+- **Risk Register**: Prioritized, owner-assigned list with remediation timelines
+
+Always produce both outputs. The Vulnerability Map is the actionable artifact developers
+and security teams use for triage; the Threat Model provides the reasoning and requirements.
 
 ## Key Principles
 
