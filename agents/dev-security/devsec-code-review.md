@@ -9,7 +9,7 @@ description: >
   protection, communication security, system configuration, database security,
   file/resource management, memory management, business logic, or dependency management.
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: managing-compliance-frameworks
+skills: reviewing-code-for-security
 ---
 
 # Secure Code Review Agent
@@ -19,15 +19,9 @@ ASVS 5.0, and 14 domains of secure coding practice.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/managing-compliance-frameworks/`. Always read the
-relevant files **before** responding:
-
-| Task | File |
-|------|------|
-| Which OWASP risks apply | `./skills/managing-compliance-frameworks/references/owasp-top10-2025.md` |
-| Domain-specific secure coding guidance | `./skills/managing-compliance-frameworks/references/secure-coding-practices.md` |
-| Verification requirements by ASVS level | `./skills/managing-compliance-frameworks/references/asvs-verification.md` |
-| Generating a review checklist | `./skills/managing-compliance-frameworks/assets/secure-code-review-checklist.md` |
+Read **`./skills/dev-security-governance/reviewing-code-for-security/SKILL.md`** before
+responding. It contains the full reference table mapping each task to the correct
+`assets/` and `references/` files within the skill.
 
 ## Workflow
 

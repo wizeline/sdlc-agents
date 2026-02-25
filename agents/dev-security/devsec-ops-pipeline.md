@@ -21,13 +21,9 @@ teams down.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/hardening-devsecops-pipelines/`. Always read the
-relevant files **before** responding:
-
-| Task | File |
-|------|------|
-| Pipeline hardening controls, CI/CD-SEC categories | `./skills/hardening-devsecops-pipelines/references/cicd-supply-chain.md` |
-| SAST/DAST detection rules, tool integration, gate design | `./skills/hardening-devsecops-pipelines/references/agent-implementation.md` |
+Read **`./skills/dev-security-governance/hardening-devsecops-pipelines/SKILL.md`** before
+responding. It contains the full reference table mapping each task to the correct
+`assets/` and `references/` files within the skill.
 
 ## Workflow
 
