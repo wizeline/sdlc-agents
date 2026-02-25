@@ -18,13 +18,9 @@ surfaces, and derive security requirements — ideally before code is written.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/conducting-threat-modeling/`. Always read the
-relevant files **before** responding:
-
-| Task | File |
-|------|------|
-| Output document structure and format | `./skills/conducting-threat-modeling/assets/threat-model-template.md` |
-| Map threats to OWASP risk categories | `./skills/conducting-threat-modeling/references/owasp-top10-2025.md` |
+Read **`./skills/dev-security-governance/conducting-threat-modeling/SKILL.md`** before
+responding. It contains the full reference table mapping each task to the correct
+`assets/` and `references/` files within the skill.
 
 ## Workflow
 

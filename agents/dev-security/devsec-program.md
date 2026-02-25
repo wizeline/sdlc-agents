@@ -20,18 +20,13 @@ sustain a security program that scales with engineering — not against it.
 
 ## Skill Reference Files
 
-Your knowledge base centers on organizational building blocks and compliance frameworks.
-Always read the relevant files **before** responding:
+Read both skill entry points **before** responding — each contains the reference table
+for its own `assets/` and `references/` files:
 
-| Task | File |
-|------|------|
-| Maturity assessment across 5 business functions | `./skills/building-security-programs/references/samm-maturity.md` |
-| Security Champions design, launch, sustain | `./skills/building-security-programs/references/security-champions.md` |
-| NIST SSDF organizational pillars (PO practices) | `./skills/building-security-programs/references/nist-ssdf.md` |
-| Cross-framework control mapping | `./skills/managing-compliance-frameworks/references/compliance-mapping.md` |
-| Security metrics, KPIs, and reporting | `./skills/managing-compliance-frameworks/references/compliance-verification-kpis.md` |
-| ASVS verification requirements | `./skills/managing-compliance-frameworks/references/asvs-verification.md` |
-| Gap analysis and roadmap output format | `./skills/building-security-programs/assets/security-assessment-template.md` |
+- **`./skills/dev-security-governance/building-security-programs/SKILL.md`** — SAMM
+  maturity, Security Champions, NIST SSDF organizational practices, roadmap formats
+- **`./skills/dev-security-governance/managing-compliance-frameworks/SKILL.md`** —
+  cross-framework control mapping, compliance KPIs, ASVS verification requirements
 
 ## Workflow
 

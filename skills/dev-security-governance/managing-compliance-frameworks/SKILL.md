@@ -44,40 +44,51 @@ Determine:
 | Security metrics, KPIs, and reporting | `references/compliance-verification-kpis.md` |
 | NIST SSDF practices and tasks | `references/nist-ssdf.md` |
 | ASVS verification requirements | `references/asvs-verification.md` |
-| Structured deliverable format | `assets/security-assessment-template.md` |
+| Structured assessment format | `assets/security-assessment-template.md` |
+| Compliance Log (audit trail) format | `assets/compliance-log-template.md` |
 
 ### 3. Deliverable Options
 
-**Compliance Gap Analysis**
-- Current state vs. target framework requirements
-- Prioritized gaps (Critical / High / Medium / Low)
-- Remediation roadmap with effort estimates
+This skill produces the following explicit outputs. Select based on what the user requests:
 
-**Control Mapping Table**
-- Bidirectional cross-reference between two or more frameworks
-- Identifies shared controls and framework-unique requirements
-
-**Security Metrics Dashboard**
-- KPIs with targets from `references/compliance-verification-kpis.md`
-- Key targets: MTTD <7 days (critical), MTTR 24h (critical) / 7 days (high),
-  OWASP Top 10 detection >90%, 100% quarterly assessment coverage
-
-**NIST SSDF Alignment**
-- Map existing practices to the four pillars: PO / PS / PW / RV
-- Identify gaps and recommend specific practices/tasks
-
-**Data Privacy Compliance** (GDPR/CCPA)
-- Data classification, retention policy, deletion mechanisms
-- Article 32 technical measures checklist
+| Request | Output Type | Template |
+|---------|-------------|----------|
+| "Gap analysis", "what controls do I need?" | Compliance Gap Analysis | `assets/security-assessment-template.md` |
+| "Map our controls to ISO / SOC 2 / PCI" | Control Mapping Table | `references/compliance-mapping.md` |
+| "Show me our security metrics" | Security Metrics Dashboard | `references/compliance-verification-kpis.md` |
+| "NIST SSDF alignment" | SSDF Alignment Report | `references/nist-ssdf.md` |
+| "Data privacy / GDPR / CCPA" | Data Privacy Compliance | `references/compliance-mapping.md` |
+| "Audit trail", "compliance log", "evidence" | **Compliance Log** | `assets/compliance-log-template.md` |
 
 ### 4. Output Format
 
 Always:
+
 - State the framework version being referenced (e.g., "ISO 27001:2022", "NIST SSDF 1.1")
 - Show bidirectional mappings (Control A ↔ Framework B requirement)
 - Separate "what" (the gap) from "so what" (business/audit risk of the gap)
 - For roadmaps, use 30/60/90-day or quarterly phasing with measurable milestones
 - Tailor language: technical for engineers, strategic/evidence-focused for auditors
+
+#### Compliance Log
+
+When a user asks for an audit trail, evidence record, or compliance history, produce a
+**Compliance Log** using `assets/compliance-log-template.md`. Key requirements:
+
+- **Control Activity Log**: Every security control event (scan, training, pen test, review)
+  must be recorded with a link to evidence and its mapping to every applicable framework
+  (ISO 27001, SOC 2, PCI-DSS, NIST SSDF, ASVS, GDPR Article) in a single row
+- **Vulnerability & Finding Log**: Track every finding from SAST/DAST/SCA/pen tests with
+  its SLA target, actual remediation date, and evidence link — use this to calculate SLA
+  compliance rates for auditors
+- **Security Metrics**: Populate MTTD, MTTR, and coverage KPIs against the targets defined
+  in `references/compliance-verification-kpis.md`
+- **Framework Compliance Status**: Show the current pass/gap count per framework in a
+  single summary table
+- **Evidence Index**: Every piece of evidence cited in the Control Activity Log must have
+  a corresponding row in the Evidence Index with retention date and framework mapping
+- **Write Once, Comply Many**: A single evidence artifact (e.g., a SAST scan report)
+  should satisfy multiple framework rows — cite the same evidence reference across all rows
 
 ## Key Principles
 

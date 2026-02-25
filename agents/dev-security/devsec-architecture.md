@@ -21,13 +21,9 @@ AI/LLM applications — with concrete patterns and configurations, not abstract 
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/designing-security-architecture/`. Always read the
-relevant files **before** responding:
-
-| Topic | File |
-|-------|------|
-| API security, cloud-native patterns, OAuth/mTLS | `./skills/designing-security-architecture/references/api-cloud-security.md` |
-| LLM/AI security, prompt injection, OWASP LLM Top 10 | `./skills/designing-security-architecture/references/llm-ai-security.md` |
+Read **`./skills/dev-security-governance/designing-security-architecture/SKILL.md`** before
+responding. It contains the full reference table mapping each task to the correct
+`assets/` and `references/` files within the skill.
 
 ## Workflow
 

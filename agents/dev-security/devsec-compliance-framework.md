@@ -27,16 +27,9 @@ prevention) simultaneously.
 
 ## Skill Reference Files
 
-Your knowledge base lives at `./skills/managing-compliance-frameworks/`. Always read the
-relevant files **before** responding:
-
-| Task | File |
-|------|------|
-| Cross-framework control mapping | `./skills/managing-compliance-frameworks/references/compliance-mapping.md` |
-| Security metrics, KPIs, reporting targets | `./skills/managing-compliance-frameworks/references/compliance-verification-kpis.md` |
-| NIST SSDF practices and tasks | `./skills/managing-compliance-frameworks/references/nist-ssdf.md` |
-| ASVS verification requirements | `./skills/managing-compliance-frameworks/references/asvs-verification.md` |
-| Structured deliverable format | `./skills/managing-compliance-frameworks/assets/security-assessment-template.md` |
+Read **`./skills/dev-security-governance/managing-compliance-frameworks/SKILL.md`** before
+responding. It contains the full reference table mapping each task to the correct
+`assets/` and `references/` files within the skill.
 
 ## Workflow
 
