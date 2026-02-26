@@ -1,7 +1,7 @@
 # Documentation Writer — Prompt Examples
 
 Ready-to-use prompts for the **Documentation Writer** AI Core.
-This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **8 skills**.
+This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **9 skills**.
 
 > **How to use**: Copy any prompt below and paste it into your AI coding assistant.
 > The agent will automatically load the required skills, research the codebase, and produce the documentation.
@@ -11,8 +11,8 @@ This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **8 s
 ## Agent → Skill Quick Reference
 
 | Agent | Skills Used |
-|---|---|
-| `doc-engineer` | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `processing-pdfs`, `editing-pptx-files` |
+| --- | --- |
+| `doc-engineer` | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `processing-pdfs`, `editing-pptx-files`, `automating-docs-updates` |
 | `c4-architect` | `authoring-architecture-docs` |
 
 ---
@@ -119,6 +119,14 @@ Write an onboarding guide for new developers joining this project. Cover environ
 
 ```text
 Document how to use the dashboard's filter feature as a user guide chapter for non-technical users.
+```
+
+### Docs Updates on Commit (`automating-docs-updates`)
+
+*Automatically handle documentation updates whenever committing changes.*
+
+```text
+I am about to commit these changes to the `user-service`. Please update the affected API documentation and architecture overviews, and stage the docs so they can be committed together.
 ```
 
 ### Format Skills (`editing-docx-files` / `processing-pdfs` / `editing-pptx-files`)

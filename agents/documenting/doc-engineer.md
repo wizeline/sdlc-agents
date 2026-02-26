@@ -4,7 +4,7 @@ description: "Professional Documentation Engineer agent. Use for any documentati
 tools: Bash, Glob, Grep, Read, Edit, Write, Task
 model: inherit
 color: purple
-skills: authoring-technical-docs, authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs, editing-docx-files, processing-pdfs, editing-pptx-files, html
+skills: authoring-technical-docs, authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs, editing-docx-files, processing-pdfs, editing-pptx-files, html, automating-docs-updates
 ---
 # Documentation Engineer Agent
 
@@ -23,6 +23,7 @@ You have five actions. **Always load `authoring-technical-docs` first** — it c
 | `authoring-architecture-docs` | ADRs, design docs, system architecture overviews.                       |
 | `authoring-release-docs`      | Release notes, changelogs, READMEs, migration guides.                   |
 | `authoring-user-docs`         | Tutorials, how-to guides, user guides, onboarding guides.               |
+| `automating-docs-updates`     | Automatically updates relevant docs when committing changes.            |
 
 ### Action routing
 
@@ -32,6 +33,7 @@ Select the domain action based on the request:
 - "write a design doc / ADR / architecture overview" → `authoring-architecture-docs`
 - "write release notes / changelog / README / migration guide" → `authoring-release-docs`
 - "write a tutorial / how-to / getting started / user guide" → `authoring-user-docs`
+- "commit changes and update docs" → `automating-docs-updates`
 - "review these docs" → `authoring-technical-docs` only (use the review procedure below)
 - Unclear → ask one clarifying question before proceeding
 

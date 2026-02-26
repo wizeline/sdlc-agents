@@ -6,7 +6,7 @@ description: "Invoke when a user asks to document, visualize, or map a software 
 tools: Bash, Glob, Grep, Read, Edit, Write, Task
 model: inherit
 color: purple
-skills: authoring-technical-docs, authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs, editing-docx-files, processing-pdfs, editing-pptx-files, html
+skills: authoring-technical-docs, authoring-api-docs, authoring-architecture-docs, authoring-release-docs, authoring-user-docs, editing-docx-files, processing-pdfs, editing-pptx-files, html, automating-docs-updates
 ---
 ## Profile
 
