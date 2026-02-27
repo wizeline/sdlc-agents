@@ -8,6 +8,9 @@ Wize Skills is a collection of agent skills built on the [Agent Skills](https://
 
 ## 🚀 Quick Start
 
+> [!WARNING]
+> **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install: remove previous versions](#before-you-install-remove-previous-versions) below.
+
 Install a skill for your preferred agent (Claude Code, Gemini CLI, etc.):
 
 ```bash
@@ -19,6 +22,89 @@ npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-eng
 ```
 
 > **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering`.
+
+---
+
+## 🗑️ Before you install: remove previous versions
+
+If you have previously installed any Wize Skills, remove the existing `skills/` and `agents/` directories for your agent tool before running the installer again.
+
+> **Back up first.** If you have made local customizations to any templates or reference files, copy them out before deleting. The reinstall overwrites the directory completely.
+
+Skills and agents are stored in different locations depending on the tool and whether you installed at project scope (one project only) or user scope (available everywhere on your machine).
+
+### Claude Code
+
+```bash
+# Project scope (inside your repo)
+rm -rf .claude/skills/
+rm -rf .claude/agents/
+
+# User scope (global — affects all projects)
+rm -rf ~/.claude/skills/
+rm -rf ~/.claude/agents/
+```
+
+### Cursor
+
+```bash
+# Project scope
+rm -rf .cursor/skills/
+rm -rf .cursor/agents/
+
+# User scope
+rm -rf ~/.cursor/skills/
+rm -rf ~/.cursor/agents/
+```
+
+> Cursor also reads `.agents/skills/` as a cross-tool alias. Remove it too if present:
+> ```bash
+> rm -rf .agents/skills/
+> ```
+
+### Gemini CLI
+
+```bash
+# Project scope
+rm -rf .gemini/skills/
+rm -rf .gemini/agents/
+rm -rf .agents/skills/   # cross-tool alias
+
+# User scope
+rm -rf ~/.gemini/skills/
+rm -rf ~/.gemini/agents/
+rm -rf ~/.agents/skills/
+```
+
+### OpenAI Codex
+
+```bash
+# Project scope
+rm -rf .codex/skills/
+
+# User scope
+rm -rf ~/.codex/skills/
+```
+
+### Not sure which scope you used?
+
+Run the following to check all possible locations at once:
+
+```bash
+# Check project scope (run from your repo root)
+ls -d .claude/skills/ .claude/agents/ \
+       .cursor/skills/ .cursor/agents/ \
+       .gemini/skills/ .gemini/agents/ \
+       .agents/skills/ .codex/skills/ 2>/dev/null
+
+# Check user scope
+ls -d ~/.claude/skills/ ~/.claude/agents/ \
+       ~/.cursor/skills/ ~/.cursor/agents/ \
+       ~/.gemini/skills/ ~/.gemini/agents/ \
+       ~/.agents/skills/ ~/.codex/skills/ 2>/dev/null
+```
+
+Any directory listed exists and should be removed before reinstalling.
 
 ---
 

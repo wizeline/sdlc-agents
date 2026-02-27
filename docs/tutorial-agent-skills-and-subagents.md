@@ -1,6 +1,6 @@
 # Agent Skills & Subagents: A Practical Tutorial
 
-> A guide to extending AI coding agents with reusable skills and delegating complex work through subagents — covering Gemini CLI, Claude Code, and OpenAI Codex.
+> A guide to extending AI coding agents with reusable skills and delegating complex work through subagents — covering Gemini CLI, Claude Code, Cursor, and OpenAI Codex.
 
 ---
 
@@ -10,7 +10,8 @@
 2. [What Are Subagents and How They Work](#2-what-are-subagents-and-how-they-work)
 3. [How To: Gemini CLI](#3-how-to-gemini-cli)
 4. [How To: Claude Code](#4-how-to-claude-code)
-5. [How To: OpenAI Codex](#5-how-to-openai-codex)
+5. [How To: Cursor](#5-how-to-cursor)
+6. [How To: OpenAI Codex](#6-how-to-openai-codex)
 
 ---
 
@@ -452,7 +453,163 @@ issues; codebase-expert should check consistency with existing patterns.
 
 ---
 
-## 5. How To: OpenAI Codex
+## 5. How To: Cursor
+
+### Setup
+
+Cursor is an AI-powered code editor with built-in support for the Agent Skills open standard. No separate installation step is needed — skills and subagents work out of the box in the Cursor Agent chat.
+
+Open a project in Cursor and start the Agent panel (`Ctrl+L` / `Cmd+L`, then switch to Agent mode).
+
+### Skills Setup
+
+Cursor discovers skills from two scopes:
+
+| Scope | Paths | Use case |
+|---|---|---|
+| Project | `.cursor/skills/` or `.agents/skills/` | Team-shared, committed to git |
+| User | `~/.cursor/skills/` | Personal, available across all projects |
+
+> Cursor also reads `.claude/skills/` and `.codex/skills/` for cross-tool compatibility, so skills installed for Claude Code or Codex are visible in Cursor automatically.
+
+**Create your first skill:**
+
+```bash
+mkdir -p .cursor/skills/code-conventions
+```
+
+`.cursor/skills/code-conventions/SKILL.md`:
+
+```markdown
+---
+name: code-conventions
+description: >
+  Project coding conventions for this codebase. Use when writing or reviewing
+  code, naming variables, structuring files, or choosing between implementation
+  patterns. Examples: "follow our conventions", "is this naming correct?",
+  "how should I structure this module?"
+---
+
+# Code Conventions
+
+When writing code in this project:
+- Use camelCase for variables and functions, PascalCase for classes
+- Prefer `const` and `let` over `var`
+- Each file exports one primary concern
+- Write self-documenting names — comments explain *why*, not *what*
+```
+
+Invoke explicitly with `/code-conventions` or let Cursor load it automatically when your request matches its description.
+
+**Controlling invocation:**
+
+```markdown
+---
+name: deploy
+description: Deploy the application to the production environment.
+disable-model-invocation: true   # Only you can invoke — Cursor won't auto-trigger it
+---
+```
+
+Setting `disable-model-invocation: true` makes the skill a pure slash command. Use it for anything with side effects — deployments, commits, outbound notifications — where you want explicit human intent rather than automatic activation.
+
+**Migrate existing rules and slash commands:**
+
+If you have existing Cursor rules or slash commands, run `/migrate-to-skills` in the Agent chat. Cursor converts them to the skills format automatically, preserving legacy command names.
+
+**Manage skills:**
+
+```
+/           # Type / in Agent chat to see all available skills listed
+```
+
+### Enabling Subagents
+
+Subagents are available in Cursor without any configuration flags. Place agent definition files in:
+
+| Scope | Paths |
+|---|---|
+| Project | `.cursor/agents/` |
+| User | `~/.cursor/agents/` |
+
+**Built-in subagents** (available by default):
+
+| Agent | Purpose |
+|---|---|
+| `Explore` | Fast, parallel codebase search and analysis using a lighter model |
+| `Bash` | Executes sequences of shell commands |
+| `Browser` | Controls a browser via MCP tools; filters noisy DOM output automatically |
+
+**Create a custom subagent:**
+
+`.cursor/agents/api-reviewer.md`:
+
+```markdown
+---
+name: api-reviewer
+description: >
+  REST API design specialist. Use when reviewing API endpoints for naming
+  conventions, response consistency, error codes, and RESTful patterns.
+  Examples: "review this endpoint", "is this API design correct?",
+  "check my route handlers".
+model: inherit
+readonly: true
+---
+
+You are a thorough API design reviewer. For every review:
+1. Check resource naming (plural nouns, consistent casing)
+2. Verify HTTP method usage (GET for reads, POST for creates, etc.)
+3. Validate response shape consistency across endpoints
+4. Flag missing or incorrect error codes
+5. Note any missing authentication or rate-limit documentation
+
+Be specific: reference the exact route, method, and line where the issue appears.
+```
+
+**Subagent configuration fields:**
+
+| Field | Required | Description |
+|---|---|---|
+| `name` | No | Unique identifier — lowercase letters and hyphens only; used for `/name` invocation |
+| `description` | No | When to delegate to this agent — be explicit, include examples |
+| `model` | No | `fast` (lighter model), `inherit` (same as parent session), or a specific model ID |
+| `readonly` | No | `true` = restricts write permissions; use for analysis-only agents |
+| `is_background` | No | `true` = runs without blocking the main conversation; output saved to `~/.cursor/subagents/` |
+
+**Invoke a subagent explicitly:**
+
+```
+/api-reviewer review the routes in src/api/users.ts
+Use the api-reviewer subagent to check my recent endpoint changes
+```
+
+Cursor also invokes subagents automatically when the task matches their `description`. To make Cursor invoke a subagent more eagerly, include phrasing like *"Use proactively"* or *"Always use for..."* in the description.
+
+**Run a subagent in the background:**
+
+```markdown
+---
+name: test-runner
+description: Runs the full test suite and summarizes failures.
+is_background: true
+---
+```
+
+Background subagents execute without blocking your conversation. Their output is saved to `~/.cursor/subagents/` and surfaced when complete.
+
+**Example: parallel review workflow:**
+
+```
+Review the new payment module. Use the api-reviewer subagent to check
+endpoint design and the Explore subagent to map how it integrates with
+the rest of the codebase. Summarize both results.
+```
+
+> **Note:** Subagents cannot spawn further subagents — nesting is not supported. Chain subagents from the main conversation for multi-step workflows.
+
+---
+
+## 6. How To: OpenAI Codex
 
 ### Setup
 
@@ -617,19 +774,24 @@ You can also ask Codex in natural language to steer, pause, or close any running
 |---|---|---|
 | `name` | All | Slug; becomes the `/slash-command` |
 | `description` | All | What the skill does and when to use it (primary activation signal) |
-| `disable-model-invocation` | Claude Code | `true` = only you can invoke; prevents auto-activation |
+| `disable-model-invocation` | Claude Code, Cursor | `true` = only you can invoke; prevents auto-activation |
 | `user-invocable` | Claude Code | `false` = hidden from slash command menu; model-only |
 | `allowed-tools` | Claude Code | Restrict which tools the skill can use |
 | `context` | Claude Code | `fork` = run skill in an isolated subagent context |
+| `license` | Cursor | License information for the skill |
+| `compatibility` | Cursor | Environment requirements |
+| `metadata` | Cursor | Custom key-value metadata |
 
 ### Subagent Frontmatter Fields
 
 | Field | Tools | Description |
 |---|---|---|
-| `name` | Gemini, Claude Code | Unique agent identifier / tool name |
-| `description` | Gemini, Claude Code | When to invoke this agent — be explicit and include examples |
+| `name` | Gemini, Claude Code, Cursor | Unique agent identifier / tool name |
+| `description` | Gemini, Claude Code, Cursor | When to invoke this agent — be explicit and include examples |
 | `tools` | Gemini, Claude Code | Allowed tools list (omit to inherit defaults) |
-| `model` | Gemini, Claude Code | Specific model to use |
+| `model` | Gemini, Claude Code, Cursor | `fast`, `inherit`, or a specific model ID (Cursor); model name (Gemini, Claude Code) |
+| `readonly` | Cursor | `true` = restricts write permissions; use for analysis-only agents |
+| `is_background` | Cursor | `true` = runs without blocking the main conversation |
 | `temperature` | Gemini | 0.0–2.0 |
 | `max_turns` | Gemini | Max turns before agent must return (default: 15) |
 | `memory` | Claude Code | Persistent memory directory scoped to `user` or `project` |
@@ -637,4 +799,4 @@ You can also ask Codex in natural language to steer, pause, or close any running
 
 ---
 
-*Sources: [Agent Skills Open Standard](https://agentskills.io/home) · [Gemini CLI Skills](https://geminicli.com/docs/cli/skills/) · [Gemini CLI Subagents](https://geminicli.com/docs/core/subagents/) · [OpenAI Codex Multi-Agent](https://developers.openai.com/codex/multi-agent/) · [Claude Code Subagents](https://docs.anthropic.com/en/docs/claude-code/sub-agents) · [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/slash-commands)*
+*Sources: [Agent Skills Open Standard](https://agentskills.io/home) · [Gemini CLI Skills](https://geminicli.com/docs/cli/skills/) · [Gemini CLI Subagents](https://geminicli.com/docs/core/subagents/) · [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/slash-commands) · [Claude Code Subagents](https://docs.anthropic.com/en/docs/claude-code/sub-agents) · [Cursor Skills](https://cursor.com/docs/context/skills) · [Cursor Subagents](https://cursor.com/docs/context/subagents) · [OpenAI Codex Multi-Agent](https://developers.openai.com/codex/multi-agent/)*
