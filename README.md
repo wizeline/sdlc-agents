@@ -123,7 +123,7 @@ New to agent skills? Check out our comprehensive resources:
 
 | Skill Name | Description |
 | :--- | :--- |
-| [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. |
+| [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. Includes multi-agent support (`doc-engineer`, `c4-architect`, `atlassian-sourcer`) and comprehensive skills like `authoring-api-docs`. |
 | [`dev-security-governance`](skills/dev-security-governance) | Developer security governance, OWASP, and compliance mapping. |
 
 > **Tip**: More skills are coming soon! Watch this repository for updates.

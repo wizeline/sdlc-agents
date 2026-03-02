@@ -1,7 +1,7 @@
 # Documentation Writer — Prompt Examples
 
 Ready-to-use prompts for the **Documentation Writer** AI Core.
-This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **9 skills**.
+This core includes **3 agents** (`doc-engineer`, `c4-architect`, `atlassian-sourcer`) backed by **11 skills**.
 
 > **How to use**: Copy any prompt below and paste it into your AI coding assistant.
 > The agent will automatically load the required skills, research the codebase, and produce the documentation.
@@ -12,8 +12,9 @@ This core includes **2 agents** (`doc-engineer`, `c4-architect`) backed by **9 s
 
 | Agent | Skills Used |
 | --- | --- |
-| `doc-engineer` | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `processing-pdfs`, `editing-pptx-files`, `automating-docs-updates` |
-| `c4-architect` | `authoring-architecture-docs` |
+| `doc-engineer` | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `processing-pdfs`, `editing-pptx-files`, `automating-docs-updates`, `sourcing-from-atlassian` |
+| `c4-architect` | `authoring-architecture-docs`, `sourcing-from-atlassian` |
+| `atlassian-sourcer` | `sourcing-from-atlassian` |
 
 ---
 
@@ -39,6 +40,18 @@ I have these Jira tickets and engineering notes — produce a polished technical
 
 ```text
 Audit our entire docs/ folder. Identify outdated content, broken links, missing topics, and inconsistencies with the current codebase.
+```
+
+### Atlassian Sourcing (`sourcing-from-atlassian`)
+
+*Fetch user stories, epics, sprint tickets, and Confluence pages before drafting.*
+
+```text
+Use the Jira stories for Epic-123 and the Confluence spec in the ENG space to create a documentation source bundle.
+```
+
+```text
+Pull the user stories for the new login flow from Jira and the corresponding design doc from Confluence.
 ```
 
 ### API Documentation (`authoring-api-docs`)
@@ -195,13 +208,18 @@ PostgreSQL database and a Redis cache layer. The API is RESTful and secured
 via OAuth 2.0 with PKCE. We need a complete documentation package for the
 v1.0.0 release. Please produce every deliverable below:
 
+0. Source Gathering (sourcing-from-atlassian)
+   Fetch the epic "ORDER-100" and the "OrderFlow Spec" page from the ENG
+   Confluence space to build an Atlassian source bundle. Use this bundle
+   as context for all following deliverables.
+
 1. API Reference (authoring-api-docs)
    Document every endpoint under /api/v1/orders and /api/v1/customers.
    Include request/response schemas with examples, authentication
    requirements, error codes, rate-limit policies, and runnable cURL
    examples for each operation.
 
-2. Architecture Overview & C4 Diagrams (authoring-architecture-docs + c4-architect)
+2. Architecture Overview & C4 Diagrams (authoring-architecture-docs + c4-architect + atlassian-sourcer)
    Write an architecture overview document with:
    - A C4 Context diagram showing OrderFlow, its external actors (web app,
      mobile app, payment gateway, shipping provider), and system boundaries.
@@ -247,6 +265,7 @@ Target audience: engineering team (technical docs) and VP of Engineering
 
 | Step | Agent | Skill(s) |
 | ---- | ----- | -------- |
+| 0. Source Gathering | `doc-engineer` → `atlassian-sourcer` | `sourcing-from-atlassian` |
 | 1. API Reference | `doc-engineer` | `authoring-technical-docs` → `authoring-api-docs` |
 | 2. Architecture & C4 | `doc-engineer` + `c4-architect` | `authoring-technical-docs` → `authoring-architecture-docs` |
 | 3. Release Docs | `doc-engineer` | `authoring-technical-docs` → `authoring-release-docs` |
@@ -264,7 +283,7 @@ If you prefer a concise prompt that still triggers every agent and skill:
 
 ```text
 Document our Node.js/Express microservices API on AWS EKS for the v1.0.0
-release. Produce: (1) full API reference for /api/v1/orders and /customers
+release. Produce: (0) fetch the Jira epic ORDER-100 and Confluence spec for context; (1) full API reference for /api/v1/orders and /customers
 with schemas, auth, errors, and cURL examples; (2) architecture overview with
 C4 Context, Container, and Component diagrams plus an ADR for our event-driven
 design; (3) release notes, README, and monolith-to-microservices migration
@@ -279,7 +298,7 @@ A plain-language prompt that still triggers every agent and skill:
 
 ```text
 We're about to launch a new product and I need a complete documentation
-package. Please: (1) document how the system works for developers who will
+package. Please: (0) pull the relevant Jira tickets and Confluence pages for context; (1) document how the system works for developers who will
 use our API, with examples they can copy and paste; (2) create diagrams that
 show how the different parts of the system connect, and write up why we
 chose the current design; (3) write the release announcement, a project
