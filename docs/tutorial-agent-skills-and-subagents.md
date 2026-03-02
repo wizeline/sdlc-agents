@@ -77,6 +77,8 @@ You can also invoke a skill directly with a slash command: `/skill-name`.
 
 Think of a subagent as a contractor the main agent hires for a specific job. It receives a task, does the work independently, and reports back a summary. The main agent never sees all the intermediate steps — only the result.
 
+For example, a `doc-engineer` main agent can delegate research to an `atlassian-sourcer` subagent. The sourcer fetches Jira tickets and Confluence pages via MCP, cleans the data, and returns a structured source bundle. The main agent can then use this bundle to write the final API documentation or architectural design, keeping its own context window clean of all the raw API JSON.
+
 ### Why subagents matter
 
 The main conversation context is a limited resource. When an agent does deep codebase exploration or processes a lot of intermediate output, all of that ends up in the main thread and crowds out space for subsequent work. Subagents solve this by isolating heavy or verbose work so the main conversation stays clean.
