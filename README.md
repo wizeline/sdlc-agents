@@ -115,7 +115,7 @@ New to agent skills? Check out our comprehensive resources:
 - **[Practical Tutorial](docs/tutorial-agent-skills-and-subagents.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
   - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
-  - [Developer Security Governance](docs/prompt-examples-dev-security-governance.md)
+  - [Developer Security Governance](docs/prompt-examples-devsec-governance.md)
 
 ---
 
@@ -124,7 +124,7 @@ New to agent skills? Check out our comprehensive resources:
 | Skill Name | Description |
 | :--- | :--- |
 | [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. Includes multi-agent support (`doc-engineer`, `c4-architect`, `atlassian-sourcer`) and comprehensive skills like `authoring-api-docs`. |
-| [`dev-security-governance`](skills/dev-security-governance) | Developer security governance, OWASP, and compliance mapping. |
+| [`devsec-governance`](skills/devsec-governance) | Developer security governance, OWASP, and compliance mapping. |
 
 > **Tip**: More skills are coming soon! Watch this repository for updates.
 

@@ -1,5 +1,5 @@
 ---
-name: conducting-threat-modeling
+name: devsec-devsec-conducting-threat-modeling
 description: >
   Use when someone wants to create a threat model, perform a STRIDE analysis, identify
   security threats to an architecture, define security requirements from a design, run
@@ -10,7 +10,7 @@ description: >
   before any code exists.
 ---
 
-# Conducting Threat Modeling Skill
+# devsec-conducting-threat-modeling
 
 Act as a threat modeling facilitator, helping teams identify threats, document attack
 surfaces, and derive security requirements before code is written.

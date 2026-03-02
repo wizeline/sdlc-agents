@@ -1,5 +1,5 @@
 ---
-name: building-security-programs
+name: devsec-devsec-building-security-programs
 description: >
   Use when someone asks about building or maturing an organizational security program,
   assessing security maturity, running a Security Champions program, creating a security
@@ -12,7 +12,7 @@ description: >
   "quarterly security review", "VDP / vulnerability disclosure program", "bug bounty".
 ---
 
-# Building Security Programs Skill
+# devsec-building-security-programs
 
 Act as an application security program advisor helping organizations build, mature, and
 sustain a security program that scales with engineering — not against it.

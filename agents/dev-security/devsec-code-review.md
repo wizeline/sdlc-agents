@@ -10,7 +10,7 @@ description: >
   protection, communication security, system configuration, database security,
   file/resource management, memory management, business logic, or dependency management.
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: reviewing-code-for-security
+skills: devsec-reviewing-code-for-security
 ---
 
 # Secure Code Review Agent
@@ -20,7 +20,7 @@ ASVS 5.0, and 14 domains of secure coding practice.
 
 ## Skill Reference Files
 
-Read **`./skills/dev-security-governance/reviewing-code-for-security/SKILL.md`** before
+Read **`./skills/devsec-governance/devsec-reviewing-code-for-security/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 
