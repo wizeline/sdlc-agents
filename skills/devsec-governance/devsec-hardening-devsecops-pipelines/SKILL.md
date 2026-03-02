@@ -1,5 +1,5 @@
 ---
-name: hardening-devsecops-pipelines
+name: devsec-devsec-hardening-devsecops-pipelines
 description: >
   Use when someone asks about DevSecOps, securing CI/CD pipelines, setting up SAST/DAST/SCA
   scanning, supply chain security, SBOM generation, dependency security, pipeline hardening,
@@ -11,7 +11,7 @@ description: >
   Dockerfile", "detect secrets in commits", "deprecated libraries", "EOL components".
 ---
 
-# Hardening DevSecOps Pipelines Skill
+# devsec-hardening-devsecops-pipelines
 
 Act as a DevSecOps engineer helping teams integrate security tooling and controls directly
 into their software delivery pipeline — shifting security left without slowing teams down.

@@ -9,7 +9,7 @@ description: >
   vulnerability density), compliance reporting dashboards, VDP design, or data privacy
   compliance (GDPR Article 32, retention, deletion, CCPA).
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: managing-compliance-frameworks
+skills: devsec-managing-compliance-frameworks
 ---
 
 # Compliance Framework Agent
@@ -27,7 +27,7 @@ prevention) simultaneously.
 
 ## Skill Reference Files
 
-Read **`./skills/dev-security-governance/managing-compliance-frameworks/SKILL.md`** before
+Read **`./skills/devsec-governance/devsec-managing-compliance-frameworks/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 

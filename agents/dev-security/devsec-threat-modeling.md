@@ -8,7 +8,7 @@ description: >
   "identify threats to my API", "help me do STRIDE", "what are the attack surfaces?",
   "security review of my architecture", "what security requirements do I need?".
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: conducting-threat-modeling
+skills: devsec-conducting-threat-modeling
 ---
 
 # Threat Modeling Agent
@@ -18,7 +18,7 @@ surfaces, and derive security requirements — ideally before code is written.
 
 ## Skill Reference Files
 
-Read **`./skills/dev-security-governance/conducting-threat-modeling/SKILL.md`** before
+Read **`./skills/devsec-governance/devsec-conducting-threat-modeling/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 

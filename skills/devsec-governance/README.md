@@ -1,15 +1,15 @@
-# dev-security-governance → 6 Granular Skills
+# devsec-governance → 6 Granular Skills
 
 ## The New Structure
 
 | Skill                              | Trigger Persona                        | Reference Files                                                                                              |
 | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `reviewing-code-for-security`    | Developer reviewing/writing code       | owasp-top10-2025, secure-coding-practices, asvs-verification, secure-code-review-checklist                   |
-| `conducting-threat-modeling`     | Architect/designer at design phase     | threat-model-template, owasp-top10-2025                                                                      |
-| `hardening-devsecops-pipelines`  | DevOps/platform engineer               | cicd-supply-chain, agent-implementation                                                                      |
-| `managing-compliance-frameworks` | Compliance/GRC, pre-audit              | compliance-mapping, compliance-verification-kpis, nist-ssdf, asvs-verification, security-assessment-template |
-| `designing-security-architecture` | Architect designing APIs/AI systems    | api-cloud-security, llm-ai-security                                                                          |
-| `building-security-programs`     | AppSec lead or CISO building a program | samm-maturity, security-champions, nist-ssdf, security-assessment-template                                   |
+| `devsec-reviewing-code-for-security`    | Developer reviewing/writing code       | owasp-top10-2025, secure-coding-practices, asvs-verification, secure-code-review-checklist                   |
+| `devsec-conducting-threat-modeling`     | Architect/designer at design phase     | threat-model-template, owasp-top10-2025                                                                      |
+| `devsec-hardening-devsecops-pipelines`  | DevOps/platform engineer               | cicd-supply-chain, agent-implementation                                                                      |
+| `devsec-managing-compliance-frameworks` | Compliance/GRC, pre-audit              | compliance-mapping, compliance-verification-kpis, nist-ssdf, asvs-verification, security-assessment-template |
+| `devsec-designing-security-architecture` | Architect designing APIs/AI systems    | api-cloud-security, llm-ai-security                                                                          |
+| `devsec-building-security-programs`     | AppSec lead or CISO building a program | samm-maturity, security-champions, nist-ssdf, security-assessment-template                                   |
 
 ---
 

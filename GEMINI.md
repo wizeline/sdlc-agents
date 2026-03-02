@@ -40,7 +40,7 @@ wize-skills/
 
 Currently, the repository includes, but is not limited to, the following skills:
 
--   **`dev-security-governance`**: A comprehensive skill for developer security governance, covering topics like OWASP Top 10, ASVS verification, NIST SSDF, CI/CD pipeline hardening, API/cloud-native security, and Security Champions programs. It provides guidance on secure development lifecycle, code reviews, threat modeling, and compliance.
+-   **`devsec-governance`**: A comprehensive skill for developer security governance, covering topics like OWASP Top 10, ASVS verification, NIST SSDF, CI/CD pipeline hardening, API/cloud-native security, and Security Champions programs. It provides guidance on secure development lifecycle, code reviews, threat modeling, and compliance.
 -   **`docs-engineering`**: Focuses on documentation engineering workflows and quality assurance processes.
 
 ## Skill Versioning
