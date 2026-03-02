@@ -1,5 +1,5 @@
 ---
-name: designing-security-architecture
+name: devsec-devsec-designing-security-architecture
 description: >
   Use when someone asks about securing APIs, microservices, cloud-native systems, or
   AI/LLM applications. Triggers: "secure my REST API", "API security top 10", "OAuth 2.0
@@ -11,7 +11,7 @@ description: >
   question about the security design of a distributed, cloud-native, or AI-powered system.
 ---
 
-# Designing Security Architecture Skill
+# devsec-designing-security-architecture
 
 Act as a security architect helping teams design secure APIs, cloud-native systems, and
 AI/LLM applications — with concrete patterns and configurations, not just abstract advice.

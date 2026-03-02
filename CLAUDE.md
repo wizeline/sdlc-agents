@@ -22,7 +22,7 @@ docs/                     # Design documents for skills
 ### Current Skills
 
 - **docs-engineering** — Multi-agent documentation pipeline (Researcher → Writer → Reviewer → Formatter) using the Diátaxis framework and first-party consumption testing
-- **dev-security-governance** — SDLC security guidance powered by OWASP Top 10 (2025), NIST SSDF, ASVS 5.0, and 12 reference frameworks
+- **devsec-governance** — SDLC security guidance powered by OWASP Top 10 (2025), NIST SSDF, ASVS 5.0, and 12 reference frameworks
 
 ## Key Architecture Concepts
 
@@ -30,7 +30,7 @@ docs/                     # Design documents for skills
 
 **Multi-agent orchestration** (docs-engineering): Specialized subagents in `agents/` each handle one phase. They communicate via intermediate markdown artifacts. The reviewer subagent validates docs by attempting to complete a task using *only* the document (first-party consumption testing), with up to 2 revision cycles.
 
-**Reference files** are static knowledge bases that skills route to via decision tables in SKILL.md. The dev-security-governance skill routes questions like "What are top risks?" → `owasp-top10-2025.md`, "How mature is our program?" → `samm-maturity.md`, etc.
+**Reference files** are static knowledge bases that skills route to via decision tables in SKILL.md. The devsec-governance skill routes questions like "What are top risks?" → `owasp-top10-2025.md`, "How mature is our program?" → `samm-maturity.md`, etc.
 
 ## Versioning & CI
 

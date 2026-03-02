@@ -12,12 +12,12 @@ This core includes **6 agents** backed by **6 skills**.
 
 | Agent | Skills Used |
 | --- | --- |
-| `devsec-code-review` | `reviewing-code-for-security` |
-| `devsec-threat-modeling` | `conducting-threat-modeling` |
-| `devsec-architecture` | `designing-security-architecture` |
-| `devsec-ops-pipeline` | `hardening-devsecops-pipelines` |
-| `devsec-compliance-framework` | `managing-compliance-frameworks` |
-| `devsec-program` | `building-security-programs`, `managing-compliance-frameworks` |
+| `devsec-code-review` | `devsec-reviewing-code-for-security` |
+| `devsec-threat-modeling` | `devsec-conducting-threat-modeling` |
+| `devsec-architecture` | `devsec-designing-security-architecture` |
+| `devsec-ops-pipeline` | `devsec-hardening-devsecops-pipelines` |
+| `devsec-compliance-framework` | `devsec-managing-compliance-frameworks` |
+| `devsec-program` | `devsec-building-security-programs`, `devsec-managing-compliance-frameworks` |
 
 ---
 
@@ -296,7 +296,7 @@ Keep it practical — give me something I can use today.
 Threat model this API design, then review the existing code for security issues that match those threats, and finally document the findings as an architecture decision record.
 ```
 
-*— This triggers `conducting-threat-modeling` + `reviewing-code-for-security` + `authoring-architecture-docs` in sequence.*
+*— This triggers `devsec-conducting-threat-modeling` + `devsec-reviewing-code-for-security` + `authoring-architecture-docs` in sequence.*
 
 ---
 
@@ -399,13 +399,13 @@ GitHub Actions) — not generic advice.
 
 | Step | Agent | Skill(s) | Output Type |
 | ---- | ----- | -------- | ----------- |
-| 1. Code Review | `devsec-code-review` | `reviewing-code-for-security` (OWASP Top 10, ASVS, secure coding practices) | **Real-Time Report** + **Remediation Guides** |
-| 2. Threat Model | `devsec-threat-modeling` | `conducting-threat-modeling` (STRIDE, threat model template) | Threat Model Doc + **Vulnerability Map** |
-| 3a. API & Cloud | `devsec-architecture` | `designing-security-architecture` (API/cloud security patterns) | Architecture review |
-| 3b. AI/LLM | `devsec-architecture` | `designing-security-architecture` (LLM/AI security, OWASP LLM Top 10) | Architecture review |
-| 4. Pipeline | `devsec-ops-pipeline` | `hardening-devsecops-pipelines` (CI/CD-SEC, SAST/DAST, SBOM) | Pipeline config (YAML) |
-| 5. Compliance | `devsec-compliance-framework` | `managing-compliance-frameworks` (compliance mapping, NIST SSDF, ASVS, KPIs) | **Compliance Log** |
-| 6. Program | `devsec-program` | `building-security-programs` + `managing-compliance-frameworks` (SAMM, Champions, roadmap) | Roadmap + SAMM scorecard |
+| 1. Code Review | `devsec-code-review` | `devsec-reviewing-code-for-security` (OWASP Top 10, ASVS, secure coding practices) | **Real-Time Report** + **Remediation Guides** |
+| 2. Threat Model | `devsec-threat-modeling` | `devsec-conducting-threat-modeling` (STRIDE, threat model template) | Threat Model Doc + **Vulnerability Map** |
+| 3a. API & Cloud | `devsec-architecture` | `devsec-designing-security-architecture` (API/cloud security patterns) | Architecture review |
+| 3b. AI/LLM | `devsec-architecture` | `devsec-designing-security-architecture` (LLM/AI security, OWASP LLM Top 10) | Architecture review |
+| 4. Pipeline | `devsec-ops-pipeline` | `devsec-hardening-devsecops-pipelines` (CI/CD-SEC, SAST/DAST, SBOM) | Pipeline config (YAML) |
+| 5. Compliance | `devsec-compliance-framework` | `devsec-managing-compliance-frameworks` (compliance mapping, NIST SSDF, ASVS, KPIs) | **Compliance Log** |
+| 6. Program | `devsec-program` | `devsec-building-security-programs` + `devsec-managing-compliance-frameworks` (SAMM, Champions, roadmap) | Roadmap + SAMM scorecard |
 
 > **💡 Tip**: This is a very large prompt that spans all 6 agents. Depending on your AI assistant's capabilities, it may process domains sequentially or ask you to confirm before proceeding. You can also extract individual numbered sections as standalone prompts — each one maps to a specific agent.
 

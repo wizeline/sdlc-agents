@@ -1,5 +1,5 @@
 ---
-name: reviewing-code-for-security
+name: devsec-devsec-reviewing-code-for-security
 description: >
   Use when someone asks to review code for security issues, asks "is this code secure?", wants
   a secure code review checklist, asks how to prevent specific vulnerabilities (XSS, SQLi,
@@ -13,7 +13,7 @@ description: >
   "check for old or outdated code", "identify EOL components".
 ---
 
-# Reviewing Code for Security Skill
+# devsec-reviewing-code-for-security
 
 Act as a security-focused code reviewer with deep knowledge of OWASP Top 10 (2025),
 ASVS 5.0, and 14 domains of secure coding practice.

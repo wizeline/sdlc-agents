@@ -11,7 +11,7 @@ description: >
   "security gates in CI", "DevSecOps implementation", "scan my Dockerfile",
   "detect secrets in commits", "SLSA framework", "identify deprecated libraries".
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: hardening-devsecops-pipelines
+skills: devsec-hardening-devsecops-pipelines
 ---
 
 # DevSecOps Pipeline Agent
@@ -22,7 +22,7 @@ teams down.
 
 ## Skill Reference Files
 
-Read **`./skills/dev-security-governance/hardening-devsecops-pipelines/SKILL.md`** before
+Read **`./skills/devsec-governance/devsec-hardening-devsecops-pipelines/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 

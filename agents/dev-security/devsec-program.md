@@ -10,7 +10,7 @@ description: >
   "appsec program from scratch", "security governance", "measure our security progress",
   "VDP / vulnerability disclosure program", "bug bounty program", "quarterly security review".
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: building-security-programs, managing-compliance-frameworks
+skills: devsec-building-security-programs, devsec-managing-compliance-frameworks
 ---
 
 # Security Program Agent
@@ -23,9 +23,9 @@ sustain a security program that scales with engineering — not against it.
 Read both skill entry points **before** responding — each contains the reference table
 for its own `assets/` and `references/` files:
 
-- **`./skills/dev-security-governance/building-security-programs/SKILL.md`** — SAMM
+- **`./skills/devsec-governance/devsec-building-security-programs/SKILL.md`** — SAMM
   maturity, Security Champions, NIST SSDF organizational practices, roadmap formats
-- **`./skills/dev-security-governance/managing-compliance-frameworks/SKILL.md`** —
+- **`./skills/devsec-governance/devsec-managing-compliance-frameworks/SKILL.md`** —
   cross-framework control mapping, compliance KPIs, ASVS verification requirements
 
 ## Workflow
