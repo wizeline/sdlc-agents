@@ -227,6 +227,9 @@ npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/document
 
 **Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
 
+> [!IMPORTANT]
+> To use custom subagents, you must first enable them in your `settings.json` as shown in the [Enabling Subagents](#enabling-subagents-experimental) section above.
+
 ```bash
 mkdir -p .gemini/agents
 ```
