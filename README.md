@@ -11,14 +11,46 @@ Wize Skills is a collection of agent skills built on the [Agent Skills](https://
 > [!WARNING]
 > **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install: remove previous versions](#before-you-install-remove-previous-versions) below.
 
-Install a skill for your preferred agent (Claude Code, Gemini CLI, etc.):
+Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — the open agent skills & subagents ecosystem, compatible with Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
+
+```bash
+# Run without installing (recommended)
+npx agents-skills
+
+# Or install globally for repeated use
+npm install -g agents-skills
+```
+
+Once available, add a skill or an agent for your preferred tool:
+
+**Install a skill:**
 
 ```bash
 # General installation (interactive)
 npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering
 
-# Target a specific agent
+# Target a specific agent tool
 npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+
+# Install globally (available across all your projects)
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -g
+```
+
+**Install a subagent:**
+
+```bash
+# Install the doc-engineer subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer
+
+# Target a specific agent tool
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
+
+# Install globally
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -g
+
+# Install an entire agent group at once
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a claude-code
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/dev-security -a claude-code
 ```
 
 > **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering`.
@@ -127,6 +159,20 @@ New to agent skills? Check out our comprehensive resources:
 | [`devsec-governance`](skills/devsec-governance) | Developer security governance, OWASP, and compliance mapping. |
 
 > **Tip**: More skills are coming soon! Watch this repository for updates.
+
+## 🤖 Available Agents
+
+| Agent Name | Group | Description |
+| :--- | :--- | :--- |
+| [`doc-engineer`](agents/documenting/doc-engineer.md) | `documenting` | Full documentation pipeline — research, draft, review, format, and export. |
+| [`c4-architect`](agents/documenting/c4-architect.md) | `documenting` | Specialized C4 Model diagram generation. |
+| [`atlassian-sourcer`](agents/documenting/atlassian-sourcer.md) | `documenting` | Fetches and structures content from Jira and Confluence via MCP. |
+| [`devsec-code-review`](agents/dev-security/devsec-code-review.md) | `dev-security` | Security-focused code review against OWASP Top 10 and ASVS. |
+| [`devsec-threat-modeling`](agents/dev-security/devsec-threat-modeling.md) | `dev-security` | STRIDE-based threat modeling for architecture designs. |
+| [`devsec-architecture`](agents/dev-security/devsec-architecture.md) | `dev-security` | Security architecture for APIs, cloud-native, and AI/LLM systems. |
+| [`devsec-ops-pipeline`](agents/dev-security/devsec-ops-pipeline.md) | `dev-security` | DevSecOps pipeline hardening and CI/CD security gates. |
+| [`devsec-compliance-framework`](agents/dev-security/devsec-compliance-framework.md) | `dev-security` | Compliance mapping across ISO 27001, SOC 2, PCI-DSS, and more. |
+| [`devsec-program`](agents/dev-security/devsec-program.md) | `dev-security` | AppSec program building and OWASP SAMM maturity assessments. |
 
 ---
 
