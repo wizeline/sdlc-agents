@@ -139,14 +139,20 @@ The location depends on which agent tool you are using and whether the install w
 | Gemini CLI | `.agents/skills/` or `.gemini/skills/` | `~/.agents/skills/` or `~/.gemini/skills/` |
 | OpenAI Codex | `.codex/skills/` | `~/.codex/skills/` |
 
-### Delete the skill directory and reinstall
+### Delete the skill or agent directory and reinstall
 
 ```bash
 # Example: removing and reinstalling the docs-engineering skill for Claude Code (project scope)
 rm -rf .claude/skills/docs-engineering
 
-# Reinstall
+# Reinstall the skill
 npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+
+# Example: removing and reinstalling the doc-engineer subagent
+rm -rf .claude/agents/doc-engineer
+
+# Reinstall the subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
 ```
 
 > **Note:** If you customized any templates or references before deleting, back them up first. The reinstall overwrites the directory completely.
@@ -203,12 +209,22 @@ Cursor supports the [Agent Skills open standard](https://agentskills.io/home) na
 ### Install a skill
 
 ```bash
-# Using the skills CLI
+# Using the agents-skills CLI
 npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a cursor
 
-# Or for Gemini CLI compatibility, clone manually
+# Or clone manually
 git clone https://github.com/wizeline/wize-skills.git /tmp/wize-skills
 cp -r /tmp/wize-skills/skills/docs-engineering .cursor/skills/
+```
+
+### Install a subagent
+
+```bash
+# Install a single subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a cursor
+
+# Install an entire agent group
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a cursor
 ```
 
 Cursor discovers skills from:
