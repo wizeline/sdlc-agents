@@ -47,6 +47,50 @@ Currently, the repository includes, but is not limited to, the following skills:
 
 Skills are independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`). A GitHub Actions workflow (`.github/workflows/version-skills.yml`) automatically increments the patch version of a skill whenever changes are pushed to `main` within its directory. Major and minor version bumps are performed manually via Git tags.
 
+## Installing Skills
+
+Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — compatible with Gemini CLI, Claude Code, Cursor, Codex, and 40+ other coding agents.
+
+```bash
+# Run without installing (recommended)
+npx agents-skills
+
+# Or install globally for repeated use
+npm install -g agents-skills
+```
+
+Add a skill to your project:
+
+```bash
+# Interactive installation
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering
+
+# Target Gemini specifically
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a gemini
+
+# Install globally (available across all projects)
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -g
+```
+
+For Gemini CLI's native installer:
+```bash
+gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering
+```
+
+Add a subagent to your project:
+
+```bash
+# Install a single subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a gemini
+
+# Install an entire agent group
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a gemini
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/dev-security -a gemini
+
+# Install globally
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -g
+```
+
 ## Contributing
 
 Contributions are welcome. New skills can be added by creating a new directory under `skills/` with a `SKILL.md` file and any supporting resources. Refer to the `README.md` for detailed contribution guidelines and instructions on seeding initial version tags.

@@ -141,6 +141,10 @@ Gemini CLI discovers skills from three locations (highest to lowest precedence):
 **Install a skill from GitHub:**
 
 ```bash
+# Using the agents-skills CLI (recommended)
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a gemini
+
+# Using Gemini's native installer
 gemini skills install https://github.com/user/my-skills.git
 
 # Install a specific skill from a monorepo
@@ -211,7 +215,17 @@ Enable them in `~/.gemini/settings.json` (or `.gemini/settings.json` for a proje
 | `cli_help` | Expert on Gemini CLI commands and configuration |
 | `generalist_agent` | Routes tasks to the right specialist automatically |
 
-**Create a custom subagent** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
+**Install a subagent from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+
+```bash
+# Install a single subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a gemini
+
+# Install an entire agent group
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a gemini
+```
+
+**Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
 
 ```bash
 mkdir -p .gemini/agents
@@ -296,6 +310,12 @@ Claude Code follows the Agent Skills open standard and extends it with additiona
 | User | `~/.claude/skills/` | Personal, available across all projects |
 
 > Note: `.claude/commands/` (legacy custom slash commands) still works and is equivalent to `.claude/skills/`.
+
+**Install a skill from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+
+```bash
+npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+```
 
 **Create your first skill:**
 
@@ -385,7 +405,20 @@ Or use the interactive agent manager:
 
 **Built-in subagents:** Claude Code includes a general-purpose helper agent used automatically for research and exploration tasks when `Task` is in your allowed tools.
 
-**Create a custom subagent:**
+**Install a subagent from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+
+```bash
+# Install a single subagent
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
+
+# Install an entire agent group
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a claude-code
+
+# Install globally (available across all your projects)
+npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -g
+```
+
+**Create a custom subagent manually:**
 
 ```bash
 # Project-level (shared with team)
