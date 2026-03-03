@@ -207,6 +207,31 @@ Enable them in `~/.gemini/settings.json` (or `.gemini/settings.json` for a proje
 }
 ```
 
+#### 🔌 Adding MCP Servers (Jira & Confluence)
+
+To use specialized agents like `atlassian-sourcer`, you need to configure the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian) in your `settings.json`. This allows the agent to fetch tickets from Jira and pages from Confluence:
+
+```json
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://wizeline.atlassian.net",
+        "JIRA_USERNAME": "your.email@wizeline.com",
+        "JIRA_API_TOKEN": "your_api_token",
+        "CONFLUENCE_URL": "https://wizeline.atlassian.net/wiki",
+        "CONFLUENCE_USERNAME": "your.email@wizeline.com",
+        "CONFLUENCE_API_TOKEN": "your_api_token"
+      }
+    }
+  }
+}
+```
+
+> **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
+
 **Built-in subagents (enabled by default):**
 
 | Agent | Purpose |
@@ -226,6 +251,9 @@ npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/document
 ```
 
 **Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
+
+> [!IMPORTANT]
+> To use custom subagents, you must first enable them in your `settings.json` as shown in the [Enabling Subagents](#enabling-subagents-experimental) section above.
 
 ```bash
 mkdir -p .gemini/agents

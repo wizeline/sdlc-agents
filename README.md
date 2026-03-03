@@ -9,7 +9,7 @@ Wize Skills is a collection of agent skills built on the [Agent Skills](https://
 ## 🚀 Quick Start
 
 > [!WARNING]
-> **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install: remove previous versions](#before-you-install-remove-previous-versions) below.
+> **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install](#before-you-install) below.
 
 Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — the open agent skills & subagents ecosystem, compatible with Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
 
@@ -53,11 +53,51 @@ npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/document
 npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/dev-security -a claude-code
 ```
 
+### ⚙️ Enabling Subagents
+
+Some tools require additional configuration to use subagents:
+
+#### Gemini CLI Setup
+
+Subagents are currently experimental. To use custom subagents, you must enable them in your `settings.json` (located at `~/.gemini/settings.json` or project-root `.gemini/settings.json`):
+
+```json
+{
+  "experimental": {
+    "enableAgents": true
+  }
+}
+```
+
+#### 🔌 Configuring MCP Servers (Jira & Confluence)
+
+To use agents like `atlassian-sourcer` that fetch data from external tools, you must configure the corresponding MCP servers in your `settings.json`. For Jira and Confluence, you can use the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian):
+
+```json
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://wizeline.atlassian.net",
+        "JIRA_USERNAME": "your.email@wizeline.com",
+        "JIRA_API_TOKEN": "your_api_token",
+        "CONFLUENCE_URL": "https://wizeline.atlassian.net/wiki",
+        "CONFLUENCE_USERNAME": "your.email@wizeline.com",
+        "CONFLUENCE_API_TOKEN": "your_api_token"
+      }
+    }
+  }
+}
+```
+
+> **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
 > **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering`.
 
 ---
 
-## 🗑️ Before you install: remove previous versions
+## Before you install
 
 If you have previously installed any Wize Skills, remove the existing `skills/` and `agents/` directories for your agent tool before running the installer again.
 
@@ -90,6 +130,7 @@ rm -rf ~/.cursor/agents/
 ```
 
 > Cursor also reads `.agents/skills/` as a cross-tool alias. Remove it too if present:
+>
 > ```bash
 > rm -rf .agents/skills/
 > ```
@@ -155,7 +196,7 @@ New to agent skills? Check out our comprehensive resources:
 
 | Skill Name | Description |
 | :--- | :--- |
-| [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. |
+| [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. Includes multi-agent support (`doc-engineer`, `c4-architect`, `atlassian-sourcer`) and comprehensive skills like `authoring-api-docs`. |
 | [`devsec-governance`](skills/devsec-governance) | Developer security governance, OWASP, and compliance mapping. |
 
 > **Tip**: More skills are coming soon! Watch this repository for updates.
