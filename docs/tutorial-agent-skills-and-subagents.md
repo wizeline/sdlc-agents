@@ -207,6 +207,31 @@ Enable them in `~/.gemini/settings.json` (or `.gemini/settings.json` for a proje
 }
 ```
 
+#### 🔌 Adding MCP Servers (Jira & Confluence)
+
+To use specialized agents like `atlassian-sourcer`, you need to configure the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian) in your `settings.json`. This allows the agent to fetch tickets from Jira and pages from Confluence:
+
+```json
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://wizeline.atlassian.net",
+        "JIRA_USERNAME": "your.email@wizeline.com",
+        "JIRA_API_TOKEN": "your_api_token",
+        "CONFLUENCE_URL": "https://wizeline.atlassian.net/wiki",
+        "CONFLUENCE_USERNAME": "your.email@wizeline.com",
+        "CONFLUENCE_API_TOKEN": "your_api_token"
+      }
+    }
+  }
+}
+```
+
+> **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
+
 **Built-in subagents (enabled by default):**
 
 | Agent | Purpose |

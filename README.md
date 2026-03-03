@@ -69,6 +69,30 @@ Subagents are currently experimental. To use custom subagents, you must enable t
 }
 ```
 
+#### 🔌 Configuring MCP Servers (Jira & Confluence)
+
+To use agents like `atlassian-sourcer` that fetch data from external tools, you must configure the corresponding MCP servers in your `settings.json`. For Jira and Confluence, you can use the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian):
+
+```json
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": ["mcp-atlassian"],
+      "env": {
+        "JIRA_URL": "https://wizeline.atlassian.net",
+        "JIRA_USERNAME": "your.email@wizeline.com",
+        "JIRA_API_TOKEN": "your_api_token",
+        "CONFLUENCE_URL": "https://wizeline.atlassian.net/wiki",
+        "CONFLUENCE_USERNAME": "your.email@wizeline.com",
+        "CONFLUENCE_API_TOKEN": "your_api_token"
+      }
+    }
+  }
+}
+```
+
+> **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
 > **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering`.
 
 ---
