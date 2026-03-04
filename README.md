@@ -1,8 +1,8 @@
-# Wize Skills
+# SDLC Agents
 
 **Extend AI coding assistants with specialized expertise, procedural workflows, and task-specific resources.**
 
-Wize Skills is a collection of agent skills built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
+SDLC Agents is a collection of agent skills built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
 
 ---
 
@@ -95,7 +95,7 @@ To use agents like `atlassian-sourcer` that fetch data from external tools, you 
 
 ## Before you install
 
-If you have previously installed any Wize Skills, remove the existing `skills/` and `agents/` directories for your agent tool before running the installer again.
+If you have previously installed any SDLC Agents, remove the existing `skills/` and `agents/` directories for your agent tool before running the installer again.
 
 > **Back up first.** If you have made local customizations to any templates or reference files, copy them out before deleting. The reinstall overwrites the directory completely.
 
