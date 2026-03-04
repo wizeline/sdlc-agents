@@ -26,32 +26,28 @@ Once available, add a skill or an agent for your preferred tool:
 **Install a skill:**
 
 ```bash
-# General installation (interactive)
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering
+# General installation (interactive) - select Skills (show all available in the folder)
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/
 
-# Target a specific agent tool
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
-
-# Install globally (available across all your projects)
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -g
+# Target a specific agent tool - specific skill (it also work for all skills, just delete the name of the specific skill)
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a claude-code
 ```
 
 **Install a subagent:**
 
 ```bash
-# Install the doc-engineer subagent
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer
+# Install the doc-engineer subagent - all subagents
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents
 
-# Target a specific agent tool
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
-
-# Install globally
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -g
+# Target a specific agent tool - specific subagent (it also work for all subagents, just delete the name of the specific agent)
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
 
 # Install an entire agent group at once
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a claude-code
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/dev-security -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/agents -a claude-code
 ```
+
+> **IMPORTANT**: When installing, at the last step, select the option to install in the project NOT globally.
 
 ### ⚙️ Enabling Subagents
 
@@ -93,7 +89,7 @@ To use agents like `atlassian-sourcer` that fetch data from external tools, you 
 ```
 
 > **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
-> **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/wize-skills.git --path skills/docs-engineering`.
+> **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/sdlc-agents.git --path aicores/documentation-writer-agent/skills/authoring-technical-docs`.
 
 ---
 
@@ -192,36 +188,35 @@ New to agent skills? Check out our comprehensive resources:
 
 ---
 
-## 🛠️ Available Skills
+## 🛠️ Available AI Cores
 
-| Skill Name | Description |
+| Core Name | Description |
 | :--- | :--- |
-| [`docs-engineering`](skills/docs-engineering) | Documentation engineering workflows and QA processes. Includes multi-agent support (`doc-engineer`, `c4-architect`, `atlassian-sourcer`) and comprehensive skills like `authoring-api-docs`. |
-| [`devsec-governance`](skills/devsec-governance) | Developer security governance, OWASP, and compliance mapping. |
+| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes. |
+| [`security-agent`](aicores/security-agent) | Developer security governance, OWASP, and compliance mapping. |
+| [`unit-testing-agent`](aicores/unit-testing-agent) | Automated unit testing, coverage analysis, and test suite generation. |
 
-> **Tip**: More skills are coming soon! Watch this repository for updates.
+> **Tip**: More AI cores are coming soon! Watch this repository for updates.
 
-## 🤖 Available Agents
+## 🤖 Featured Agents
 
-| Agent Name | Group | Description |
+| Agent Name | Core | Description |
 | :--- | :--- | :--- |
-| [`doc-engineer`](agents/documenting/doc-engineer.md) | `documenting` | Full documentation pipeline — research, draft, review, format, and export. |
-| [`c4-architect`](agents/documenting/c4-architect.md) | `documenting` | Specialized C4 Model diagram generation. |
-| [`atlassian-sourcer`](agents/documenting/atlassian-sourcer.md) | `documenting` | Fetches and structures content from Jira and Confluence via MCP. |
-| [`devsec-code-review`](agents/dev-security/devsec-code-review.md) | `dev-security` | Security-focused code review against OWASP Top 10 and ASVS. |
-| [`devsec-threat-modeling`](agents/dev-security/devsec-threat-modeling.md) | `dev-security` | STRIDE-based threat modeling for architecture designs. |
-| [`devsec-architecture`](agents/dev-security/devsec-architecture.md) | `dev-security` | Security architecture for APIs, cloud-native, and AI/LLM systems. |
-| [`devsec-ops-pipeline`](agents/dev-security/devsec-ops-pipeline.md) | `dev-security` | DevSecOps pipeline hardening and CI/CD security gates. |
-| [`devsec-compliance-framework`](agents/dev-security/devsec-compliance-framework.md) | `dev-security` | Compliance mapping across ISO 27001, SOC 2, PCI-DSS, and more. |
-| [`devsec-program`](agents/dev-security/devsec-program.md) | `dev-security` | AppSec program building and OWASP SAMM maturity assessments. |
+| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md) | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export. |
+| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md) | `documentation-writer-agent` | Specialized C4 Model diagram generation. |
+| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md) | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP. |
+| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md) | `security-agent` | Security-focused code review against OWASP Top 10 and ASVS. |
+| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md) | `security-agent` | STRIDE-based threat modeling for architecture designs. |
+| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md) | `security-agent` | Security architecture for APIs, cloud-native, and AI/LLM systems. |
+| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md) | `security-agent` | DevSecOps pipeline hardening and CI/CD security gates. |
+| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md) | `unit-testing-agent` | Automated unit test generation and suite creation. |
 
 ---
 
 ## 🏗️ Repository Structure
 
-- `skills/`: Self-contained agent skills (instructions, scripts, and assets).
+- `aicores/`: Modularized AI cores, each containing its own `agents/` and `skills/`.
 - `docs/`: Tutorials, prompt examples, and design documents.
-- `agents/`: Definitions for specific agent configurations.
 
 ---
 
@@ -229,13 +224,13 @@ New to agent skills? Check out our comprehensive resources:
 
 We welcome contributions! Please follow the [Agent Skills standard](https://agentskills.io/home) when adding new skills.
 
-- **Versioning**: Each skill is independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`).
-- **Automation**: GitHub Actions automatically increment patch versions on every push to `main` for modified skills.
+- **Versioning**: Each AI Core is independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`).
+- **Automation**: GitHub Actions automatically increment patch versions on every push to `main` for modified AI Cores.
 
-To add a new skill, create a directory in `skills/` with a `SKILL.md` file and seed it with a tag:
+To add a new AI Core, create a directory in the `aicores/` directory and seed it with an initial tag:
 
 ```bash
-git tag "skills/your-skill/v1.0.0" && git push origin --tags
+git tag "aicores/documentation-writer-agent/v1.0.0" && git push origin --tags
 ```
 
 ---
@@ -243,3 +238,4 @@ git tag "skills/your-skill/v1.0.0" && git push origin --tags
 ## 📄 License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
