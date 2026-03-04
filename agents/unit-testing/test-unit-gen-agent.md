@@ -7,7 +7,7 @@ color: green
 mcp_servers:
   - name: atlassian
     url: https://mcp.atlassian.com/v1/mcp
-skills: unit-test-generating-unit-tests, unit-test-review-test-suite, unit-test-shift-left-from-requirements, unit-test-run-coverage-analysis
+skills: unit-test-generating-unit-tests, unit-test-reviewing-test-suite, unit-test-shifting-left-from-requirements, unit-test-running-coverage-analysis
 ---
 
 ## Purpose

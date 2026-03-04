@@ -20,11 +20,11 @@ testforge-ai/
     unit-test-generating-unit-tests/           <- atomic: how to author tests
     unit-test-analyzing-code-coverage/         <- atomic: how to detect gaps
     unit-test-authoring-test-plans/            <- atomic: how to write test plans
-    unit-test-generate-test-suite/             <- orchestration: full gen workflow
-    unit-test-review-test-suite/               <- orchestration: standalone review
-    unit-test-run-coverage-analysis/           <- orchestration: gap analysis
-    unit-test-create-test-plan/                <- orchestration: plan document
-    unit-test-shift-left-from-requirements/    <- orchestration: TDD red phase
+    unit-test-generating-test-suite/           <- orchestration: full gen workflow
+    unit-test-reviewing-test-suite/             <- orchestration: standalone review
+    unit-test-running-coverage-analysis/       <- orchestration: gap analysis
+    unit-test-creating-test-plan/              <- orchestration: plan document
+    unit-test-shifting-left-from-requirements/ <- orchestration: TDD red phase
 ```
 
 ## TDD Principles (Applied Across All Agents and Skills)
@@ -64,11 +64,11 @@ Every agent and skill in this project enforces the following non-negotiable prac
 | unit-test-generating-unit-tests        | Atomic        | AAA authoring, test matrix, mocking, frameworks          |
 | unit-test-analyzing-code-coverage      | Atomic        | Gap detection, severity classification, tool integration |
 | unit-test-authoring-test-plans         | Atomic        | 10-section plan structure, Gherkin, .md/.docx output     |
-| unit-test-generate-test-suite          | Orchestration | End-to-end gen + review workflow                         |
-| unit-test-review-test-suite            | Orchestration | Standalone quality audit                                 |
-| unit-test-run-coverage-analysis        | Orchestration | Gap analysis with prioritized recommendations            |
-| unit-test-create-test-plan             | Orchestration | Formal test plan document creation                       |
-| unit-test-shift-left-from-requirements | Orchestration | TDD Red phase — tests from requirements before code     |
+| unit-test-generating-test-suite        | Orchestration | End-to-end gen + review workflow                         |
+| unit-test-reviewing-test-suite          | Orchestration | Standalone quality audit                                 |
+| unit-test-running-coverage-analysis     | Orchestration | Gap analysis with prioritized recommendations            |
+| unit-test-creating-test-plan           | Orchestration | Formal test plan document creation                       |
+| unit-test-shifting-left-from-requirements | Orchestration | TDD Red phase — tests from requirements before code     |
 
 ## Supported Inputs
 

@@ -1,4 +1,4 @@
-# Skill: unit-test-review-test-suite
+# Skill: unit-test-reviewing-test-suite
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does

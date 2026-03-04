@@ -1,4 +1,4 @@
-# Skill: unit-test-create-test-plan
+# Skill: unit-test-creating-test-plan
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does

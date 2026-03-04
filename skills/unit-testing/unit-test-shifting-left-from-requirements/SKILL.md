@@ -1,4 +1,4 @@
-# Skill: unit-test-shift-left-from-requirements
+# Skill: unit-test-shifting-left-from-requirements
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does

@@ -1,4 +1,4 @@
-# Skill: unit-test-generate-test-suite
+# Skill: unit-test-generating-test-suite
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does

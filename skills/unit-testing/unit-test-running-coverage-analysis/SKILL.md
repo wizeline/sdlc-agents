@@ -1,4 +1,4 @@
-# Skill: unit-test-run-coverage-analysis
+# Skill: unit-test-running-coverage-analysis
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
