@@ -1,6 +1,6 @@
-# Wize Skills Repository
+# SDLC Agents Repository
 
-This repository, `wize-skills`, serves as a centralized collection of AI Cores, each containing specialized agent skills and subagents designed to extend the capabilities of AI coding assistants like Gemini, Claude Code, Cursor, and others. These skills are built upon the [Agent Skills open standard](https://agentskills.io/home) and provide specialized expertise, procedural workflows, and task-specific resources to enhance various software engineering tasks.
+This repository, `sdlc-agents`, serves as a centralized collection of AI Cores, each containing specialized agent skills and subagents designed to extend the capabilities of AI coding assistants like Gemini, Claude Code, Cursor, and others. These skills are built upon the [Agent Skills open standard](https://agentskills.io/home) and provide specialized expertise, procedural workflows, and task-specific resources to enhance various software engineering tasks.
 
 ## Purpose
 
@@ -16,7 +16,7 @@ The primary purpose of this repository is to:
 The repository is organized by AI Core in the `aicores/` directory:
 
 ```text
-wize-skills/
+sdlc-agents/
 ├── .github/                      # GitHub Actions workflows (e.g., versioning)
 ├── aicores/                      # Modular AI Cores
 │   ├── <core-name>/              # e.g., documentation-writer-agent, security-agent

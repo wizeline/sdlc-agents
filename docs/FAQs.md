@@ -1,11 +1,11 @@
 ---
-title: "Wize Skills — Frequently Asked Questions"
-description: "Answers to common questions about installing, customizing, and using Wize Skills across AI coding assistants."
+title: "SDLC Agents — Frequently Asked Questions"
+description: "Answers to common questions about installing, customizing, and using SDLC Agents across AI coding assistants."
 doc-type: reference
 last-updated: 2026-02-27
 ---
 
-# Wize Skills — Frequently Asked Questions
+# SDLC Agents — Frequently Asked Questions
 
 ## Table of Contents
 
@@ -14,8 +14,8 @@ last-updated: 2026-02-27
 1. [My team already uses Cursor for documentation. Why is this different, and why is it better?](#1-my-team-already-uses-cursor-for-documentation-why-is-this-different-and-why-is-it-better)
 2. [How do I customize a skill for a specific client?](#2-how-do-i-customize-a-skill-for-a-specific-client)
 3. [How do I reinstall skills if they're already installed?](#3-how-do-i-reinstall-skills-if-theyre-already-installed)
-4. [Do I need a specific Git account to install Wize Skills?](#4-do-i-need-a-specific-git-account-to-install-wize-skills)
-5. [How do I install and use Wize Skills in Cursor?](#5-how-do-i-install-and-use-wize-skills-in-cursor)
+4. [Do I need a specific Git account to install SDLC Agents?](#4-do-i-need-a-specific-git-account-to-install-sdlc-agents)
+5. [How do I install and use SDLC Agents in Cursor?](#5-how-do-i-install-and-use-sdlc-agents-in-cursor)
 
 ### Documentation Writer Agent
 
@@ -49,11 +49,11 @@ last-updated: 2026-02-27
 
 ## 1. My team already uses Cursor for documentation. Why is this different, and why is it better?
 
-**Short answer:** Using Cursor without skills gives you a general-purpose AI assistant. Wize Skills gives that same AI structured, Wizeline-specific expertise, a defined workflow, and curated templates — so the output is consistent, reviewable, and repeatable.
+**Short answer:** Using Cursor without skills gives you a general-purpose AI assistant. SDLC Agents gives that same AI structured, Wizeline-specific expertise, a defined workflow, and curated templates — so the output is consistent, reviewable, and repeatable.
 
-### Cursor's default AI vs. Wize Skills
+### Cursor's default AI vs. SDLC Agents
 
-| | **Cursor (no skills)** | **Wize Skills** |
+| | **Cursor (no skills)** | **SDLC Agents** |
 |---|---|---|
 | Knowledge | General-purpose, trained on public data | Domain-specific: Diátaxis, OWASP Top 10 (2025), NIST SSDF, ASVS 5.0, and more |
 | Workflow | Unstructured — each session starts from scratch | Structured multi-phase pipeline: Research → Draft → Review → Format |
@@ -65,7 +65,7 @@ last-updated: 2026-02-27
 
 ### What skills actually change
 
-When a Wize Skill activates, the AI agent gains:
+When a SDLC Agent activates, the AI agent gains:
 
 - **A procedural workflow** it must follow (no skipping phases, no guessing).
 - **Reference knowledge** — for example, the `dev-security-governance` skill knows every OWASP Top 10 category and maps them to your codebase automatically.
@@ -159,9 +159,9 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documen
 
 ---
 
-## 4. Do I need a specific Git account to install Wize Skills?
+## 4. Do I need a specific Git account to install SDLC Agents?
 
-Yes. The `wize-skills` repository is hosted in the Wizeline GitHub organization. You need a GitHub account with access to that organization to clone or install from it.
+Yes. The `sdlc-agents` repository is hosted in the Wizeline GitHub organization. You need a GitHub account with access to that organization to clone or install from it.
 
 ### Configure Git with your Wizeline account
 
@@ -191,7 +191,7 @@ The `npx skills add` installer and the `gemini skills install` command both use 
 **Option B — Personal Access Token (HTTPS)**
 
 1. In GitHub, go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens**.
-2. Create a token with `Contents: Read` access to the `wizeline/wize-skills` repository.
+2. Create a token with `Contents: Read` access to the `wizeline/sdlc-agents` repository.
 3. When Git prompts for credentials, use your Wizeline email as the username and the token as the password. You can also store it with the credential helper:
    ```bash
    git config --global credential.helper store
@@ -199,7 +199,7 @@ The `npx skills add` installer and the `gemini skills install` command both use 
 
 ---
 
-## 5. How do I install and use Wize Skills in Cursor?
+## 5. How do I install and use SDLC Agents in Cursor?
 
 Cursor supports the [Agent Skills open standard](https://agentskills.io/home) natively. The official documentation covers the full setup:
 

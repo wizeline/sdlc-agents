@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Wize Skills is a monorepo of modular AI Cores built on the [Agent Skills open standard](https://agentskills.io/home). Each AI Core (in `aicores/`) contains its own set of specialized Agents and Skills. Skills are **documentation-based** — there is no application code, build step, or test suite.
+SDLC Agents is a monorepo of modular AI Cores built on the [Agent Skills open standard](https://agentskills.io/home). Each AI Core (in `aicores/`) contains its own set of specialized Agents and Skills. Skills are **documentation-based** — there is no application code, build step, or test suite.
 
 ## Repository Structure
 
