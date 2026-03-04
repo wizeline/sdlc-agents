@@ -8,13 +8,14 @@ The primary purpose of this repository is to:
 - **Centralize AI Core Management**: Provide a single source for various AI Cores (Documentation, Security, Testing, etc.).
 - **Enhance AI Assistant Capabilities**: Equip coding assistants with domain-specific knowledge, structured workflows, and relevant reference materials.
 - **Promote Standardization**: Adhere to the Agent Skills open standard to ensure compatibility across different AI agents.
-- **Automate Versioning**: Utilize GitHub Actions to automatically version and tag skills, ensuring discoverability and consistency.
+
+- **Automate Versioning**: Utilize GitHub Actions to automatically version and tag AI Cores, ensuring discoverability and consistency.
 
 ## Repository Structure
 
 The repository is organized by AI Core in the `aicores/` directory:
 
-```
+```text
 wize-skills/
 ├── .github/                      # GitHub Actions workflows (e.g., versioning)
 ├── aicores/                      # Modular AI Cores
@@ -76,5 +77,5 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 
 ## Contributing
 
-Contributions are welcome. New skills can be added by creating a new directory under the appropriate AI Core's `skills/` directory with a `SKILL.md` file and any supporting resources. Refer to the `README.md` for detailed contribution guidelines and instructions on seeding initial version tags.
+Contributions are welcome. New skills can be added by creating a new directory under the appropriate AI Core's `skills/` directory with a `SKILL.md` file and any supporting resources. Refer to the `README.md` for detailed contribution guidelines and instructions on version tagging.
 

@@ -224,13 +224,13 @@ New to agent skills? Check out our comprehensive resources:
 
 We welcome contributions! Please follow the [Agent Skills standard](https://agentskills.io/home) when adding new skills.
 
-- **Versioning**: Each skill is independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`).
-- **Automation**: GitHub Actions automatically increment patch versions on every push to `main` for modified skills.
+- **Versioning**: Each AI Core is independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`).
+- **Automation**: GitHub Actions automatically increment patch versions on every push to `main` for modified AI Cores.
 
-To add a new skill, create a directory in the appropriate AI core's `skills/` directory with a `SKILL.md` file and seed it with a tag:
+To add a new AI Core, create a directory in the `aicores/` directory and seed it with an initial tag:
 
 ```bash
-git tag "aicores/documentation-writer-agent/skills/your-skill/v1.0.0" && git push origin --tags
+git tag "aicores/documentation-writer-agent/v1.0.0" && git push origin --tags
 ```
 
 ---

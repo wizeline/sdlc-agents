@@ -8,7 +8,7 @@ Wize Skills is a monorepo of modular AI Cores built on the [Agent Skills open st
 
 ## Repository Structure
 
-```
+```text
 aicores/
   {core-name}/
     skills/
@@ -36,14 +36,15 @@ docs/                     # Design documents and tutorials
 
 ## Versioning & CI
 
-Each skill is independently versioned via git tags: `aicores/{core-name}/skills/{skill-name}/v{MAJOR}.{MINOR}.{PATCH}`
+Each AI Core is independently versioned via git tags: `aicores/{core-name}/v{MAJOR}.{MINOR}.{PATCH}`
 
-The GitHub Actions workflow (`.github/workflows/version-skills.yml`) auto-increments the **patch** version on every push to `main` that modifies files under `aicores/`.
+The GitHub Actions workflow (`.github/workflows/version-aicores.yml`) auto-increments the **patch** version on every push to `main` that modifies files under `aicores/`.
 
 For major/minor bumps, create tags manually:
+
 ```bash
-git tag "aicores/documentation-writer-agent/skills/my-skill/v2.0.0"
-git push origin "aicores/documentation-writer-agent/skills/my-skill/v2.0.0"
+git tag "aicores/documentation-writer-agent/v2.0.0"
+git push origin "aicores/documentation-writer-agent/v2.0.0"
 ```
 
 ## Adding a New Skill
@@ -51,6 +52,6 @@ git push origin "aicores/documentation-writer-agent/skills/my-skill/v2.0.0"
 1. Identify the appropriate AI Core in `aicores/` (or create a new one).
 2. Create `aicores/{core-name}/skills/my-skill/` with at minimum a `SKILL.md`.
 3. Add `references/` and optionally `assets/` directories.
-4. Seed the initial version tag: `git tag "aicores/{core-name}/skills/my-skill/v1.0.0" && git push origin --tags`
+4. Seed the initial version tag: `git tag "aicores/{core-name}/v1.0.0" && git push origin --tags`
 5. Submit a PR — subsequent merges to `main` auto-increment patch versions.
 

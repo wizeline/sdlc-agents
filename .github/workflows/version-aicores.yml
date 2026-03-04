@@ -1,39 +1,39 @@
-name: Version Skills
+name: Version AI Cores
 on:
   push:
     branches: [ main ]
     paths:
-      - 'skills/**' # Only triggers if something inside 'skills' changes
+      - 'aicores/**' # Only triggers if something inside 'aicores' changes
 
 jobs:
-  tag-skill:
+  tag-core:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Required to see previous tags
 
-      - name: Identify Changed Skill
+      - name: Identify Changed AI Core
         id: var
         run: |
-          # Finds the first folder under 'skills' that changed in this push
+          # Finds the first folder under 'aicores' that changed in this push
           # Filters out hidden files (e.g. .DS_Store) to avoid invalid tag names
-          SKILL=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} \
-            | grep '^skills/' \
+          CORE=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} \
+            | grep '^aicores/' \
             | cut -d/ -f2 \
             | grep -v '^\.' \
             | sort -u \
             | head -n1)
-          echo "skill_name=$SKILL" >> $GITHUB_OUTPUT
+          echo "core_name=$CORE" >> $GITHUB_OUTPUT
 
       - name: Create and Push Tag
-        if: steps.var.outputs.skill_name != ''
+        if: steps.var.outputs.core_name != ''
         run: |
-          SKILL=${{ steps.var.outputs.skill_name }}
+          CORE=${{ steps.var.outputs.core_name }}
 
-          # Find the latest semantic version tag for this skill
-          LATEST=$(git tag --list "skills/$SKILL/v*" \
-            | sed "s|skills/$SKILL/v||" \
+          # Find the latest semantic version tag for this AI Core
+          LATEST=$(git tag --list "aicores/$CORE/v*" \
+            | sed "s|aicores/$CORE/v||" \
             | sort -t. -k1,1n -k2,2n -k3,3n \
             | tail -n1)
 
@@ -47,7 +47,7 @@ jobs:
             VERSION="v${MAJOR}.${MINOR}.$((PATCH + 1))"
           fi
 
-          TAG_NAME="skills/$SKILL/$VERSION"
+          TAG_NAME="aicores/$CORE/$VERSION"
           echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
           
           git config user.name "github-actions"
