@@ -32,6 +32,8 @@ instructions this orchestration skill depends on:
 
 ## Execution Steps
 
+Read `references/index.md` before executing any step.
+
 ### Step 1 — Classify Input
 Identify what has been provided and how to interpret it:
 

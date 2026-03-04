@@ -15,6 +15,8 @@ Apply this skill when:
 
 ---
 
+Read `references/index.md` before executing any step.
+
 ## Step 1 — Understand the Unit
 Read the provided source code or requirement carefully:
 - What does this unit DO? (single responsibility check)

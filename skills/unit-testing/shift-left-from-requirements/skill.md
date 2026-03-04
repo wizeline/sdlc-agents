@@ -38,6 +38,8 @@ Read these files before executing any step:
 
 ## Execution Steps
 
+Read `references/index.md` before executing any step.
+
 ### Step 1 — Parse Requirements for Testable Criteria
 Read the provided input (user story, PRD, acceptance criteria) and extract:
 

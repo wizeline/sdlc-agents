@@ -46,6 +46,8 @@ not just incomplete testing.
 
 ## Analysis Workflow
 
+Read `references/index.md` before executing any step.
+
 ### Step 1 — Parse Existing Coverage Data
 If a coverage report is provided (XML, JSON, HTML), extract:
 - Overall coverage percentage per file

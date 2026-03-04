@@ -28,6 +28,8 @@ Read this file before executing any step:
 
 ## Execution Steps
 
+Read `references/index.md` before executing any step.
+
 ### Step 1 — Receive Input
 Accepted inputs (one or more):
   - Coverage report: JSON (coverage.py / Istanbul), XML (JaCoCo / Cobertura), HTML

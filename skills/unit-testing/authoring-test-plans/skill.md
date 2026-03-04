@@ -7,6 +7,11 @@ requirements, and coverage data. Suitable for team handoffs, audit trails, QA si
 and sprint documentation.
 
 ---
+## Workflow
+
+Read `references/index.md` before executing any step.
+
+---
 
 ## Usage
 Apply this skill when:
