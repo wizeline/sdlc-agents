@@ -2,7 +2,7 @@
 
 **Extend AI coding assistants with specialized expertise, procedural workflows, and task-specific resources.**
 
-SDLC Agents is a collection of agent skills built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
+SDLC Agents is a collection of skills and subagents (referenced by folder as `agents/`) built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
 
 ---
 
@@ -182,6 +182,7 @@ Any directory listed exists and should be removed before reinstalling.
 New to agent skills? Check out our comprehensive resources:
 
 - **[Practical Tutorial](docs/tutorial-agent-skills-and-subagents.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
+- **[Subagents FAQ](docs/FAQs.md#6-what-is-a-subagent)**: A short and concise explanation of what subagents are and how they work.
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
   - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
   - [Developer Security Governance](docs/prompt-examples-devsec-governance.md)
