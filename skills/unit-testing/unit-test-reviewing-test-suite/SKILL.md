@@ -1,11 +1,8 @@
-# Skill: unit-test-reviewing-test-suite
-> TestForge AI | Orchestration Skill
-
-## What This Skill Does
-Orchestrates a standalone quality review of any existing or newly generated unit
-test suite. Produces a structured review report with severity-tagged findings
-and an unambiguous verdict.
-
+---
+name: unit-test-reviewing-test-suite
+description: Orchestrates a standalone quality review of any existing or newly generated unit test suite. Produces a structured review report with severity-tagged findings and an unambiguous verdict.
+context: fork
+agent: Explore
 ---
 
 ## When to Apply This Skill

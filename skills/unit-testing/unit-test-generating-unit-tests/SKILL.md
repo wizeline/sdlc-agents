@@ -1,9 +1,12 @@
-# Skill: unit-test-generating-unit-tests
-> TestForge AI | Core Test Generation Skill
+---
+name: unit-test-generating-unit-tests
+description: Converts structured inputs (source code, requirements, API specs) into framework-native, immediately runnable unit test suites using Arrange-Act-Assert structure.
+---
 
-## What This Skill Does
-Converts structured inputs (source code, requirements, API specs) into framework-native,
-immediately runnable unit test suites using Arrange-Act-Assert structure.
+## When to Apply This Skill
+- Writing unit tests for any function, method, or class
+- Generating tests from a requirement or user story before code exists
+- Producing tests for an API endpoint from an OpenAPI spec
 
 ---
 

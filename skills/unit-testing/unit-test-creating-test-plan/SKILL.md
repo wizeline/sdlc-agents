@@ -1,11 +1,8 @@
-# Skill: unit-test-creating-test-plan
-> TestForge AI | Orchestration Skill
-
-## What This Skill Does
-Orchestrates the creation of a formal test plan document for a feature, module,
-or sprint. Combines test suite data, coverage analysis, and requirements into a
-structured document suitable for QA sign-off, team handoffs, or audit trails.
-
+---
+name: unit-test-creating-test-plan
+description: Orchestrates the creation of a formal test plan document for a feature, module, or sprint. Combines test suite data, coverage analysis, and requirements into a structured document suitable for QA sign-off, team handoffs, or audit trails.
+context: fork
+agent: Plan
 ---
 
 ## When to Apply This Skill

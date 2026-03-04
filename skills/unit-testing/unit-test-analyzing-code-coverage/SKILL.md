@@ -1,10 +1,6 @@
-# Skill: unit-test-analyzing-code-coverage
-> TestForge AI | Coverage Analysis Skill
-
-## What This Skill Does
-Detects coverage gaps in existing or newly generated test suites. Produces a prioritized
-list of untested code paths and recommends specific tests to close each gap.
-
+---
+name: unit-test-analyzing-code-coverage
+description: Detects coverage gaps in existing or newly generated test suites. Produces a prioritized list of untested code paths and recommends specific tests to close each gap.
 ---
 
 ## Usage

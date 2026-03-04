@@ -1,5 +1,9 @@
-# Skill: unit-test-shifting-left-from-requirements
-> TestForge AI | Orchestration Skill
+---
+name: unit-test-shifting-left-from-requirements
+description: Generates unit tests and BDD scenarios directly from requirements, user stories, or PRDs — before any implementation code exists. Enables true shift-left testing by making tests the first artifact produced for a feature, not the last.
+context: fork
+agent: Plan
+---
 
 ## What This Skill Does
 Generates unit tests and BDD scenarios directly from requirements, user stories,

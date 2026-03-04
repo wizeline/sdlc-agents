@@ -1,11 +1,8 @@
-# Skill: unit-test-generating-test-suite
-> TestForge AI | Orchestration Skill
-
-## What This Skill Does
-Orchestrates end-to-end unit test suite generation from any structured input.
-Coordinates agents and atomic skills into a single workflow — from raw input
-to a reviewed, approved, runnable test suite.
-
+---
+name: unit-test-generating-test-suite
+description: Orchestrates end-to-end unit test suite generation from any structured input. Coordinates agents and atomic skills into a single workflow — from raw input to a reviewed, approved, runnable test suite.
+context: fork
+agent: Plan
 ---
 
 ## When to Apply This Skill

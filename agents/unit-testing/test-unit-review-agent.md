@@ -1,6 +1,14 @@
-# Subagent: test-unit-review-agent
-
-> TestForge AI | Quality Review Agent
+---
+name: test-unit-review-agent
+description: Act as the quality gate for all generated unit tests. Review test suites produced by test-unit-gen-agent for correctness, coverage completeness, structural quality, and adherence to project conventions before final delivery.
+tools: Bash, Glob, Grep, Read, Edit, Write, Task
+model: inherit
+color: yellow
+mcp_servers:
+  - name: atlassian
+    url: https://mcp.atlassian.com/v1/mcp
+skills: unit-test-analyzing-code-coverage, unit-test-generating-unit-tests, unit-test-authoring-test-plans
+---
 
 ## Purpose
 Act as the quality gate for all generated unit tests. Review test suites produced by
@@ -10,17 +18,17 @@ adherence to project conventions before final delivery.
 ## Skills Used
 Before executing any review step, read and internalize these skill files in order:
 
-1. `../../skills/unit-test-analyzing-code-coverage/SKILL.md`
+1. `../skills/unit-test-analyzing-code-coverage/SKILL.md`
    — Follow for: coverage type definitions (line/branch/function/statement), gap severity
      classification (CRITICAL/HIGH/MEDIUM/LOW), coverage tool output formats, and the
      gap report format used in the Summary Report output.
 
-2. `../../skills/unit-test-generating-unit-tests/SKILL.md`
+2. `../skills/unit-test-generating-unit-tests/SKILL.md`
    — Follow for: AAA pattern validation, correct mocking patterns, parametrization
      structure, exception testing patterns, and naming conventions. Use this as the
      reference standard when judging the quality of tests under review.
 
-3. `../../skills/unit-test-authoring-test-plans/SKILL.md`
+3. `../skills/unit-test-authoring-test-plans/SKILL.md`
    — Follow for: test plan document structure if the review triggers a plan update
      or if the --with-plan flag is passed.
 

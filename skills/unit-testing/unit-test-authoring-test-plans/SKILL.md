@@ -1,13 +1,7 @@
-# Skill: unit-test-authoring-test-plans
-> TestForge AI | Test Plan Document Authoring Skill
-
-## What This Skill Does
-Produces formal test plan documents in Markdown or .docx format from test suites,
-requirements, and coverage data. Suitable for team handoffs, audit trails, QA sign-off,
-and sprint documentation.
-
 ---
-## Workflow
+name: unit-test-authoring-test-plans
+description: Produces formal test plan documents in Markdown or .docx format from test suites, requirements, and coverage data. Suitable for team handoffs, audit trails, QA sign-off, and sprint documentation.
+---
 
 Read `references/index.md` before executing any step.
 

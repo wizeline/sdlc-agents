@@ -1,11 +1,8 @@
-# Skill: unit-test-running-coverage-analysis
-> TestForge AI | Orchestration Skill
-
-## What This Skill Does
-Orchestrates a focused coverage gap analysis for a source module or test suite.
-Produces a prioritized gap report, a concrete list of recommended tests, and a
-projected coverage delta — without generating any test code.
-
+---
+name: unit-test-running-coverage-analysis
+description: Orchestrates a focused coverage gap analysis for a source module or test suite. Produces a prioritized gap report, a concrete list of recommended tests, and a projected coverage delta — without generating any test code.
+context: fork
+agent: Plan
 ---
 
 ## When to Apply This Skill
