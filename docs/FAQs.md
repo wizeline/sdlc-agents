@@ -87,7 +87,7 @@ Each skill's `assets/` directory contains the document templates the AI fills in
 **Example — replace the API doc template:**
 
 ```
-skills/docs-engineering/authoring-api-docs/assets/rest-endpoint-template.md
+aicores/documentation-writer-agent/skills/authoring-api-docs/assets/rest-endpoint-template.md
 ```
 
 Open the file and update sections to reflect the client's conventions: header formats, required fields, terminology, etc. The AI will use this file whenever it generates an API doc for that skill.
@@ -98,7 +98,7 @@ The `references/` directory holds domain knowledge the skill draws on — coding
 
 **Example — add a client coding standard:**
 
-1. Create `skills/dev-security-governance/references/acme-secure-coding-guide.md`.
+1. Create `aicores/security-agent/skills/devsec-reviewing-code-for-security/references/acme-secure-coding-guide.md`.
 2. Add the client's policies and naming conventions to this file.
 3. In `SKILL.md`, update the routing table to point relevant queries at the new reference.
 
@@ -142,17 +142,17 @@ The location depends on which agent tool you are using and whether the install w
 ### Delete the skill or agent directory and reinstall
 
 ```bash
-# Example: removing and reinstalling the docs-engineering skill for Claude Code (project scope)
-rm -rf .claude/skills/docs-engineering
+# Example: removing and reinstalling the authoring-technical-docs skill for Claude Code (project scope)
+rm -rf .claude/skills/authoring-technical-docs
 
 # Reinstall the skill
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a claude-code
 
 # Example: removing and reinstalling the doc-engineer subagent
 rm -rf .claude/agents/doc-engineer
 
 # Reinstall the subagent
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
 ```
 
 > **Note:** If you customized any templates or references before deleting, back them up first. The reinstall overwrites the directory completely.
@@ -210,21 +210,21 @@ Cursor supports the [Agent Skills open standard](https://agentskills.io/home) na
 
 ```bash
 # Using the agents-skills CLI
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a cursor
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a cursor
 
 # Or clone manually
-git clone https://github.com/wizeline/wize-skills.git /tmp/wize-skills
-cp -r /tmp/wize-skills/skills/docs-engineering .cursor/skills/
+git clone https://github.com/wizeline/sdlc-agents.git /tmp/sdlc-agents
+cp -r /tmp/sdlc-agents/aicores/documentation-writer-agent/skills .cursor/skills/
 ```
 
 ### Install a subagent
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a cursor
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a cursor
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a cursor
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent -a cursor
 ```
 
 Cursor discovers skills from:
@@ -266,12 +266,13 @@ After installation, open Cursor and type `/` in the chat input. You should see t
 
 ## 6. What agents and skills are included in the Documentation Writer AI Core?
 
-The Documentation Writer AI Core includes **2 agents** backed by **9 skills**.
+The Documentation Writer AI Core includes **3 agents** backed by **10 skills**.
 
 | Agent | Role | Skills used |
 |---|---|---|
-| `doc-engineer` | Full documentation pipeline — research, draft, review, format, and export | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `editing-pptx-files`, `automating-docs-updates` |
+| `doc-engineer` | Full documentation pipeline — research, draft, review, format, and export | `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `editing-pptx-files`, `automating-docs-updates`, `sourcing-from-atlassian` |
 | `c4-architect` | Specialized C4 Model diagram generation | `authoring-architecture-docs` |
+| `atlassian-sourcer` | Specialized Atlassian content retrieval | `sourcing-from-atlassian` |
 
 **`doc-engineer`** is the primary agent for almost all documentation tasks. Use it directly for any writing, review, or format conversion work.
 
@@ -427,17 +428,17 @@ If you are unsure, describe your audience and goal in the prompt. The agent will
 
 | Template file | Used for |
 |---|---|
-| `authoring-api-docs/assets/rest-endpoint-template.md` | Individual REST API endpoints |
-| `authoring-api-docs/assets/sdk-function-template.md` | SDK or library functions |
-| `authoring-architecture-docs/assets/Architecture_Decision_Record_(ADR)_template.md` | Architecture Decision Records |
-| `authoring-architecture-docs/assets/Design_document_template.md` | Technical design documents |
-| `authoring-architecture-docs/assets/System_architecture_template.md` | System architecture overviews |
-| `authoring-architecture-docs/assets/diagram-templates.md` | Per-level C4 diagram scaffolding |
-| `authoring-release-docs/assets/release_notes_template.md` | Release notes |
-| `authoring-user-docs/assets/tutorial_template.md` | Tutorials |
-| `authoring-user-docs/assets/how_to_guide_template.md` | How-to guides |
-| `authoring-user-docs/assets/user_guide_template.md` | User guides |
-| `authoring-user-docs/assets/onboarding_guide_template.md` | Onboarding guides |
+| `aicores/documentation-writer-agent/skills/authoring-api-docs/assets/rest-endpoint-template.md` | Individual REST API endpoints |
+| `aicores/documentation-writer-agent/skills/authoring-api-docs/assets/sdk-function-template.md` | SDK or library functions |
+| `aicores/documentation-writer-agent/skills/authoring-architecture-docs/assets/Architecture_Decision_Record_(ADR)_template.md` | Architecture Decision Records |
+| `aicores/documentation-writer-agent/skills/authoring-architecture-docs/assets/Design_document_template.md` | Technical design documents |
+| `aicores/documentation-writer-agent/skills/authoring-architecture-docs/assets/System_architecture_template.md` | System architecture overviews |
+| `aicores/documentation-writer-agent/skills/authoring-architecture-docs/assets/diagram-templates.md` | Per-level C4 diagram scaffolding |
+| `aicores/documentation-writer-agent/skills/authoring-release-docs/assets/release_notes_template.md` | Release notes |
+| `aicores/documentation-writer-agent/skills/authoring-user-docs/assets/tutorial_template.md` | Tutorials |
+| `aicores/documentation-writer-agent/skills/authoring-user-docs/assets/how_to_guide_template.md` | How-to guides |
+| `aicores/documentation-writer-agent/skills/authoring-user-docs/assets/user_guide_template.md` | User guides |
+| `aicores/documentation-writer-agent/skills/authoring-user-docs/assets/onboarding_guide_template.md` | Onboarding guides |
 
 ### Default save locations
 
@@ -468,12 +469,12 @@ The Security AI Core includes **6 agents**, each backed by a dedicated skill tar
 
 | Agent | Persona | Skill |
 |---|---|---|
-| `devsec-code-review` | Developer reviewing or writing code | `reviewing-code-for-security` |
-| `devsec-threat-modeling` | Architect at the design phase | `conducting-threat-modeling` |
-| `devsec-architecture` | Architect designing APIs, cloud-native, or AI systems | `designing-security-architecture` |
-| `devsec-ops-pipeline` | DevOps / platform engineer | `hardening-devsecops-pipelines` |
-| `devsec-compliance-framework` | Compliance / GRC professional, pre-audit | `managing-compliance-frameworks` |
-| `devsec-program` | AppSec lead or CISO building a program | `building-security-programs` + `managing-compliance-frameworks` |
+| `devsec-code-review` | Developer reviewing or writing code | `devsec-reviewing-code-for-security` |
+| `devsec-threat-modeling` | Architect at the design phase | `devsec-conducting-threat-modeling` |
+| `devsec-architecture` | Architect designing APIs, cloud-native, or AI systems | `devsec-designing-security-architecture` |
+| `devsec-ops-pipeline` | DevOps / platform engineer | `devsec-hardening-devsecops-pipelines` |
+| `devsec-compliance-framework` | Compliance / GRC professional, pre-audit | `devsec-managing-compliance-frameworks` |
+| `devsec-program` | AppSec lead or CISO building a program | `devsec-building-security-programs` |
 
 Each agent loads only the reference material relevant to its domain. This keeps context lean and routing precise — "review this code for XSS" activates `devsec-code-review` rather than loading all six skills at once.
 

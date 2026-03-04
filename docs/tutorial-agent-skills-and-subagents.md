@@ -142,10 +142,10 @@ Gemini CLI discovers skills from three locations (highest to lowest precedence):
 
 ```bash
 # Using the agents-skills CLI (recommended)
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a gemini
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a gemini
 
 # Using Gemini's native installer
-gemini skills install https://github.com/user/my-skills.git
+gemini skills install https://github.com/wizeline/sdlc-agents.git --path aicores/documentation-writer-agent/skills
 
 # Install a specific skill from a monorepo
 gemini skills install https://github.com/org/skills.git --path skills/frontend
@@ -244,10 +244,10 @@ To use specialized agents like `atlassian-sourcer`, you need to configure the [A
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a gemini
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a gemini
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a gemini
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a gemini
 ```
 
 **Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
@@ -342,7 +342,7 @@ Claude Code follows the Agent Skills open standard and extends it with additiona
 **Install a skill from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
 
 ```bash
-npx skills add https://github.com/wizeline/wize-skills/tree/main/skills/docs-engineering -a claude-code
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a claude-code
 ```
 
 **Create your first skill:**
@@ -437,13 +437,11 @@ Or use the interactive agent manager:
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
 
-# Install globally (available across all your projects)
-npx agents add https://github.com/wizeline/wize-skills/tree/main/agents/documenting/doc-engineer -g
 ```
 
 **Create a custom subagent manually:**
