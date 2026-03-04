@@ -1,4 +1,4 @@
-# Skill: create-test-plan
+# Skill: unit-test-create-test-plan
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
@@ -19,12 +19,12 @@ structured document suitable for QA sign-off, team handoffs, or audit trails.
 ## Atomic Skills to Load First
 Read these files before executing any step:
 
-1. `../authoring-test-plans/skill.md`
+1. `../unit-test-authoring-test-plans/SKILL.md`
    — Full 10-section test plan structure, BDD/Gherkin scenario format, coverage
      target tables, entry/exit criteria, approval tables, and output format guidance
      for both Markdown and .docx
 
-2. `../analyzing-code-coverage/skill.md`
+2. `../unit-test-analyzing-code-coverage/SKILL.md`
    — Used to populate the Coverage Targets section (Section 6) with accurate
      current vs target metrics and gap commentary
 
@@ -42,7 +42,7 @@ Collect as many of the following as are available:
   - Preferred output format: md (default) or docx
 
 ### Step 2 — Author the Test Plan
-Follow the full 10-section structure from `../authoring-test-plans/skill.md`:
+Follow the full 10-section structure from `../unit-test-authoring-test-plans/SKILL.md`:
 
   1. Cover Page / Header
   2. Scope (in scope, out of scope, target environments)

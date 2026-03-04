@@ -17,14 +17,14 @@ testforge-ai/
     test-unit-gen-agent/                       <- generates test suites
     test-unit-review-agent/                    <- reviews & validates tests
   skills/
-    generating-unit-tests/                     <- atomic: how to author tests
-    analyzing-code-coverage/                   <- atomic: how to detect gaps
-    authoring-test-plans/                      <- atomic: how to write test plans
-    generate-test-suite/                       <- orchestration: full gen workflow
-    review-test-suite/                         <- orchestration: standalone review
-    run-coverage-analysis/                     <- orchestration: gap analysis
-    create-test-plan/                          <- orchestration: plan document
-    shift-left-from-requirements/              <- orchestration: TDD red phase
+    unit-test-generating-unit-tests/           <- atomic: how to author tests
+    unit-test-analyzing-code-coverage/         <- atomic: how to detect gaps
+    unit-test-authoring-test-plans/            <- atomic: how to write test plans
+    unit-test-generate-test-suite/             <- orchestration: full gen workflow
+    unit-test-review-test-suite/               <- orchestration: standalone review
+    unit-test-run-coverage-analysis/           <- orchestration: gap analysis
+    unit-test-create-test-plan/                <- orchestration: plan document
+    unit-test-shift-left-from-requirements/    <- orchestration: TDD red phase
 ```
 
 ## TDD Principles (Applied Across All Agents and Skills)
@@ -48,7 +48,7 @@ Every agent and skill in this project enforces the following non-negotiable prac
 2. Specify target language and test framework (or let the agent detect it)
 3. Run test-unit-gen-agent → outputs runnable test suite
 4. Run test-unit-review-agent → validates quality & coverage
-5. (Optional) Run authoring-test-plans skill → generates .md or .docx test plan
+5. (Optional) Run unit-test-authoring-test-plans skill → generates .md or .docx test plan
 
 ## Agents
 
@@ -59,16 +59,16 @@ Every agent and skill in this project enforces the following non-negotiable prac
 
 ## Skills
 
-| Skill                        | Type          | Role                                                     |
-| ---------------------------- | ------------- | -------------------------------------------------------- |
-| generating-unit-tests        | Atomic        | AAA authoring, test matrix, mocking, frameworks          |
-| analyzing-code-coverage      | Atomic        | Gap detection, severity classification, tool integration |
-| authoring-test-plans         | Atomic        | 10-section plan structure, Gherkin, .md/.docx output     |
-| generate-test-suite          | Orchestration | End-to-end gen + review workflow                         |
-| review-test-suite            | Orchestration | Standalone quality audit                                 |
-| run-coverage-analysis        | Orchestration | Gap analysis with prioritized recommendations            |
-| create-test-plan             | Orchestration | Formal test plan document creation                       |
-| shift-left-from-requirements | Orchestration | TDD Red phase — tests from requirements before code     |
+| Skill                                  | Type          | Role                                                     |
+|----------------------------------------|---------------|----------------------------------------------------------|
+| unit-test-generating-unit-tests        | Atomic        | AAA authoring, test matrix, mocking, frameworks          |
+| unit-test-analyzing-code-coverage      | Atomic        | Gap detection, severity classification, tool integration |
+| unit-test-authoring-test-plans         | Atomic        | 10-section plan structure, Gherkin, .md/.docx output     |
+| unit-test-generate-test-suite          | Orchestration | End-to-end gen + review workflow                         |
+| unit-test-review-test-suite            | Orchestration | Standalone quality audit                                 |
+| unit-test-run-coverage-analysis        | Orchestration | Gap analysis with prioritized recommendations            |
+| unit-test-create-test-plan             | Orchestration | Formal test plan document creation                       |
+| unit-test-shift-left-from-requirements | Orchestration | TDD Red phase — tests from requirements before code     |
 
 ## Supported Inputs
 

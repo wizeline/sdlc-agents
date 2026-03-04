@@ -1,4 +1,4 @@
-# Skill: analyzing-code-coverage
+# Skill: unit-test-analyzing-code-coverage
 > TestForge AI | Coverage Analysis Skill
 
 ## What This Skill Does

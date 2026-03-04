@@ -1,4 +1,5 @@
 # Subagent: test-unit-review-agent
+
 > TestForge AI | Quality Review Agent
 
 ## Purpose
@@ -9,17 +10,17 @@ adherence to project conventions before final delivery.
 ## Skills Used
 Before executing any review step, read and internalize these skill files in order:
 
-1. `../../skills/analyzing-code-coverage/skill.md`
+1. `../../skills/unit-test-analyzing-code-coverage/SKILL.md`
    — Follow for: coverage type definitions (line/branch/function/statement), gap severity
      classification (CRITICAL/HIGH/MEDIUM/LOW), coverage tool output formats, and the
      gap report format used in the Summary Report output.
 
-2. `../../skills/generating-unit-tests/skill.md`
+2. `../../skills/unit-test-generating-unit-tests/SKILL.md`
    — Follow for: AAA pattern validation, correct mocking patterns, parametrization
      structure, exception testing patterns, and naming conventions. Use this as the
      reference standard when judging the quality of tests under review.
 
-3. `../../skills/authoring-test-plans/skill.md`
+3. `../../skills/unit-test-authoring-test-plans/SKILL.md`
    — Follow for: test plan document structure if the review triggers a plan update
      or if the --with-plan flag is passed.
 

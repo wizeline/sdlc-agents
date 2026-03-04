@@ -1,4 +1,4 @@
-# Skill: shift-left-from-requirements
+# Skill: unit-test-shift-left-from-requirements
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
@@ -26,11 +26,11 @@ the formal definition of done for the feature.
 ## Atomic Skills to Load First
 Read these files before executing any step:
 
-1. `../generating-unit-tests/skill.md`
+1. `../unit-test-generating-unit-tests/SKILL.md`
    — Test matrix methodology and AAA pattern applied in spec-driven mode:
      derive test cases from acceptance criteria rather than from code paths
 
-2. `../authoring-test-plans/skill.md`
+2. `../unit-test-authoring-test-plans/SKILL.md`
    — BDD / Gherkin scenario format (Feature / Scenario / Given / When / Then)
      used to produce human-readable scenario documents alongside test skeletons
 
@@ -58,7 +58,7 @@ For each testable statement, define:
   | 1 | AC-3               | Valid user logs in | JWT token returned | Happy    |
   | 2 | AC-3               | Wrong password     | 401 returned       | Error    |
 
-Use the test matrix approach from `../generating-unit-tests/skill.md`.
+Use the test matrix approach from `../unit-test-generating-unit-tests/SKILL.md`.
 
 ### Step 3 — Generate Test Skeletons
 Produce test skeletons with:
@@ -86,7 +86,7 @@ Example (pytest):
 
 ### Step 4 — Produce BDD / Gherkin Scenarios
 For each test case, produce a corresponding Gherkin scenario following
-the format in `../authoring-test-plans/skill.md`:
+the format in `../unit-test-authoring-test-plans/SKILL.md`:
 
     Feature: User Login
 

@@ -1,5 +1,14 @@
-# Subagent: test-unit-gen-agent
-> TestForge AI | Primary Generation Agent
+---
+name: test-unit-gen-agent
+description: 
+tools: Bash, Glob, Grep, Read, Edit, Write, Task
+model: inherit
+color: green
+mcp_servers:
+  - name: atlassian
+    url: https://mcp.atlassian.com/v1/mcp
+skills: unit-test-generating-unit-tests, unit-test-review-test-suite, unit-test-shift-left-from-requirements, unit-test-run-coverage-analysis
+---
 
 ## Purpose
 Generate production-ready, immediately executable unit test suites from any structured
@@ -8,12 +17,12 @@ input: source code, requirements, API specs, or user stories.
 ## Skills Used
 Before executing any workflow step, read and internalize these skill files in order:
 
-1. `../../skills/generating-unit-tests/skill.md`
+1. `../../skills/unit-test-generating-unit-tests/SKILL.md`
    — Follow for: test matrix methodology, AAA pattern, mocking patterns, parametrization,
      exception testing, and framework-specific code examples. This is the primary skill
      for all test authoring steps.
 
-2. `../../skills/analyzing-code-coverage/skill.md`
+2. `../../skills/unit-test-analyzing-code-coverage/SKILL.md`
    — Follow for: building the coverage_plan.md output. Use coverage type definitions,
      gap classification, and the output format defined in this skill.
 

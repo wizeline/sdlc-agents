@@ -1,4 +1,4 @@
-# Skill: generate-test-suite
+# Skill: unit-test-generate-test-suite
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
@@ -20,11 +20,11 @@ to a reviewed, approved, runnable test suite.
 Read these files before executing any step — they contain the detailed
 instructions this orchestration skill depends on:
 
-1. `../generating-unit-tests/skill.md`
+1. `../unit-test-generating-unit-tests/SKILL.md`
    — Test matrix methodology, AAA pattern, mocking, parametrization,
      exception testing, and framework-specific code examples
 
-2. `../analyzing-code-coverage/skill.md`
+2. `../unit-test-analyzing-code-coverage/SKILL.md`
    — Coverage type definitions and gap report format, used when
      producing coverage_plan.md at the end of generation
 
@@ -45,15 +45,15 @@ Identify what has been provided and how to interpret it:
 Also identify: target language, test framework (or auto-detect), scope (function | class | module).
 
 ### Step 2 — Invoke test-unit-gen-agent
-Hand off to `agents/test-unit-gen-agent/agent.md` with the classified input.
+Hand off to `../../agents/unit-testing/test-unit-gen-agent.md` with the classified input.
 
 The agent will:
-- Build the test case matrix (following generating-unit-tests skill)
+- Build the test case matrix (following unit-test-generating-unit-tests skill)
 - Author all test cases using AAA pattern
 - Assemble the test file and coverage_plan.md
 
 ### Step 3 — Invoke test-unit-review-agent
-Hand off the generated suite to `agents/test-unit-review-agent/agent.md`.
+Hand off the generated suite to `../../agents/unit-testing/test-unit-review-agent.md`.
 
 The agent returns one of three verdicts:
   APPROVED               → proceed to delivery

@@ -14,8 +14,8 @@ Wize Skills is a collection of agent skills built on the [Agent Skills](https://
 Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — the open agent skills & subagents ecosystem, compatible with Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
 
 ```bash
-# Run without installing (recommended)
-npx agents-skills
+# Install (recommended)
+npm i agents-skills
 
 # Or install globally for repeated use
 npm install -g agents-skills

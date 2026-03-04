@@ -1,4 +1,4 @@
-# Skill: review-test-suite
+# Skill: unit-test-review-test-suite
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
@@ -19,11 +19,11 @@ and an unambiguous verdict.
 ## Atomic Skills to Load First
 Read these files before executing any step:
 
-1. `../analyzing-code-coverage/skill.md`
+1. `../unit-test-analyzing-code-coverage/SKILL.md`
    — Coverage type definitions, severity classification (CRITICAL / HIGH / MEDIUM / LOW),
      and gap report format — the reference standard for coverage dimension review
 
-2. `../generating-unit-tests/skill.md`
+2. `../unit-test-generating-unit-tests/SKILL.md`
    — AAA pattern, naming conventions, correct mocking structure, and exception testing
      patterns — the reference standard for judging test quality under review
 
@@ -41,7 +41,7 @@ Accepted inputs (one or more):
   - Requirements or user stories the tests should satisfy
 
 ### Step 2 — Invoke test-unit-review-agent
-Pass all inputs to `agents/test-unit-review-agent/agent.md`.
+Pass all inputs to `../../agents/unit-testing/test-unit-review-agent.md`.
 
 The agent evaluates across 6 dimensions:
   1. Coverage Completeness     — all paths, branches, and edge cases addressed

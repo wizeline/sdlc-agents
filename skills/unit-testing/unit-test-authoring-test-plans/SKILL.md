@@ -1,4 +1,4 @@
-# Skill: authoring-test-plans
+# Skill: unit-test-authoring-test-plans
 > TestForge AI | Test Plan Document Authoring Skill
 
 ## What This Skill Does

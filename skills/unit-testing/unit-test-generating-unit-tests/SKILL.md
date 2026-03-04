@@ -1,4 +1,4 @@
-# Skill: generating-unit-tests
+# Skill: unit-test-generating-unit-tests
 > TestForge AI | Core Test Generation Skill
 
 ## What This Skill Does

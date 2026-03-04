@@ -1,4 +1,4 @@
-# Skill: run-coverage-analysis
+# Skill: unit-test-run-coverage-analysis
 > TestForge AI | Orchestration Skill
 
 ## What This Skill Does
@@ -19,7 +19,7 @@ projected coverage delta — without generating any test code.
 ## Atomic Skills to Load First
 Read this file before executing any step:
 
-1. `../analyzing-code-coverage/skill.md`
+1. `../unit-test-analyzing-code-coverage/SKILL.md`
    — All four coverage types (line / branch / function / statement), gap severity
      classification, tool integration guides (coverage.py, Istanbul, JaCoCo, coverlet),
      anti-pattern detection, and all three output report formats
@@ -38,7 +38,7 @@ Accepted inputs (one or more):
   - Coverage target, e.g. "80% line, 75% branch" (defaults to these if not specified)
 
 ### Step 2 — Analyze
-Follow the full analysis workflow from `../analyzing-code-coverage/skill.md`:
+Follow the full analysis workflow from `../unit-test-analyzing-code-coverage/SKILL.md`:
 
   - Parse coverage data or analyze source structure statically
   - Identify: uncovered lines, untaken branches, uncalled functions, unhandled exceptions
@@ -46,7 +46,7 @@ Follow the full analysis workflow from `../analyzing-code-coverage/skill.md`:
   - Flag coverage anti-patterns (over-permissive mocks, integration tests masking gaps)
 
 ### Step 3 — Produce Outputs
-Generate all three deliverables defined in the analyzing-code-coverage skill.
+Generate all three deliverables defined in the unit-test-analyzing-code-coverage skill.
 
 ---
 

@@ -208,3 +208,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+#nodejs files
+package*.json
+.package*.json
+node_modules
