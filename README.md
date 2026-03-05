@@ -2,7 +2,7 @@
 
 **Extend AI coding assistants with specialized expertise, procedural workflows, and task-specific resources.**
 
-SDLC Agents is a collection of agent skills built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
+SDLC Agents is a collection of skills and [subagents](docs/FAQs.md#6-what-is-a-subagent) (referenced by folder as `agents/`) built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
 
 ---
 
@@ -11,43 +11,48 @@ SDLC Agents is a collection of agent skills built on the [Agent Skills](https://
 > [!WARNING]
 > **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install](#before-you-install) below.
 
-Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — the open agent skills & subagents ecosystem, compatible with Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
+Skills and agents are installed via the **[`aicore-cli`](https://github.com/wizeline/aicore-cli)** — the open agent ecosystem CLI for installing agents and skills across Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
+
+### Install Agents & Skills Together
+
+Use `npx aicore` to install both agents and skills from an aicore package in one command:
 
 ```bash
-# Install (recommended)
-npm i agents-skills
+# Install all agents and skills from SDLC Agents interactively
+npx aicore add wizeline/sdlc-agents/aicore-name
 
-# Or install globally for repeated use
-npm install -g agents-skills
+# Or with the GitHub URL
+npx aicore add https://github.com/wizeline/sdlc-agents/aicore-name
+
+# Install to a specific AI assistant
+npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code
+
+# Install to multiple assistants
+npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code -a cursor
+
+# List available items before installing
+npx aicore wizeline/sdlc-agents --list
 ```
 
-Once available, add a skill or an agent for your preferred tool:
+### Install Agents or Skills Separately
 
-**Install a skill:**
+Use `npx agents` or `npx skills` to install items independently:
 
 ```bash
-# General installation (interactive) - select Skills (show all available in the folder)
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/
+# Install all agents from a specific core
+npx agents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents
 
-# Target a specific agent tool - specific skill (it also work for all skills, just delete the name of the specific skill)
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a claude-code
+# Install a specific agent
+npx agents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
+
+# Install all skills from a specific core
+npx skills add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/
+
+# Install a specific skill
+npx skills add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a claude-code
 ```
 
-**Install a subagent:**
-
-```bash
-# Install the doc-engineer subagent - all subagents
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents
-
-# Target a specific agent tool - specific subagent (it also work for all subagents, just delete the name of the specific agent)
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
-
-# Install an entire agent group at once
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/agents -a claude-code
-```
-
-> **IMPORTANT**: When installing, at the last step, select the option to install in the project NOT globally.
+> **IMPORTANT**: When installing, select the option to install in the project (not globally) unless you want the agents/skills available across all projects.
 
 ### ⚙️ Enabling Subagents
 
@@ -89,7 +94,6 @@ To use agents like `atlassian-sourcer` that fetch data from external tools, you 
 ```
 
 > **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
-> **Note**: For Gemini CLI users, you can also use `gemini skills install https://github.com/wizeline/sdlc-agents.git --path aicores/documentation-writer-agent/skills/authoring-technical-docs`.
 
 ---
 
@@ -182,6 +186,7 @@ Any directory listed exists and should be removed before reinstalling.
 New to agent skills? Check out our comprehensive resources:
 
 - **[Practical Tutorial](docs/tutorial-agent-skills-and-subagents.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
+- **[Subagents FAQ](docs/FAQs.md#6-what-is-a-subagent)**: A short and concise explanation of what subagents are and how they work.
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
   - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
   - [Developer Security Governance](docs/prompt-examples-devsec-governance.md)
@@ -190,26 +195,26 @@ New to agent skills? Check out our comprehensive resources:
 
 ## 🛠️ Available AI Cores
 
-| Core Name | Description |
-| :--- | :--- |
-| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes. |
-| [`security-agent`](aicores/security-agent) | Developer security governance, OWASP, and compliance mapping. |
-| [`unit-testing-agent`](aicores/unit-testing-agent) | Automated unit testing, coverage analysis, and test suite generation. |
+| Core Name                                                         | Description                                                           |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                 |
+| [`security-agent`](aicores/security-agent)                         | Developer security governance, OWASP, and compliance mapping.         |
+| [`unit-testing-agent`](aicores/unit-testing-agent)                 | Automated unit testing, coverage analysis, and test suite generation. |
 
 > **Tip**: More AI cores are coming soon! Watch this repository for updates.
 
 ## 🤖 Featured Agents
 
-| Agent Name | Core | Description |
-| :--- | :--- | :--- |
-| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md) | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export. |
-| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md) | `documentation-writer-agent` | Specialized C4 Model diagram generation. |
-| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md) | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP. |
-| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md) | `security-agent` | Security-focused code review against OWASP Top 10 and ASVS. |
-| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md) | `security-agent` | STRIDE-based threat modeling for architecture designs. |
-| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md) | `security-agent` | Security architecture for APIs, cloud-native, and AI/LLM systems. |
-| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md) | `security-agent` | DevSecOps pipeline hardening and CI/CD security gates. |
-| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md) | `unit-testing-agent` | Automated unit test generation and suite creation. |
+| Agent Name                                                                           | Core                           | Description                                                                 |
+| :----------------------------------------------------------------------------------- | :----------------------------- | :-------------------------------------------------------------------------- |
+| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)           | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export. |
+| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)           | `documentation-writer-agent` | Specialized C4 Model diagram generation.                                    |
+| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md) | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP.            |
+| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)           | `security-agent`             | Security-focused code review against OWASP Top 10 and ASVS.                 |
+| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)   | `security-agent`             | STRIDE-based threat modeling for architecture designs.                      |
+| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)         | `security-agent`             | Security architecture for APIs, cloud-native, and AI/LLM systems.           |
+| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)         | `security-agent`             | DevSecOps pipeline hardening and CI/CD security gates.                      |
+| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)     | `unit-testing-agent`         | Automated unit test generation and suite creation.                          |
 
 ---
 
@@ -238,4 +243,3 @@ git tag "aicores/documentation-writer-agent/v1.0.0" && git push origin --tags
 ## 📄 License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-

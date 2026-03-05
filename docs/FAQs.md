@@ -16,34 +16,35 @@ last-updated: 2026-02-27
 3. [How do I reinstall skills if they're already installed?](#3-how-do-i-reinstall-skills-if-theyre-already-installed)
 4. [Do I need a specific Git account to install SDLC Agents?](#4-do-i-need-a-specific-git-account-to-install-sdlc-agents)
 5. [How do I install and use SDLC Agents in Cursor?](#5-how-do-i-install-and-use-sdlc-agents-in-cursor)
+6. [What is a subagent?](#6-what-is-a-subagent)
 
 ### Documentation Writer Agent
 
-6. [What agents and skills are included in the Documentation Writer AI Core?](#6-what-agents-and-skills-are-included-in-the-documentation-writer-ai-core)
-7. [What types of documents can the Documentation Writer produce?](#7-what-types-of-documents-can-the-documentation-writer-produce)
-8. [What is the Diátaxis framework and how does the skill use it?](#8-what-is-the-diataxis-framework-and-how-does-the-skill-use-it)
-9. [How does the multi-pass workflow work?](#9-how-does-the-multi-pass-workflow-work)
-10. [What inputs does the agent accept?](#10-what-inputs-does-the-agent-accept)
-11. [What output formats are supported beyond Markdown?](#11-what-output-formats-are-supported-beyond-markdown)
-12. [How does the self-review work, and what are the six quality dimensions?](#12-how-does-the-self-review-work-and-what-are-the-six-quality-dimensions)
-13. [Can the agent update documentation automatically when I commit code?](#13-can-the-agent-update-documentation-automatically-when-i-commit-code)
-14. [How do I choose between a tutorial, how-to guide, user guide, and onboarding guide?](#14-how-do-i-choose-between-a-tutorial-how-to-guide-user-guide-and-onboarding-guide)
-15. [What templates are available, and where are documents saved?](#15-what-templates-are-available-and-where-are-documents-saved)
+7. [What agents and skills are included in the Documentation Writer AI Core?](#7-what-agents-and-skills-are-included-in-the-documentation-writer-ai-core)
+8. [What types of documents can the Documentation Writer produce?](#8-what-types-of-documents-can-the-documentation-writer-produce)
+9. [What is the Diátaxis framework and how does the skill use it?](#9-what-is-the-diataxis-framework-and-how-does-the-skill-use-it)
+10. [How does the multi-pass workflow work?](#10-how-does-the-multi-pass-workflow-work)
+11. [What inputs does the agent accept?](#11-what-inputs-does-the-agent-accept)
+12. [What output formats are supported beyond Markdown?](#12-what-output-formats-are-supported-beyond-markdown)
+13. [How does the self-review work, and what are the six quality dimensions?](#13-how-does-the-self-review-work-and-what-are-the-six-quality-dimensions)
+14. [Can the agent update documentation automatically when I commit code?](#14-can-the-agent-update-documentation-automatically-when-i-commit-code)
+15. [How do I choose between a tutorial, how-to guide, user guide, and onboarding guide?](#15-how-do-i-choose-between-a-tutorial-how-to-guide-user-guide-and-onboarding-guide)
+16. [What templates are available, and where are documents saved?](#16-what-templates-are-available-and-where-are-documents-saved)
 
 ### Security Agent
 
-16. [What agents and skills are included in the Security AI Core?](#16-what-agents-and-skills-are-included-in-the-security-ai-core)
-17. [Which security agent should I use for my task?](#17-which-security-agent-should-i-use-for-my-task)
-18. [What is a Real-Time Report, and how is it different from a Remediation Guide?](#18-what-is-a-real-time-report-and-how-is-it-different-from-a-remediation-guide)
-19. [What is a Vulnerability Map?](#19-what-is-a-vulnerability-map)
-20. [What is a Compliance Log?](#20-what-is-a-compliance-log)
-21. [Which security frameworks and standards are covered?](#21-which-security-frameworks-and-standards-are-covered)
-22. [Does the Security Agent support AI and LLM security?](#22-does-the-security-agent-support-ai-and-llm-security)
-23. [Which CI/CD platforms are supported for pipeline hardening?](#23-which-cicd-platforms-are-supported-for-pipeline-hardening)
-24. [Can the agent scan for deprecated or end-of-life libraries?](#24-can-the-agent-scan-for-deprecated-or-end-of-life-libraries)
-25. [When should I use threat modeling vs. a code review?](#25-when-should-i-use-threat-modeling-vs-a-code-review)
-26. [What is "write once, comply many"?](#26-what-is-write-once-comply-many)
-27. [How do I run an OWASP SAMM maturity assessment?](#27-how-do-i-run-an-owasp-samm-maturity-assessment)
+17. [What agents and skills are included in the Security AI Core?](#17-what-agents-and-skills-are-included-in-the-security-ai-core)
+18. [Which security agent should I use for my task?](#18-which-security-agent-should-i-use-for-my-task)
+19. [What is a Real-Time Report, and how is it different from a Remediation Guide?](#19-what-is-a-real-time-report-and-how-is-it-different-from-a-remediation-guide)
+20. [What is a Vulnerability Map?](#20-what-is-a-vulnerability-map)
+21. [What is a Compliance Log?](#21-what-is-a-compliance-log)
+22. [Which security frameworks and standards are covered?](#22-which-security-frameworks-and-standards-are-covered)
+23. [Does the Security Agent support AI and LLM security?](#23-does-the-security-agent-support-ai-and-llm-security)
+24. [Which CI/CD platforms are supported for pipeline hardening?](#24-which-cicd-platforms-are-supported-for-pipeline-hardening)
+25. [Can the agent scan for deprecated or end-of-life libraries?](#25-can-the-agent-scan-for-deprecated-or-end-of-life-libraries)
+26. [When should I use threat modeling vs. a code review?](#26-when-should-i-use-threat-modeling-vs-a-code-review)
+27. [What is "write once, comply many?"](#27-what-is-write-once-comply-many)
+28. [How do I run an OWASP SAMM maturity assessment?](#28-how-do-i-run-an-owasp-samm-maturity-assessment)
 
 ---
 
@@ -260,11 +261,28 @@ After installation, open Cursor and type `/` in the chat input. You should see t
 
 ---
 
+## 6. What is a subagent?
+
+A **subagent** is an extension of your main AI agent (like Gemini CLI, Cursor, or Claude Code) that acts as a dedicated specialist for a specific task—such as code review, research, or debugging. Think of them as experts you "hire" within your main conversation to perform focused work.
+
+### Key Characteristics
+- **Isolated Context:** Runs in its own memory space, keeping intermediate steps (like file searches or failed commands) out of your main chat history.
+- **Specialized Instructions:** Can be given unique system prompts to follow specific best practices or personas.
+- **Restricted Access:** Tools can be limited for safety (e.g., read-only access) or efficiency.
+- **Parallel Execution:** Some tools can run multiple subagents at once to speed up complex workflows.
+
+### Why use them?
+- **Reduce Noise:** Prevents "context pollution" and keeps the main conversation from getting bogged down in technical detail.
+- **Better Accuracy:** Focused instructions lead to higher quality results for niche tasks.
+- **Cost Efficiency:** Simple tasks can be routed to faster, cheaper models while reserving the main model for orchestration.
+
+---
+
 ## Documentation Writer Agent
 
 ---
 
-## 6. What agents and skills are included in the Documentation Writer AI Core?
+## 7. What agents and skills are included in the Documentation Writer AI Core?
 
 The Documentation Writer AI Core includes **3 agents** backed by **10 skills**.
 
@@ -280,7 +298,7 @@ The Documentation Writer AI Core includes **3 agents** backed by **10 skills**.
 
 ---
 
-## 7. What types of documents can the Documentation Writer produce?
+## 8. What types of documents can the Documentation Writer produce?
 
 The Documentation Writer covers every major category of technical documentation:
 
@@ -299,7 +317,7 @@ For general documentation needs with no specific domain, `authoring-technical-do
 
 ---
 
-## 8. What is the Diátaxis framework and how does the skill use it?
+## 9. What is the Diátaxis framework and how does the skill use it?
 
 [Diátaxis](https://diataxis.fr) is a documentation framework that classifies every technical document into one of four types based on what the reader needs:
 
@@ -314,7 +332,7 @@ The agent uses this classification to select the correct template, writing style
 
 ---
 
-## 9. How does the multi-pass workflow work?
+## 10. How does the multi-pass workflow work?
 
 Every documentation task follows a four-phase pipeline. The agent cannot skip phases.
 
@@ -326,13 +344,13 @@ Request → RESEARCH → DRAFT → REVIEW → REVISE (max 2 cycles) → FORMAT �
 
 **Phase 2 — Draft:** The agent writes the document using strict style rules: active voice, second person ("you"), present tense, sentence-case headings, Oxford commas, sentences ≤25 words, and no undefined jargon. Every code example is complete and runnable.
 
-**Phase 3 — Review (self-critique):** The agent reads its own draft as if it were the target audience encountering it for the first time — the *First-Party Consumption Principle*. It checks six quality dimensions (see [FAQ 12](#12-how-does-the-self-review-work-and-what-are-the-six-quality-dimensions)) and revises if it finds blockers or major issues. Maximum two revision cycles.
+**Phase 3 — Review (self-critique):** The agent reads its own draft as if it were the target audience encountering it for the first time — the *First-Party Consumption Principle*. It checks six quality dimensions (see [FAQ 13](#13-how-does-the-self-review-work-and-what-are-the-six-quality-dimensions)) and revises if it finds blockers or major issues. Maximum two revision cycles.
 
 **Phase 4 — Format and deliver:** The agent fixes heading hierarchy, completes YAML frontmatter, adds language tags to code blocks, generates a table of contents for documents with four or more H2 sections, and saves the file to the correct path.
 
 ---
 
-## 10. What inputs does the agent accept?
+## 11. What inputs does the agent accept?
 
 The agent can work from any combination of these inputs:
 
@@ -350,7 +368,7 @@ Provide as much context as possible. The agent explicitly follows a **Source of 
 
 ---
 
-## 11. What output formats are supported beyond Markdown?
+## 12. What output formats are supported beyond Markdown?
 
 The default output format is Markdown. The following additional formats are supported:
 
@@ -364,7 +382,7 @@ Diagram files are saved as separate `.mermaid` files alongside the main `ARCHITE
 
 ---
 
-## 12. How does the self-review work, and what are the six quality dimensions?
+## 13. How does the self-review work, and what are the six quality dimensions?
 
 After drafting, the agent switches to critic mode and evaluates the document across six dimensions:
 
@@ -387,7 +405,7 @@ If blockers or major issues remain after two revision cycles, the agent appends 
 
 ---
 
-## 13. Can the agent update documentation automatically when I commit code?
+## 14. Can the agent update documentation automatically when I commit code?
 
 Yes. The `automating-docs-updates` skill is designed for this workflow. When you are about to commit a code change, you can prompt the agent to:
 
@@ -407,7 +425,7 @@ This keeps documentation in sync with code at the commit level rather than as a 
 
 ---
 
-## 14. How do I choose between a tutorial, how-to guide, user guide, and onboarding guide?
+## 15. How do I choose between a tutorial, how-to guide, user guide, and onboarding guide?
 
 Use this table to pick the right document type before prompting:
 
@@ -422,12 +440,12 @@ If you are unsure, describe your audience and goal in the prompt. The agent will
 
 ---
 
-## 15. What templates are available, and where are documents saved?
+## 16. What templates are available, and where are documents saved?
 
 ### Available templates
 
 | Template file | Used for |
-|---|---|
+|---|---|---|
 | `aicores/documentation-writer-agent/skills/authoring-api-docs/assets/rest-endpoint-template.md` | Individual REST API endpoints |
 | `aicores/documentation-writer-agent/skills/authoring-api-docs/assets/sdk-function-template.md` | SDK or library functions |
 | `aicores/documentation-writer-agent/skills/authoring-architecture-docs/assets/Architecture_Decision_Record_(ADR)_template.md` | Architecture Decision Records |
@@ -463,14 +481,14 @@ You can override the save path by specifying it in your prompt.
 
 ---
 
-## 16. What agents and skills are included in the Security AI Core?
+## 17. What agents and skills are included in the Security AI Core?
 
 The Security AI Core includes **6 agents**, each backed by a dedicated skill targeting a specific security persona and task.
 
 | Agent | Persona | Skill |
 |---|---|---|
 | `devsec-code-review` | Developer reviewing or writing code | `devsec-reviewing-code-for-security` |
-| `devsec-threat-modeling` | Architect at the design phase | `devsec-conducting-threat-modeling` |
+| `devsec-threat-modeling` | Architect at the point of design | `devsec-conducting-threat-modeling` |
 | `devsec-architecture` | Architect designing APIs, cloud-native, or AI systems | `devsec-designing-security-architecture` |
 | `devsec-ops-pipeline` | DevOps / platform engineer | `devsec-hardening-devsecops-pipelines` |
 | `devsec-compliance-framework` | Compliance / GRC professional, pre-audit | `devsec-managing-compliance-frameworks` |
@@ -480,7 +498,7 @@ Each agent loads only the reference material relevant to its domain. This keeps 
 
 ---
 
-## 17. Which security agent should I use for my task?
+## 18. Which security agent should I use for my task?
 
 Use this decision guide:
 
@@ -504,7 +522,7 @@ For tasks that span multiple domains — for example, "threat model this API des
 
 ---
 
-## 18. What is a Real-Time Report, and how is it different from a Remediation Guide?
+## 19. What is a Real-Time Report, and how is it different from a Remediation Guide?
 
 Both are named output artifacts produced by the `devsec-code-review` agent. They serve different purposes.
 
@@ -536,7 +554,7 @@ Both are named output artifacts produced by the `devsec-code-review` agent. They
 
 ---
 
-## 19. What is a Vulnerability Map?
+## 20. What is a Vulnerability Map?
 
 A Vulnerability Map is a structured artifact produced by the `devsec-threat-modeling` agent. It complements the Threat Model Document by providing an actionable, scannable view that developers and security teams use for triage.
 
@@ -554,7 +572,7 @@ The Threat Model Document provides the reasoning and derived security requiremen
 
 ---
 
-## 20. What is a Compliance Log?
+## 21. What is a Compliance Log?
 
 A Compliance Log is an audit-ready ledger produced by the `devsec-compliance-framework` agent. It consolidates all security control evidence into a single document structured for auditors.
 
@@ -568,11 +586,11 @@ A complete Compliance Log contains:
 | **Framework Compliance Status** | Pass/gap count per framework (ISO 27001, SOC 2, PCI-DSS, NIST SSDF, ASVS, GDPR) in a summary table |
 | **Evidence Index** | Every piece of evidence cited in the Control Activity Log, with retention date and framework mapping |
 
-The Compliance Log implements the **"write once, comply many"** principle (see [FAQ 26](#26-what-is-write-once-comply-many)): a single piece of evidence — for example, a SAST scan report — maps to all applicable framework requirements in one row.
+The Compliance Log implements the **"write once, comply many"** principle (see [FAQ 27](#27-what-is-write-once-comply-many)): a single piece of evidence — for example, a SAST scan report — maps to all applicable framework requirements in one row.
 
 ---
 
-## 21. Which security frameworks and standards are covered?
+## 22. Which security frameworks and standards are covered?
 
 The Security AI Core references the following frameworks and standards across its six skills:
 
@@ -598,7 +616,7 @@ Every code review finding is mapped to at least one OWASP Top 10 category, one C
 
 ---
 
-## 22. Does the Security Agent support AI and LLM security?
+## 23. Does the Security Agent support AI and LLM security?
 
 Yes. The `devsec-architecture` agent includes dedicated coverage for AI and LLM application security via the `designing-security-architecture` skill, which references the **OWASP LLM Top 10 (2025)**.
 
@@ -624,7 +642,7 @@ What risks exist regarding data leakage between tenants?
 
 ---
 
-## 23. Which CI/CD platforms are supported for pipeline hardening?
+## 24. Which CI/CD platforms are supported for pipeline hardening?
 
 The `devsec-ops-pipeline` agent provides ready-to-paste configuration for the following platforms:
 
@@ -647,7 +665,7 @@ The agent also supports pre-commit hooks (via Gitleaks, TruffleHog) for secret s
 
 ---
 
-## 24. Can the agent scan for deprecated or end-of-life libraries?
+## 25. Can the agent scan for deprecated or end-of-life libraries?
 
 Yes. Deprecated and end-of-life (EOL) component detection is built into three skills:
 
@@ -675,7 +693,7 @@ CVE-affected dependencies with recommended actions.
 
 ---
 
-## 25. When should I use threat modeling vs. a code review?
+## 26. When should I use threat modeling vs. a code review?
 
 These two skills target different points in the development lifecycle and answer different questions.
 
@@ -699,7 +717,7 @@ This prompt chains `devsec-threat-modeling` → `devsec-code-review` → `doc-en
 
 ---
 
-## 26. What is "write once, comply many"?
+## 27. What is "write once, comply many?"
 
 "Write once, comply many" is a principle built into the `managing-compliance-frameworks` skill. It means that a single, well-implemented security control — or a single piece of evidence — can satisfy multiple compliance frameworks simultaneously.
 
@@ -715,7 +733,7 @@ The agent always surfaces these overlaps when producing compliance outputs. This
 
 ---
 
-## 27. How do I run an OWASP SAMM maturity assessment?
+## 28. How do I run an OWASP SAMM maturity assessment?
 
 The `devsec-program` agent performs SAMM assessments. SAMM (Software Assurance Maturity Model) evaluates security maturity across **5 business functions** and **15 security practices**, scoring each on a 0–3 scale.
 
