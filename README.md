@@ -60,6 +60,8 @@ npx skills add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent
 ```
 
 > **IMPORTANT**: When installing, select the option to install in the project (not globally) unless you want the agents/skills available across all projects.
+>
+> **⚠️ WARNING - Wizeline Usage Only**: Please update the `.gitignore` of your client repo in which these skills and agents will be installed so they won't be part of the source code. This is Wizeline usage only.
 
 ### ⚙️ Enabling Subagents
 
