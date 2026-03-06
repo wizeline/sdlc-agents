@@ -210,7 +210,7 @@ Cursor supports the [Agent Skills open standard](https://agentskills.io/home) na
 ### Install a skill
 
 ```bash
-# Using the agents-skills CLI
+# Using the Skills CLI
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a cursor
 
 # Or clone manually
