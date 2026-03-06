@@ -200,6 +200,7 @@ npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/inc
 
 ## Typical Usage
 
+<<<<<<< HEAD
 ### An engineer reports a vague incident with no context
 
 ```
@@ -214,6 +215,11 @@ incident-commander will:
 ### An engineer pastes a stack trace with no context
 ```
 incident-commander will (stack trace is sufficient context — no intake needed):
+=======
+### An engineer pastes a stack trace with no context
+```
+incident-commander will:
+>>>>>>> 5bcf311 (docs: created a comprehensive README.md for the incident-support-agent AI Core that mirrors the structure and detail level of the security-agent README.)
   1. Invoke incident-triaging → Classify severity (likely P1 or P2)
   2. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
   3. Invoke incident-remediating → Show fast remediation options + code fix if needed
