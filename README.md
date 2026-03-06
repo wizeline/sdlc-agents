@@ -22,7 +22,13 @@ Skills and agents are installed via the **[`aicore-cli`](https://github.com/wize
 
 ### Install Agents & Skills Together
 
-Use `npx aicore` to install both agents and skills from an aicore package in one command:
+First, install the `aicore-cli`:
+
+```bash
+npm install aicore-cli
+```
+
+Then use `npx aicore` to install both agents and skills from an aicore package in one command:
 
 ```bash
 # Install all agents and skills from SDLC Agents interactively
