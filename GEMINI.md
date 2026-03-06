@@ -41,27 +41,24 @@ sdlc-agents/
 
 ## Installing Skills
 
-Skills are installed via the **[`agents-skills`](https://www.npmjs.com/package/agents-skills)** CLI — compatible with Gemini CLI, Claude Code, Cursor, Codex, and 40+ other coding agents.
+Skills are installed via the **[`aicore-cli`](https://github.com/wizeline/aicore-cli)** — compatible with Gemini CLI, Claude Code, Cursor, Codex, and 40+ other coding agents.
 
 ```bash
 # Run without installing (recommended)
-npx agents-skills
+npx -p aicores aicore
 
 # Or install globally for repeated use
-npm install -g agents-skills
+npm install -g aicores
 ```
 
 Add a skill to your project:
 
 ```bash
 # General installation (interactive)
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs
+npx aicore add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs
 
 # Target Gemini specifically
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a gemini
-
-# Install globally (available across all projects)
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -g
+npx aicore add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a gemini
 ```
 
 Add a subagent to your project:
