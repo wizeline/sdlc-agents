@@ -2,7 +2,14 @@
 
 **Extend AI coding assistants with specialized expertise, procedural workflows, and task-specific resources.**
 
-SDLC Agents is a collection of skills and [subagents](docs/FAQs.md#6-what-is-a-subagent) (referenced by folder as `agents/`) built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by providing them with the context and tools they need for complex software engineering tasks.
+SDLC Agents is a collection of reusable skills and [subagents](docs/FAQs.md#6-what-is-a-subagent) built on the [Agent Skills](https://agentskills.io/home) open standard. It enhances AI coding assistants like Claude Code, Gemini, and Cursor by equipping them with the context and tools needed for complex software engineering tasks.
+
+Skills and agents are organized into two structures:
+
+- **AI Cores** (`aicores/` folder): Groups of related skills and agents that work together toward a shared goal
+- **Standalone components** (`skills/` and `agents/` folders): Individual skills or agents that operate independently
+
+Components can belong to an AI Core or exist as standalone modules—they don't need to be co-located.
 
 ---
 
@@ -11,7 +18,7 @@ SDLC Agents is a collection of skills and [subagents](docs/FAQs.md#6-what-is-a-s
 > [!WARNING]
 > **Already installed a previous version?** Delete your existing `skills/` and `agents/` directories before reinstalling. The installer does not merge or overwrite cleanly over existing files — leftover files from a previous version can cause skills to behave incorrectly or silently load stale instructions. See [Before you install](#before-you-install) below.
 
-Skills and agents are installed via the **[`aicore-cli`](https://github.com/wizeline/aicore-cli)** — the open agent ecosystem CLI for installing agents and skills across Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
+Skills and agents are installed via the **[`aicore-cli`](https://github.com/wizeline/aicore-cli)** — an open agent ecosystem CLI for installing agents and skills across Claude Code, Cursor, Gemini CLI, Codex, and 40+ other coding agents.
 
 ### Install Agents & Skills Together
 
@@ -70,9 +77,11 @@ Subagents are currently experimental. To use custom subagents, you must enable t
 }
 ```
 
-#### 🔌 Configuring MCP Servers (Jira & Confluence)
+#### 🔌 Configuring MCP Servers (Jira, Confluence & GitHub)
 
-To use agents like `atlassian-sourcer` that fetch data from external tools, you must configure the corresponding MCP servers in your `settings.json`. For Jira and Confluence, you can use the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian):
+Some agents fetch data from external tools and require MCP servers configured in your `settings.json`.
+
+**Atlassian (Jira & Confluence)** — used by `atlassian-sourcer`, `incident-commander`, and others. Use the [Atlassian MCP server](https://mcpservers.org/servers/github-com-sooperset-mcp-atlassian):
 
 ```json
 {
@@ -93,7 +102,25 @@ To use agents like `atlassian-sourcer` that fetch data from external tools, you 
 }
 ```
 
-> **Note**: To get API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
+> **Note**: To get Atlassian API tokens go to `https://id.atlassian.com/manage-profile/security/api-tokens`.
+
+**GitHub** — used by `incident-commander` to inspect repos, PRs, and CI runs during incident response. Use the [GitHub MCP server](https://github.com/github/github-mcp-server):
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_pat"
+      }
+    }
+  }
+}
+```
+
+> **Note**: Create a GitHub Personal Access Token at `https://github.com/settings/tokens`. The token needs `repo` and `read:org` scopes for most incident response operations.
 
 ---
 
@@ -200,6 +227,7 @@ New to agent skills? Check out our comprehensive resources:
 | [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                 |
 | [`security-agent`](aicores/security-agent)                         | Developer security governance, OWASP, and compliance mapping.         |
 | [`unit-testing-agent`](aicores/unit-testing-agent)                 | Automated unit testing, coverage analysis, and test suite generation. |
+| [`incident-support-agent`](aicores/incident-support-agent)         | Incident triage, root cause analysis, remediation, and postmortem documentation. |
 
 > **Tip**: More AI cores are coming soon! Watch this repository for updates.
 
@@ -210,11 +238,15 @@ New to agent skills? Check out our comprehensive resources:
 | [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)           | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export. |
 | [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)           | `documentation-writer-agent` | Specialized C4 Model diagram generation.                                    |
 | [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md) | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP.            |
-| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)           | `security-agent`             | Security-focused code review against OWASP Top 10 and ASVS.                 |
-| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)   | `security-agent`             | STRIDE-based threat modeling for architecture designs.                      |
-| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)         | `security-agent`             | Security architecture for APIs, cloud-native, and AI/LLM systems.           |
-| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)         | `security-agent`             | DevSecOps pipeline hardening and CI/CD security gates.                      |
-| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)     | `unit-testing-agent`         | Automated unit test generation and suite creation.                          |
+| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)                       | `security-agent`             | Security-focused code review against OWASP Top 10 and ASVS.                         |
+| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)               | `security-agent`             | STRIDE-based threat modeling for architecture designs.                               |
+| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)                     | `security-agent`             | Security architecture for APIs, cloud-native, and AI/LLM systems.                   |
+| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)                     | `security-agent`             | DevSecOps pipeline hardening and CI/CD security gates.                               |
+| [`devsec-compliance-framework`](aicores/security-agent/agents/devsec-compliance-framework.md)     | `security-agent`             | Compliance mapping and gap analysis for ISO 27001, SOC 2, PCI-DSS, HIPAA, and more. |
+| [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                               | `security-agent`             | Security program maturity assessment, OWASP SAMM, and Security Champions planning.  |
+| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)                 | `unit-testing-agent`         | Automated unit test generation and suite creation.                                   |
+| [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)           | `unit-testing-agent`         | Quality gate for generated test suites — reviews correctness, coverage, and style.  |
+| [`incident-commander`](aicores/incident-support-agent/agents/incident-commander-agent.md)         | `incident-support-agent`     | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.        |
 
 ---
 
@@ -227,15 +259,67 @@ New to agent skills? Check out our comprehensive resources:
 
 ## 🤝 Contributing & Versioning
 
-We welcome contributions! Please follow the [Agent Skills standard](https://agentskills.io/home) when adding new skills.
+We welcome contributions! Please adhere to the [Agent Skills standard](https://agentskills.io/home) when adding new skills, and follow Anthropic's [subagent format](https://code.claude.com/docs/en/sub-agents#write-subagent-files) when adding agents.
 
-- **Versioning**: Each AI Core is independently versioned using semantic versioning (`vMAJOR.MINOR.PATCH`).
-- **Automation**: GitHub Actions automatically increment patch versions on every push to `main` for modified AI Cores.
+## Contribution Guidelines
 
-To add a new AI Core, create a directory in the `aicores/` directory and seed it with an initial tag:
+### 1. Branch Naming & Organization
+
+**For general-purpose skills/agents** (available across Wizeline projects):
+
+- Create a branch from `main` using the appropriate pattern:
+
+  - `aicore/aicore_name` — for both skills and agents with the same purpose
+  - `skills/skill_name` — for standalone skills only
+  - `agents/agent_name` — for standalone agents only
+- If creating both skills and agents together, group them in a single folder within `aicores/` so they can be installed via **[`aicore-cli`](https://github.com/wizeline/aicore-cli)**
+- Standalone skills belong in the `skills/` folder; standalone agents in the `agents/` folder
+
+**For account-specific skills/agents** (e.g., UTA, KOF):
+
+- Create a branch using the pattern: `account_name/aicore/skill/agent_name`
+
+### 2. AI Core Structure
+
+An AI Core follows this directory structure:
+
+```
+my-aicore/
+├── agents/
+│   └── agent-name.md        ← Required: YAML frontmatter + instructions
+└── skills/
+    └── skill-name/
+        ├── SKILL.md          ← Required: YAML frontmatter + instructions
+        ├── references/
+        │   └── reference.md  ← Optional: reference documents
+        ├── assets/
+        │   └── template.md   ← Optional: template files
+        └── scripts/
+            └── helper.py     ← Optional: helper scripts
+```
+
+**Required files:**
+
+- `agents/*.md` — Agent definitions with YAML frontmatter and instructions
+- `skills/*/SKILL.md` — Skill definitions with YAML frontmatter and instructions
+
+**Optional directories:**
+
+- `references/` — Supporting documentation and reference materials
+- `assets/` — Template files and reusable assets
+- `scripts/` — Helper scripts and utilities
+
+### 3. Versioning & Automation
+
+- Each AI Core uses independent semantic versioning (`vMAJOR.MINOR.PATCH`)
+- GitHub Actions automatically increments patch versions on every push to `main` for modified AI Cores
+
+### 4. Creating a New AI Core
+
+Initialize a new AI Core directory with an initial version tag:
 
 ```bash
-git tag "aicores/documentation-writer-agent/v1.0.0" && git push origin --tags
+git tag "aicores/aicore_name/v1.0.0" && git push origin --tags
 ```
 
 ---
