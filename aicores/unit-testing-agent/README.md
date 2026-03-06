@@ -324,3 +324,7 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-te
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/skills/unit-test-generating-unit-tests -a gemini
 ```
+
+## ToDos
+
+- [ ] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute

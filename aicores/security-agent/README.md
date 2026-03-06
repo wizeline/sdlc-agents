@@ -245,3 +245,8 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-reviewing-code-for-security -a gemini
 ```
+
+## ToDos
+
+- [ ] Add new skill to bilboard documentation in Confluence
+- [ ] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute

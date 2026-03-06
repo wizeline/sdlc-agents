@@ -238,3 +238,8 @@ incident-remediating directly:
 4. **Evidence-based RCA** — Never theorize about code you can read. Gather discriminating evidence, test hypotheses, converge on cause.
 5. **Escalation clarity** — Be explicit about phase transitions (triage → RCA → remediation). Incident management is stressful; clarity reduces cognitive load.
 6. **Blameless learning** — Postmortems focus on systemic conditions, not individual blame. The goal is preventing future incidents, not assigning fault.
+
+## ToDos
+
+- [ ] Add new skill to read a JIRA ticket so the incident-commander can be triggered
+- [ ] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
