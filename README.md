@@ -22,7 +22,7 @@ Skills and agents are installed via the **[`aicore-cli`](https://github.com/wize
 
 ### Install Agents & Skills Together
 
-First, install the `aicore-cli`:
+[optional] First, install the `aicore-cli`:
 
 ```bash
 npm install aicores
@@ -32,19 +32,19 @@ Then use `npx aicore` to install both agents and skills from an aicore package i
 
 ```bash
 # Install all agents and skills from SDLC Agents interactively
-npx aicore add wizeline/sdlc-agents/aicore-name
+npx aicores add wizeline/sdlc-agents/aicore-name
 
 # Or with the GitHub URL
-npx aicore add https://github.com/wizeline/sdlc-agents/aicore-name
+npx aicores add https://github.com/wizeline/sdlc-agents/aicore-name
 
 # Install to a specific AI assistant
-npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code
+npx aicores add wizeline/sdlc-agents/aicore-name -a claude-code
 
 # Install to multiple assistants
-npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code -a cursor
+npx aicores add wizeline/sdlc-agents/aicore-name -a claude-code -a cursor
 
 # List available items before installing
-npx aicore wizeline/sdlc-agents --list
+npx aicores wizeline/sdlc-agents --list
 ```
 
 ### Install Agents or Skills Separately
@@ -220,7 +220,7 @@ Any directory listed exists and should be removed before reinstalling.
 
 New to agent skills? Check out our comprehensive resources:
 
-- **[Practical Tutorial](docs/tutorial-agent-skills-and-subagents.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
+- **[Practical Tutorial](docs/tutorial-aicores-agents-skills.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
 - **[Subagents FAQ](docs/FAQs.md#6-what-is-a-subagent)**: A short and concise explanation of what subagents are and how they work.
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
   - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
