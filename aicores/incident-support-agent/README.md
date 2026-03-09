@@ -275,9 +275,5 @@ incident-remediating directly:
 
 ## ToDos
 
-- [ ] Add new skill to read a JIRA ticket so the incident-commander can be triggered
-<<<<<<< HEAD
+- [x] Add new skill to read a JIRA ticket so the incident-commander can be triggered
 - [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
-=======
-- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
->>>>>>> 30a2774 (docs: All three READMEs updated:)
