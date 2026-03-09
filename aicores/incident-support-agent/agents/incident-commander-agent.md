@@ -86,6 +86,28 @@ No RCA or remediation needed. Triage confirms it's low severity, then artifacts 
 
 ---
 
+## Phase 0 — Intake (when incident context is insufficient)
+
+Before triaging, assess whether enough context exists to classify severity and identify the affected system.
+
+**Proceed directly to triage** if the report contains at least: (1) an observable symptom (error message, metric spike, stack trace, or user report) AND (2) an affected system or component.
+
+**Run structured intake** when the report is too vague to triage — for example, just "something is broken" or "the app is slow" with no additional context. Present all questions at once so the developer can answer in a single reply:
+
+> To triage this incident quickly, I need a few key signals. Share whatever you have:
+>
+> 1. **What system or service is affected?** (e.g., payment API, auth service, main web app, database)
+> 2. **What are the symptoms?** (paste error messages, stack traces, or describe what users see)
+> 3. **When did it start?** (exact time, or "about X minutes/hours ago")
+> 4. **What changed recently?** (deploys, config changes, traffic spikes, dependency updates — anything)
+> 5. **What is the user impact?** (% of users affected, which features are broken, revenue path involved)
+>
+> Partial information is fine — share what you have and we'll proceed immediately.
+
+Once the user responds (even partially), proceed with triage using available context.
+
+---
+
 ## Trigger Conditions
 
 Activate on any of:
@@ -160,6 +182,6 @@ incident-triaging (assess severity) → incident-remediating (CVE patching playb
 - **Never skip triage for unknowns.** If severity isn't obvious, classify it before doing anything else.
 - **Never generate remediation steps from memory** — always load `incident-remediating`'s reference files.
 - **Never let an artifact exist only in chat** — always write to disk.
-- **One question at a time** — if context is missing, ask for the single most important signal, not a list.
+- **Batch intake for missing context, single questions for follow-ups** — when critical incident context is completely absent, use Phase 0 to collect all key signals at once. For minor gaps during active triage or remediation, ask one focused question at a time to minimize cognitive load.
 - **Be explicit about phase transitions** — tell the developer when you're moving from triage to RCA to remediation.
   Incident management is stressful; clarity about what's happening reduces cognitive load.

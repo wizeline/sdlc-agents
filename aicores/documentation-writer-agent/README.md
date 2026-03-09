@@ -31,8 +31,8 @@ documentation-writer-agent/
 
 ## MCP Connections
 
-| Server      | URL                              | Used By                                    |
-|-------------|----------------------------------|--------------------------------------------|
+| Server        | URL                                  | Used By                                                   |
+| ------------- | ------------------------------------ | --------------------------------------------------------- |
 | `atlassian` | `https://mcp.atlassian.com/v1/mcp` | `atlassian-sourcer`, `doc-engineer`, `c4-architect` |
 
 The Atlassian MCP connection enables fetching user stories, epics, acceptance criteria, and Confluence pages directly into the documentation workflow. Authentication uses OAuth; the agent calls `getAccessibleAtlassianResources` first on every session to obtain the correct `cloudId`.
@@ -43,13 +43,14 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 
 ### `doc-engineer`
 
-**Description:** Primary Documentation Engineer. Executes the full research → draft → review → format workflow for any documentation task.
+**Description:** Primary Documentation Engineer. Executes the full research → draft → review → format workflow for any documentation task. When the request is ambiguous or under-specified, runs a structured **Phase 0 Intake** — asking what to document, who the audience is, the reader's goal, available sources, and preferred output format — all in one prompt so the user can answer in a single reply.
 
 **Triggers:** `"write docs for"`, `"document this"`, `"generate release notes"`, `"create a README"`, `"review these docs"`, `"write a tutorial"`, `"create an ADR"`, `"use the Jira stories"`, `"pull from Confluence"`
 
 **Skills loaded:** `authoring-technical-docs`, `authoring-api-docs`, `authoring-architecture-docs`, `authoring-release-docs`, `authoring-user-docs`, `editing-docx-files`, `processing-pdfs`, `editing-pptx-files`, `automating-docs-updates`, `sourcing-from-atlassian`
 
 **Examples:**
+
 ```
 "Document the /payments REST endpoint from the OpenAPI spec"
 "Write release notes for v2.3.0 from these Jira tickets"
@@ -57,6 +58,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 "Review the existing architecture docs and give me a quality verdict"
 "Write a tutorial for our new auth SDK — audience is external developers"
 "Generate a Word document version of this API reference"
+"I need some documentation" ← triggers Phase 0 intake to gather scope
 ```
 
 ---
@@ -70,6 +72,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Skills loaded:** `sourcing-from-atlassian`
 
 **Examples:**
+
 ```
 "Pull the epic PROJ-42 and all its child stories"
 "Fetch the Confluence page 'Auth Service Design' from the ENG space"
@@ -88,6 +91,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Skills loaded:** `authoring-technical-docs`, `authoring-architecture-docs`, `sourcing-from-atlassian`
 
 **Examples:**
+
 ```
 "Generate a C4 context diagram for our e-commerce platform"
 "Show me the container architecture for the auth service"
@@ -107,12 +111,14 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **When to use:** Always. This is the foundation every other skill builds on. If no domain skill matches, this skill alone is sufficient.
 
 **Key features:**
+
 - Diátaxis framework classification (Tutorial / How-To / Explanation / Reference)
 - Six quality dimensions: Accuracy, Completeness, Usability, Consistency, Readability, Structure
 - Gap detection with blocker/warning/info severity
 - YAML frontmatter requirements for every document
 
 **Example:**
+
 ```
 "Review this existing API reference doc — give me a quality verdict"
 "Write documentation for this Python module (general, no specific type needed)"
@@ -127,12 +133,14 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"document this API"`, `"generate API reference"`, `"write SDK docs"`, `"document these endpoints"`
 
 **Key features:**
+
 - REST endpoint template (auth, parameters, request/response, error codes, rate limits)
 - SDK function template (params, return values, errors, usage example)
 - OpenAPI/Swagger → full reference generation
 - Every endpoint gets a copy-pasteable working example
 
 **Example:**
+
 ```
 "Generate API reference documentation from this OpenAPI spec"
 "Document the /users/{id} endpoint — include auth, params, errors, and a working curl example"
@@ -148,6 +156,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"write a design doc"`, `"create an ADR"`, `"document the architecture"`, `"write a technical proposal"`
 
 **Key features:**
+
 - C4 Model at all four levels (Context, Container, Component, Deployment + Dynamic)
 - SDLC phase → diagram level selection matrix
 - Mermaid diagram generation (version-controllable)
@@ -155,6 +164,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Anti-pattern detection
 
 **Example:**
+
 ```
 "Create an ADR for our decision to use PostgreSQL over MongoDB"
 "Write a system architecture overview for our microservices platform"
@@ -171,6 +181,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"write release notes"`, `"generate a changelog"`, `"create a README"`, `"document what changed"`, `"write migration guide"`
 
 **Key features:**
+
 - User-impact-first framing (not implementation detail)
 - Structured section order: Breaking Changes → Features → Improvements → Bug Fixes → Deprecations
 - Breaking changes in prominent callout blocks with inline migration steps
@@ -178,6 +189,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - README standalone standard (clone-to-run in under 30 seconds)
 
 **Example:**
+
 ```
 "Write release notes for v3.1.0 from these Jira tickets"
 "Generate a CHANGELOG.md from this git log"
@@ -194,6 +206,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"write a tutorial"`, `"create a getting started guide"`, `"document how to use this"`, `"write a user guide"`, `"create onboarding docs"`
 
 **Key features:**
+
 - Diátaxis-aligned type selection (Tutorial / How-To / User Guide / Onboarding Guide)
 - "Hello World" rule — give users a small win early
 - Idempotent steps (safe to re-run)
@@ -201,6 +214,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Role-based onboarding (developer, QA, DevOps, PM)
 
 **Example:**
+
 ```
 "Write a tutorial for first-time users of our CLI tool"
 "Create a how-to guide for configuring SSO with our app"
@@ -217,12 +231,14 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"commit and push"` (when documentation should be kept in sync)
 
 **Key features:**
+
 - Reads `git diff --cached` to identify what changed
 - Determines which docs cover the modified code
 - Updates API docs, architecture overviews, or user guides as appropriate
 - Stages updated doc files alongside the code changes
 
 **Example:**
+
 ```
 "Commit these changes to the payment module and keep the docs in sync"
 "Push this PR — make sure the API reference reflects the new endpoint parameters"
@@ -237,6 +253,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"Word doc"`, `"word document"`, `.docx`, `"report"`, `"memo"`, `"letter"`, professional formatted deliverable
 
 **Key features:**
+
 - Create from scratch using `docx-js` (JavaScript library)
 - Edit existing documents via XML unpack → edit → repack workflow
 - Full tracked changes and comments support
@@ -244,6 +261,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Validation and auto-repair
 
 **Example:**
+
 ```
 "Convert this Markdown API reference to a professionally formatted Word document"
 "Add tracked-change suggestions to this .docx contract"
@@ -260,6 +278,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** `"deck"`, `"slides"`, `"presentation"`, `.pptx`, any mention of PowerPoint
 
 **Key features:**
+
 - Read/extract text with `markitdown`
 - Create from scratch with `pptxgenjs`
 - Edit existing decks via XML unpack → edit → repack workflow
@@ -267,6 +286,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Visual QA via image conversion
 
 **Example:**
+
 ```
 "Create a 10-slide pitch deck for our product launch"
 "Extract the text from this PowerPoint and summarize it"
@@ -283,6 +303,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** any `.pdf` file, `"extract text from PDF"`, `"merge PDFs"`, `"create a PDF"`, `"fill this form"`
 
 **Key features:**
+
 - Text extraction with `pypdf` and `pdfplumber`
 - Table extraction to Pandas DataFrames / Excel
 - PDF creation with `reportlab`
@@ -291,6 +312,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Merge, split, rotate, watermark, encrypt/decrypt
 
 **Example:**
+
 ```
 "Extract all tables from this PDF report and convert them to Excel"
 "Merge these three PDFs into one"
@@ -307,6 +329,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 **Triggers:** (Used internally by other agents; can also be loaded directly when Atlassian data is needed)
 
 **Key features:**
+
 - Complete JQL query patterns for epics, sprints, releases, features
 - CQL query patterns for Confluence page discovery
 - Field extraction maps (Jira → documentation concepts)
@@ -315,6 +338,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 - Error handling for MCP failures
 
 **Example:**
+
 ```
 "Use the Jira epic PROJ-42 and all its stories as the documentation source"
 "Fetch the Confluence pages tagged 'api-design' in the ENG space"
@@ -325,17 +349,26 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 
 ## Installation
 
-### Install the full AI Core (all agents)
+### Install the full AI Core (all agents & skills)
+
 ```bash
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent -a gemini
+npx aicores add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent
 ```
 
 ### Install a single agent
+
 ```bash
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a gemini
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer
 ```
 
 ### Install a single skill
+
 ```bash
-npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs -a gemini
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/authoring-technical-docs
 ```
+
+## ToDos
+
+- [ ] Add new skill to bilboard documentation in Confluence
+- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+

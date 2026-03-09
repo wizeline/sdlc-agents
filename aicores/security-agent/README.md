@@ -38,7 +38,7 @@ security-agent/
 
 ### `devsec-code-review`
 
-**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes, and generates secure code review checklists.
+**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
 
 **Triggers:** `"review this code for security"`, `"is this code secure?"`, `"check for XSS/SQLi/CSRF"`, `"scan for deprecated libraries"`, `"identify EOL components"`, `"what ASVS level should I target?"`
 
@@ -245,3 +245,8 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-reviewing-code-for-security -a gemini
 ```
+
+## ToDos
+
+- [ ] Add new skill to bilboard documentation in Confluence
+- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
