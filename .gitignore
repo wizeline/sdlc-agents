@@ -213,4 +213,11 @@ __marimo__/
 #nodejs files
 package*.json
 .package*.json
-node_modules
+node_modules/
+.node_modules/
+
+#AI Assistants
+.agents/
+.claude/
+.windsurf/
+.gemini/

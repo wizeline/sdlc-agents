@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:www.npmjs.com)",
       "WebFetch(domain:cwe.mitre.org)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "mcp__claude_ai_Atlassian__fetch",
+      "mcp__claude_ai_Atlassian__createConfluencePage"
     ]
   }
 }
