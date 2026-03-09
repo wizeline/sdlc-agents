@@ -8,11 +8,12 @@ The **Incident Support Agent** is a comprehensive incident management AI Core. I
 
 ## Architecture Overview
 
-```
+```text
 incident-support-agent/
 ├── agents/
 │   └── incident-commander-agent.md      ← Multi-phase incident orchestration
 └── skills/
+    ├── incident-ingesting/               ← Jira ticket → structured intake package
     ├── incident-triaging/                ← Intake + P0–P3 classification
     ├── incident-analyzing/               ← Root cause analysis & hypothesis testing
     ├── incident-remediating/             ← Remediation options + PR artifacts
@@ -25,7 +26,7 @@ incident-support-agent/
 
 The Incident Support Agent integrates with external systems via MCP servers:
 
-- **Atlassian** — Create/update Jira tickets, Confluence pages, postmortems
+- **Atlassian** — Read Jira tickets to trigger incident response; create/update tickets, Confluence pages, postmortems
 - **GitHub** — Link PRs, commits, and remediation artifacts to incidents
 
 All skills operate on logs, stack traces, code, and architecture descriptions you provide directly. MCP connections are optional for advanced integrations.
@@ -36,14 +37,21 @@ All skills operate on logs, stack traces, code, and architecture descriptions yo
 
 ### `incident-commander`
 
-**Description:** Multi-phase incident orchestrator. Takes the first report of something broken (stack trace, error log, outage report) and routes it through specialized skills in the right sequence: triage → RCA → remediation → documentation. When the report is too vague to triage (e.g., "something is broken" with no error or context), runs a structured **Phase 0 Intake** — asking for the affected system, symptoms, timing, recent changes, and user impact — all in one prompt. Chains skill outputs together and maintains clarity about what's been done and what's next.
+**Description:** Multi-phase incident orchestrator. Takes the first report of something broken — stack trace, error log, outage report, or a Jira ticket key — and routes it through specialist skills in the right sequence. When the report is too vague to triage (e.g., "something is broken" with no error or context), runs a structured **Phase 0 Intake** — asking for the affected system, symptoms, timing, recent changes, and user impact — all in one prompt. Chains skill outputs together and maintains clarity about what's been done and what's next.
 
-**Triggers:** `"we have an incident"`, `"prod is down"`, `"something is broken"`, `"there's an outage"`, `"SEV1"`, or any description of system failure
+**Triggers:** `"we have an incident"`, `"prod is down"`, `"something is broken"`, `"there's an outage"`, `"SEV1"`, a Jira ticket key (`OPS-412`, `PROD-88`), or any description of system failure
 
-**Skills loaded:** `incident-triaging`, `incident-analyzing`, `incident-remediating`, `incident-documenting`
+**Skills loaded:** `incident-ingesting`, `incident-triaging`, `incident-analyzing`, `incident-remediating`, `incident-documenting`
 
 **Example workflows:**
-```
+
+```text
+# Jira ticket shared → ingest first, then full incident flow
+incident-ingesting → incident-triaging → incident-analyzing → incident-remediating → incident-documenting
+
+# Jira ticket already resolved → documentation loop only
+incident-ingesting → incident-documenting [postmortem + summary]
+
 # Pasted stack trace → full incident flow
 incident-triaging → incident-analyzing → incident-remediating → incident-documenting
 
@@ -64,13 +72,47 @@ incident-triaging → incident-documenting [Jira ticket only]
 
 ## Skills
 
+### `incident-ingesting`
+
+**Description:** Reads an existing Jira ticket that describes a production incident or discovered issue, extracts all relevant context, and hands off a structured intake package to the Incident Commander. Use this skill when an incident is reported via a Jira ticket key or URL rather than pasted logs or symptoms. Requires the Atlassian MCP.
+
+**Accepts:**
+
+- Bare key: `OPS-412`, `PROD-88`, `INC-7`
+- Full URL: `https://company.atlassian.net/browse/OPS-412`
+- Natural language: "the Jira for the checkout outage"
+
+**Jira fields extracted:**
+
+| Field | Purpose |
+| --- | --- |
+| `summary` + `description` | Incident title and full symptom description |
+| `priority` | Maps to P0–P3 severity hint (Blocker→P0/P1, Major→P1/P2, Minor→P2/P3) |
+| `status` | Active vs. resolved routing (Resolved/Done → `incident-documenting` only) |
+| `labels`, `components` | Affected services and incident metadata |
+| `comment` thread | Actions already taken, stack traces, diagnostic findings |
+| `attachment` | Log files and exported metrics |
+| Linked issues | Related incidents, hotfix PRs, parent epics |
+
+**Output:** Structured intake package with symptom, onset time, scope, trigger, and a bullet list of actions already taken — identical in format to a manual incident report, so `incident-triaging` consumes it without modification.
+
+**Routing:**
+
+- Active ticket → hands off to `incident-triaging` → full response flow
+- Resolved/Done ticket → hands off directly to `incident-documenting`
+
+**Reference files:** None (fetch-and-extract only)
+
+---
+
 ### `incident-triaging`
 
 **Description:** Incident intake and rapid severity classification for all SDLC stages (local dev, CI, staging, prod). Produces a structured Triage Block with P0–P3 severity, blast radius estimate, SLA risk, and minimum context for handoff to root cause analysis.
 
 **Severity Levels:**
+
 | Level | Name | Response SLA | Condition |
-|-------|------|--------------|-----------|
+| --- | --- | --- | --- |
 | P0 | Critical / SEV1 | Immediate | Complete outage, data loss, active breach, or SLA breach in <15 min |
 | P1 | High / SEV2 | 30 minutes | Major feature broken, 2x latency degradation, payment/auth flows impaired, >5% error rate |
 | P2 | Medium / SEV3 | 4 hours | Non-critical feature broken (workaround exists), elevated error rate, staging/CI pipeline broken |
@@ -87,14 +129,16 @@ incident-triaging → incident-documenting [Jira ticket only]
 **Description:** Systematic root cause analysis using structured hypothesis testing. Moves from symptom to confirmed cause through evidence gathering and hypothesis validation. Identifies the origin service vs. propagation services in distributed systems, draws causal chains, and produces impact assessment.
 
 **RCA Methodology:**
+
 1. **Form hypothesis** — Name the specific service, function, query, or config that likely caused the failure
 2. **Identify discriminating evidence** — What telemetry would confirm vs. refute each hypothesis
 3. **Test and update** — Gather evidence from logs, metrics, code, and update hypothesis accordingly
 4. **Write causal chain** — Every arrow represents a causal step, not correlation
 
 **Error Pattern Recognition:**
+
 | Pattern | Most Likely Cause | Diagnostic Step |
-|---------|-------------------|-----------------|
+| --- | --- | --- |
 | `connection pool timeout` / `too many connections` | Connection pool exhaustion/leak | Check pool utilization metric; look for missing `close()` |
 | `OOMKilled` / `heap out of memory` | Memory leak or undersized limit | Plot memory metric since last deploy |
 | `deadlock found` | DB lock contention | Check long-running transactions and missing indexes |
@@ -106,6 +150,7 @@ incident-triaging → incident-documenting [Jira ticket only]
 **Output:** Confirmed causal chain with supporting evidence and impact assessment (users affected, revenue path, data integrity, downstream services)
 
 **Reference files:**
+
 - `references/topology-patterns.md` — Diagnostic signatures and commands for 10+ common distributed systems failure classes
 
 ---
@@ -115,7 +160,8 @@ incident-triaging → incident-documenting [Jira ticket only]
 **Description:** Remediation planning and execution. Turns a confirmed (or probable) root cause into concrete action. Produces remediation options ordered by speed-to-recovery and safety, generates exact copy-pasteable commands for the developer's environment, and creates complete PR artifacts.
 
 **Remediation Ordering:**
-```
+
+```text
 1. Runtime / operational (minutes, no code change)
    → Rollback, feature flag, circuit breaker, scale out, cache flush, pool reset
    → Fastest, easiest to revert, lowest risk
@@ -134,6 +180,7 @@ incident-triaging → incident-documenting [Jira ticket only]
 ```
 
 **Covered Remediations:**
+
 - Kubernetes rollback and deployment recovery
 - Feature flag disable (kill feature without deploy)
 - DB connection pool recovery (kill idle connections, restart pods, tune pool size)
@@ -144,12 +191,14 @@ incident-triaging → incident-documenting [Jira ticket only]
 - Dependency CVE patching and supply chain remediation
 
 **Output artifacts:**
+
 - Ordered remediation options with risk/revert guidance for each
 - Exact copy-pasteable commands (inferred from platform: k8s, Docker, AWS, etc.)
 - Complete PR description with problem, root cause, fix, testing, rollback, and labels
 - Runbook for recurring incident types (saved to `runbooks/`)
 
 **Reference files:**
+
 - `references/remediation-patterns.md` — 9 playbooks with exact commands, risk warnings, and revert paths for common incident types
 
 ---
@@ -161,7 +210,7 @@ incident-triaging → incident-documenting [Jira ticket only]
 **Artifacts produced:**
 
 | Artifact | When | Audience | Saved to |
-|----------|------|----------|----------|
+| --- | --- | --- | --- |
 | **Escalation Brief** | P0/P1 incidents, immediate escalation needed | On-call leads, managers, escalation targets | `.docs/escalation-<YYYYMMDD-HHMM>.md` |
 | **Jira Ticket** | After any incident (P0–P3) | Engineering team, audit trail | `.docs/jira-<YYYYMMDD-HHMM>.md` |
 | **Postmortem Draft** | After P0/P1 incidents | Entire engineering org, learning | `docs/postmortem-<YYYYMMDD>-<slug>.md` |
@@ -182,16 +231,19 @@ incident-triaging → incident-documenting [Jira ticket only]
 ## Installation
 
 ### Install the full AI Core (all agents)
+
 ```bash
 npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent
 ```
 
 ### Install a single agent
+
 ```bash
 npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent/agents/incident-commander-agent
 ```
 
 ### Install a single skill
+
 ```bash
 npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent/skills/incident-triaging
 ```
@@ -200,11 +252,20 @@ npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/inc
 
 ## Typical Usage
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+### An incident is tracked in Jira — trigger response from the ticket
+
+```text
+incident-commander will:
+  1. Invoke incident-ingesting → Fetch ticket, extract symptom, comments, stack traces, actions taken
+  2. Invoke incident-triaging → Classify severity using extracted context (no re-entry needed)
+  3. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
+  4. Invoke incident-remediating → Show fast remediation options + code fix if needed
+  5. Invoke incident-documenting → Generate escalation brief (if P0/P1) + postmortem
+```
+
 ### An engineer reports a vague incident with no context
 
-```
+```text
 incident-commander will:
   1. Run Phase 0 Intake → Ask for affected system, symptoms, timing, recent changes, user impact
   2. Once user responds, invoke incident-triaging → Classify severity
@@ -214,29 +275,9 @@ incident-commander will:
 ```
 
 ### An engineer pastes a stack trace with no context
-```
-incident-commander will (stack trace is sufficient context — no intake needed):
-=======
-### An engineer pastes a stack trace with no context
-```
-incident-commander will:
->>>>>>> 5bcf311 (docs: created a comprehensive README.md for the incident-support-agent AI Core that mirrors the structure and detail level of the security-agent README.)
-=======
-### An engineer reports a vague incident with no context
 
-```
-incident-commander will:
-  1. Run Phase 0 Intake → Ask for affected system, symptoms, timing, recent changes, user impact
-  2. Once user responds, invoke incident-triaging → Classify severity
-  3. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
-  4. Invoke incident-remediating → Show fast remediation options + code fix if needed
-  5. Invoke incident-documenting → Generate escalation brief (if P0/P1) + Jira ticket
-```
-
-### An engineer pastes a stack trace with no context
-```
+```text
 incident-commander will (stack trace is sufficient context — no intake needed):
->>>>>>> 30a2774 (docs: All three READMEs updated:)
   1. Invoke incident-triaging → Classify severity (likely P1 or P2)
   2. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
   3. Invoke incident-remediating → Show fast remediation options + code fix if needed
@@ -244,7 +285,8 @@ incident-commander will (stack trace is sufficient context — no intake needed)
 ```
 
 ### Production is down, time is critical (P0)
-```
+
+```text
 incident-commander will:
   1. Invoke incident-triaging → Confirm P0 immediately
   2. Invoke incident-analyzing + incident-documenting (in parallel)
@@ -255,7 +297,8 @@ incident-commander will:
 ```
 
 ### Developer knows the issue, needs the fix
-```
+
+```text
 incident-remediating directly:
   "Our DB connections are exhausted again, what do I do?"
   → Remediation skill produces the exact commands to fix it
@@ -266,14 +309,10 @@ incident-remediating directly:
 
 ## Key Design Principles
 
-1. **Triage everything** — False positives are cheap; missed incidents are not. When in doubt, classify severity.
-2. **Speed to restoration before permanent fix** — Fast runtime remediation now, root cause code fix later.
-3. **No ghost artifacts** — Every document produced (escalation brief, Jira ticket, postmortem) is written to disk immediately. Nothing stays only in chat.
-4. **Evidence-based RCA** — Never theorize about code you can read. Gather discriminating evidence, test hypotheses, converge on cause.
-5. **Escalation clarity** — Be explicit about phase transitions (triage → RCA → remediation). Incident management is stressful; clarity reduces cognitive load.
-6. **Blameless learning** — Postmortems focus on systemic conditions, not individual blame. The goal is preventing future incidents, not assigning fault.
-
-## ToDos
-
-- [x] Add new skill to read a JIRA ticket so the incident-commander can be triggered
-- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+1. **Meet the incident where it lives** — Whether reported as a raw log, a Slack message, or an existing Jira ticket, the agent extracts context from the source rather than asking the developer to repeat it.
+2. **Triage everything** — False positives are cheap; missed incidents are not. When in doubt, classify severity.
+3. **Speed to restoration before permanent fix** — Fast runtime remediation now, root cause code fix later.
+4. **No ghost artifacts** — Every document produced (escalation brief, Jira ticket, postmortem) is written to disk immediately. Nothing stays only in chat.
+5. **Evidence-based RCA** — Never theorize about code you can read. Gather discriminating evidence, test hypotheses, converge on cause.
+6. **Escalation clarity** — Be explicit about phase transitions (triage → RCA → remediation). Incident management is stressful; clarity reduces cognitive load.
+7. **Blameless learning** — Postmortems focus on systemic conditions, not individual blame. The goal is preventing future incidents, not assigning fault.
