@@ -45,6 +45,7 @@ security-agent/
 **Skills loaded:** `devsec-reviewing-code-for-security`
 
 **Examples:**
+
 ```
 "Review this authentication module for security vulnerabilities"
 "Is this SQL query vulnerable to injection? Show me the fix"
@@ -65,6 +66,7 @@ security-agent/
 **Skills loaded:** `devsec-conducting-threat-modeling`
 
 **Examples:**
+
 ```
 "Threat model this microservices architecture diagram"
 "Identify attack surfaces for our new payment API"
@@ -85,6 +87,7 @@ security-agent/
 **Skills loaded:** `devsec-designing-security-architecture`
 
 **Examples:**
+
 ```
 "Secure this REST API against the OWASP API Top 10"
 "Set up OAuth 2.0 with PKCE for our mobile app"
@@ -105,6 +108,7 @@ security-agent/
 **Skills loaded:** `devsec-hardening-devsecops-pipelines`
 
 **Examples:**
+
 ```
 "Add SAST to our GitHub Actions pipeline — we use Python"
 "Set up SCA scanning and fail the build on critical CVEs"
@@ -125,6 +129,7 @@ security-agent/
 **Skills loaded:** `devsec-managing-compliance-frameworks`
 
 **Examples:**
+
 ```
 "Perform a gap analysis against SOC 2 Type II requirements"
 "Map our existing security controls to ISO 27001:2022"
@@ -145,6 +150,7 @@ security-agent/
 **Skills loaded:** `devsec-building-security-programs`, `devsec-managing-compliance-frameworks`
 
 **Examples:**
+
 ```
 "Assess our security maturity using OWASP SAMM"
 "Design a Security Champions program for our 200-person engineering org"
@@ -165,13 +171,14 @@ security-agent/
 **14 Secure Coding Domains:** Input validation, output encoding, authentication/session, access control, cryptography, error handling, data protection, communication security, system configuration, database security, file/resource management, memory management, business logic, dependency management.
 
 **Output types:**
-| Request | Output |
-|---------|--------|
-| `"Review this code"` | Real-Time Report: prioritized findings with code fixes |
-| `"Give me a checklist"` | Tailored Secure Code Review Checklist |
-| `"What ASVS level?"` | Level recommendation + gap list |
-| `"How do I prevent X?"` | Domain-specific guidance with examples |
-| `"Step-by-step fix"` | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify) |
+
+| Request                   | Output                                                         |
+| ------------------------- | -------------------------------------------------------------- |
+| `"Review this code"`    | Real-Time Report: prioritized findings with code fixes         |
+| `"Give me a checklist"` | Tailored Secure Code Review Checklist                          |
+| `"What ASVS level?"`    | Level recommendation + gap list                                |
+| `"How do I prevent X?"` | Domain-specific guidance with examples                         |
+| `"Step-by-step fix"`    | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify) |
 
 ---
 
@@ -180,6 +187,7 @@ security-agent/
 **Description:** STRIDE-based threat modeling methodology. Identifies threats per component and data flow, prioritizes by exploitability and impact, and derives testable security requirements.
 
 **Outputs:**
+
 - **Threat Model Document** — System overview, trust boundaries, STRIDE inventory, risk register, security requirements
 - **Vulnerability Map** — Attack surface inventory, trust boundary diagram, STRIDE table, deprecated library risks
 
@@ -190,6 +198,7 @@ security-agent/
 **Description:** Security patterns for APIs, microservices, cloud-native, and AI/LLM systems. Covers OAuth 2.0, JWT, mTLS, PKCE, zero-trust, OWASP API Top 10, and OWASP LLM Top 10 (2025).
 
 **Key areas:**
+
 - **API Security** — BOLA, BFLA, rate limiting, data exposure, OWASP API Top 10
 - **Cloud-Native** — Zero-trust, secrets management, least-privilege IAM
 - **AI/LLM** — Prompt injection (LLM01), supply chain (LLM03), agentic systems (LLM08), RAG security
@@ -201,12 +210,13 @@ security-agent/
 **Description:** Security tooling integration across the full CI/CD pipeline lifecycle. Covers pre-commit, PR/build, staging, and release gate stages.
 
 **Pipeline Stages:**
-| Stage | Controls |
-|-------|----------|
-| Pre-commit | Gitleaks, TruffleHog secret scanning; security linting |
-| PR / Build | SAST, SCA (dependency + license), container scanning, IaC scanning |
-| Pre-deploy | DAST (OWASP ZAP, Nuclei), API security testing |
-| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance |
+
+| Stage        | Controls                                                           |
+| ------------ | ------------------------------------------------------------------ |
+| Pre-commit   | Gitleaks, TruffleHog secret scanning; security linting             |
+| PR / Build   | SAST, SCA (dependency + license), container scanning, IaC scanning |
+| Pre-deploy   | DAST (OWASP ZAP, Nuclei), API security testing                     |
+| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance             |
 
 ---
 
@@ -232,16 +242,19 @@ security-agent/
 ## Installation
 
 ### Install the full AI Core (all agents)
+
 ```bash
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent -a gemini
 ```
 
 ### Install a single agent
+
 ```bash
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/agents/devsec-code-review -a gemini
 ```
 
 ### Install a single skill
+
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-reviewing-code-for-security -a gemini
 ```
@@ -249,4 +262,5 @@ npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 ## ToDos
 
 - [ ] Add new skill to bilboard documentation in Confluence
-- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+- [ ] Include CWE MITTRE
+- [X] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute

@@ -143,9 +143,11 @@ Gemini CLI discovers skills from three locations (highest to lowest precedence):
 ```bash
 # Using the agents-skills CLI (recommended)
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a gemini
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/skills -a gemini
 
 # Using Gemini's native installer
 gemini skills install https://github.com/wizeline/sdlc-agents.git --path aicores/documentation-writer-agent/skills
+gemini skills install https://github.com/wizeline/sdlc-agents.git --path aicores/unit-testing-agent/skills
 
 # Install a specific skill from a monorepo
 gemini skills install https://github.com/org/skills.git --path skills/frontend
@@ -245,9 +247,11 @@ To use specialized agents like `atlassian-sourcer`, you need to configure the [A
 ```bash
 # Install a single subagent
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a gemini
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a gemini
 
 # Install an entire agent group
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a gemini
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a gemini
 ```
 
 **Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
@@ -328,7 +332,7 @@ claude auth login
 
 ### Skills Setup
 
-Claude Code follows the Agent Skills open standard and extends it with additional features: invocation control, subagent execution via `context: fork`, and argument passing via `$ARGUMENTS`.
+Claude Code follows the Agent Skills open standard and extends it with additional features: invocation control, subagent execution via `context: fork`, built-in subagent selection via `agent:`, and argument passing via `$ARGUMENTS`.
 
 **Skill directory locations** (highest to lowest precedence):
 
@@ -343,6 +347,7 @@ Claude Code follows the Agent Skills open standard and extends it with additiona
 
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a claude-code
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/skills -a claude-code
 ```
 
 **Create your first skill:**
@@ -438,10 +443,11 @@ Or use the interactive agent manager:
 ```bash
 # Install a single subagent
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a claude-code
 
 # Install an entire agent group
 npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
-
+npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a claude-code
 ```
 
 **Create a custom subagent manually:**
@@ -510,7 +516,7 @@ to review the new payment module. Code-reviewer should flag implementation
 issues; codebase-expert should check consistency with existing patterns.
 ```
 
-> **Note:** Subagents cannot spawn further subagents. For nested delegation, chain subagents from the main conversation or use a skill with `context: fork` in its frontmatter.
+> **Note:** Subagents cannot spawn further subagents. For nested delegation, chain subagents from the main conversation or use a skill with `context: fork` in its frontmatter. Pair `context: fork` with `agent: Plan` or `agent: Explore` to control which built-in subagent type the skill runs in — useful for orchestration skills that coordinate other skills before generating output.
 
 ---
 
@@ -839,6 +845,7 @@ You can also ask Codex in natural language to steer, pause, or close any running
 | `user-invocable` | Claude Code | `false` = hidden from slash command menu; model-only |
 | `allowed-tools` | Claude Code | Restrict which tools the skill can use |
 | `context` | Claude Code | `fork` = run skill in an isolated subagent context |
+| `agent` | Claude Code | Built-in subagent type to use when `context: fork` is set. Values: `Plan`, `Explore`, `Bash` |
 | `license` | Cursor | License information for the skill |
 | `compatibility` | Cursor | Environment requirements |
 | `metadata` | Cursor | Custom key-value metadata |
@@ -861,3 +868,8 @@ You can also ask Codex in natural language to steer, pause, or close any running
 ---
 
 *Sources: [Agent Skills Open Standard](https://agentskills.io/home) · [Gemini CLI Skills](https://geminicli.com/docs/cli/skills/) · [Gemini CLI Subagents](https://geminicli.com/docs/core/subagents/) · [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/slash-commands) · [Claude Code Subagents](https://docs.anthropic.com/en/docs/claude-code/sub-agents) · [Cursor Skills](https://cursor.com/docs/context/skills) · [Cursor Subagents](https://cursor.com/docs/context/subagents) · [OpenAI Codex Multi-Agent](https://developers.openai.com/codex/multi-agent/)*
+
+**Prompt examples for AI Cores in this repo:**
+
+- [Unit Testing Agent](prompt-examples-unit-testing-agent.md)
+- [Developer Security Governance](prompt-examples-devsec-governance.md)
