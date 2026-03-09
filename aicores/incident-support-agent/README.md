@@ -36,7 +36,7 @@ All skills operate on logs, stack traces, code, and architecture descriptions yo
 
 ### `incident-commander`
 
-**Description:** Multi-phase incident orchestrator. Takes the first report of something broken (stack trace, error log, outage report) and routes it through specialized skills in the right sequence: triage → RCA → remediation → documentation. Chains outputs together and maintains clarity about what's been done and what's next.
+**Description:** Multi-phase incident orchestrator. Takes the first report of something broken (stack trace, error log, outage report) and routes it through specialized skills in the right sequence: triage → RCA → remediation → documentation. When the report is too vague to triage (e.g., "something is broken" with no error or context), runs a structured **Phase 0 Intake** — asking for the affected system, symptoms, timing, recent changes, and user impact — all in one prompt. Chains skill outputs together and maintains clarity about what's been done and what's next.
 
 **Triggers:** `"we have an incident"`, `"prod is down"`, `"something is broken"`, `"there's an outage"`, `"SEV1"`, or any description of system failure
 
@@ -200,9 +200,20 @@ npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/inc
 
 ## Typical Usage
 
-### An engineer pastes a stack trace with no context
+### An engineer reports a vague incident with no context
+
 ```
 incident-commander will:
+  1. Run Phase 0 Intake → Ask for affected system, symptoms, timing, recent changes, user impact
+  2. Once user responds, invoke incident-triaging → Classify severity
+  3. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
+  4. Invoke incident-remediating → Show fast remediation options + code fix if needed
+  5. Invoke incident-documenting → Generate escalation brief (if P0/P1) + Jira ticket
+```
+
+### An engineer pastes a stack trace with no context
+```
+incident-commander will (stack trace is sufficient context — no intake needed):
   1. Invoke incident-triaging → Classify severity (likely P1 or P2)
   2. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
   3. Invoke incident-remediating → Show fast remediation options + code fix if needed
@@ -242,4 +253,4 @@ incident-remediating directly:
 ## ToDos
 
 - [ ] Add new skill to read a JIRA ticket so the incident-commander can be triggered
-- [ ] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute

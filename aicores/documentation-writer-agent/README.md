@@ -43,7 +43,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 
 ### `doc-engineer`
 
-**Description:** Primary Documentation Engineer. Executes the full research → draft → review → format workflow for any documentation task.
+**Description:** Primary Documentation Engineer. Executes the full research → draft → review → format workflow for any documentation task. When the request is ambiguous or under-specified, runs a structured **Phase 0 Intake** — asking what to document, who the audience is, the reader's goal, available sources, and preferred output format — all in one prompt so the user can answer in a single reply.
 
 **Triggers:** `"write docs for"`, `"document this"`, `"generate release notes"`, `"create a README"`, `"review these docs"`, `"write a tutorial"`, `"create an ADR"`, `"use the Jira stories"`, `"pull from Confluence"`
 
@@ -58,6 +58,7 @@ The Atlassian MCP connection enables fetching user stories, epics, acceptance cr
 "Review the existing architecture docs and give me a quality verdict"
 "Write a tutorial for our new auth SDK — audience is external developers"
 "Generate a Word document version of this API reference"
+"I need some documentation" ← triggers Phase 0 intake to gather scope
 ```
 
 ---
@@ -369,5 +370,5 @@ npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documen
 ## ToDos
 
 - [ ] Add new skill to bilboard documentation in Confluence
-- [ ] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
 
