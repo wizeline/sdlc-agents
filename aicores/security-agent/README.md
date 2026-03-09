@@ -50,12 +50,12 @@ security-agent/
 **Examples:**
 
 ```text
-"Review this authentication module for security vulnerabilities"
-"Is this SQL query vulnerable to injection? Show me the fix"
-"Generate a secure code review checklist for our Node.js API"
-"What ASVS level should we target for our healthcare app?"
-"Scan this requirements.txt for deprecated or vulnerable libraries"
-"Review this JWT implementation — check for common weaknesses"
+Review this authentication module for security vulnerabilities
+Is this SQL query vulnerable to injection? Show me the fix
+Generate a secure code review checklist for our Node.js API
+What ASVS level should we target for our healthcare app?
+Scan this requirements.txt for deprecated or vulnerable libraries
+Review this JWT implementation — check for common weaknesses
 ```
 
 ---
@@ -71,12 +71,12 @@ security-agent/
 **Examples:**
 
 ```text
-"Threat model this microservices architecture diagram"
-"Identify attack surfaces for our new payment API"
-"Run a STRIDE analysis on this authentication flow"
-"What security requirements do I need for this user registration feature?"
-"Produce a vulnerability map for our checkout service"
-"Do an architecture security review before we start coding"
+Threat model this microservices architecture diagram
+Identify attack surfaces for our new payment API
+Run a STRIDE analysis on this authentication flow
+What security requirements do I need for this user registration feature?
+Produce a vulnerability map for our checkout service
+Do an architecture security review before we start coding
 ```
 
 ---
@@ -92,12 +92,12 @@ security-agent/
 **Examples:**
 
 ```text
-"Secure this REST API against the OWASP API Top 10"
-"Set up OAuth 2.0 with PKCE for our mobile app"
-"Design a zero-trust service mesh for our Kubernetes cluster"
-"Review this LLM application for prompt injection risks"
-"How do I secure a RAG pipeline to prevent unauthorized content exposure?"
-"What mTLS configuration do I need for service-to-service auth?"
+Secure this REST API against the OWASP API Top 10
+Set up OAuth 2.0 with PKCE for our mobile app
+Design a zero-trust service mesh for our Kubernetes cluster
+Review this LLM application for prompt injection risks
+How do I secure a RAG pipeline to prevent unauthorized content exposure?
+What mTLS configuration do I need for service-to-service auth?
 ```
 
 ---
@@ -113,12 +113,12 @@ security-agent/
 **Examples:**
 
 ```text
-"Add SAST to our GitHub Actions pipeline — we use Python"
-"Set up SCA scanning and fail the build on critical CVEs"
-"Integrate OWASP ZAP into our GitLab CI staging stage"
-"Generate an SBOM for our container image"
-"Secure our supply chain — pin dependencies and add provenance verification"
-"Set up secret scanning with Gitleaks as a pre-commit hook"
+Add SAST to our GitHub Actions pipeline — we use Python
+Set up SCA scanning and fail the build on critical CVEs
+Integrate OWASP ZAP into our GitLab CI staging stage
+Generate an SBOM for our container image
+Secure our supply chain — pin dependencies and add provenance verification
+Set up secret scanning with Gitleaks as a pre-commit hook
 ```
 
 ---
@@ -134,13 +134,13 @@ security-agent/
 **Examples:**
 
 ```text
-"Perform a gap analysis against SOC 2 Type II requirements"
-"Map our existing security controls to ISO 27001:2022"
-"What NIST SSDF tasks apply to our CI/CD pipeline?"
-"Create a compliance log for our Q1 security activities"
-"Show me a security metrics dashboard — MTTD, MTTR, and vulnerability density"
-"What GDPR Article 32 technical measures do we need for EU data processing?"
-"Publish this compliance gap analysis to our Confluence security space"
+Perform a gap analysis against SOC 2 Type II requirements
+Map our existing security controls to ISO 27001:2022
+What NIST SSDF tasks apply to our CI/CD pipeline?
+Create a compliance log for our Q1 security activities
+Show me a security metrics dashboard — MTTD, MTTR, and vulnerability density
+What GDPR Article 32 technical measures do we need for EU data processing?
+Publish this compliance gap analysis to our Confluence security space
 ```
 
 ---
@@ -156,12 +156,12 @@ security-agent/
 **Examples:**
 
 ```text
-"Assess our security maturity using OWASP SAMM"
-"Design a Security Champions program for our 200-person engineering org"
-"Build us a 12-month AppSec roadmap starting from scratch"
-"Make the case to our CTO for investing in application security"
-"Design a vulnerability disclosure program for our public APIs"
-"How do we prioritize our security investments given limited budget?"
+Assess our security maturity using OWASP SAMM
+Design a Security Champions program for our 200-person engineering org
+Build us a 12-month AppSec roadmap starting from scratch
+Make the case to our CTO for investing in application security
+Design a vulnerability disclosure program for our public APIs
+How do we prioritize our security investments given limited budget?
 ```
 
 ---
@@ -289,6 +289,14 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-reviewing-code-for-security -a gemini
 ```
+
+### Install the Confluence publishing skill only
+
+```bash
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-publishing-compliance-report -a gemini
+```
+
+> **Note:** The `devsec-publishing-compliance-report` skill requires an active **Atlassian MCP** connection to publish to Confluence.
 
 ## ToDos
 
