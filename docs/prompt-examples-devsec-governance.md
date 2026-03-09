@@ -1,7 +1,7 @@
 # Developer Security Governance — Prompt Examples
 
 Ready-to-use prompts for the **Developer Security Governance** AI Core.
-This core includes **6 agents** backed by **6 skills**.
+This core includes **6 agents** backed by **7 skills**.
 
 > **How to use**: Copy any prompt below and paste it into your AI coding assistant.
 > The agent will automatically load the required skill references, analyze your context, and deliver actionable security guidance.
@@ -16,7 +16,7 @@ This core includes **6 agents** backed by **6 skills**.
 | `devsec-threat-modeling` | `devsec-conducting-threat-modeling` |
 | `devsec-architecture` | `devsec-designing-security-architecture` |
 | `devsec-ops-pipeline` | `devsec-hardening-devsecops-pipelines` |
-| `devsec-compliance-framework` | `devsec-managing-compliance-frameworks` |
+| `devsec-compliance-framework` | `devsec-managing-compliance-frameworks`, `devsec-publishing-compliance-report` |
 | `devsec-program` | `devsec-building-security-programs`, `devsec-managing-compliance-frameworks` |
 
 ---
@@ -27,10 +27,11 @@ Each skill produces one or more named output artifacts. Use the prompts below to
 
 | Output Type | Produced By | What It Contains |
 | --- | --- | --- |
-| **Real-Time Report** | `devsec-code-review` | Instant prioritized findings with OWASP/ASVS mapping and in-language code fixes |
-| **Vulnerability Map** | `devsec-threat-modeling` | Attack surface inventory, STRIDE threat table, deprecated/CVE library risks, risk register |
+| **Real-Time Report** | `devsec-code-review` | Instant prioritized findings with OWASP/ASVS/CWE mapping and in-language code fixes |
+| **Vulnerability Map** | `devsec-threat-modeling` | Attack surface inventory, STRIDE + CWE threat table, deprecated/CVE library risks, risk register |
 | **Remediation Guide** | `devsec-code-review` | Step-by-step fix instructions: scope → fix → test → prevent → verify |
 | **Compliance Log** | `devsec-compliance-framework` | Audit-ready ledger of control activities, finding SLAs, KPIs, and evidence index |
+| **Confluence Page** | `devsec-compliance-framework` | Security artifact published to Confluence with proper metadata, CWE/OWASP refs preserved |
 
 ---
 
@@ -42,12 +43,12 @@ Each skill produces one or more named output artifacts. Use the prompts below to
 
 ```text
 Review this Express.js authentication middleware for security vulnerabilities. We handle PII, so target ASVS Level 2.
-Produce a Real-Time Report: prioritized findings (Critical → Low), each mapped to an OWASP Top 10 (2025) category and ASVS 5.0 requirement, with before/after code fixes in Express.js.
+Produce a Real-Time Report: prioritized findings (Critical → Low), each mapped to an OWASP Top 10 (2025) category, a CWE ID at Base or Variant level, and an ASVS 5.0 requirement, with before/after code fixes in Express.js.
 ```
 
 ```text
 Review our Go microservice for the OWASP Top 10 (2025). Focus on input validation, error handling, and cryptography domains.
-Output a Real-Time Report with the full OWASP Top 10 coverage table showing which categories were checked.
+Output a Real-Time Report with the full OWASP Top 10 coverage table and CWE IDs for each finding.
 ```
 
 ```text
@@ -55,7 +56,7 @@ Is this SQL query safe from injection? Here's the code. Check if our Django view
 ```
 
 ```text
-Check my file upload handler for path traversal and dangerous file type issues. Show exact line numbers and fixes.
+Check my file upload handler for path traversal and dangerous file type issues. Show exact line numbers, the CWE for each finding, and the fixes.
 ```
 
 ```text
@@ -63,7 +64,7 @@ What ASVS Level 2 requirements does this login flow not meet? Run a gap analysis
 ```
 
 ```text
-Review this React component for XSS vulnerabilities. Show me before/after code examples of the fix.
+Review this React component for XSS vulnerabilities. Map findings to CWE-79 or related CWEs and show me before/after code examples of the fix.
 ```
 
 ```text
@@ -89,11 +90,11 @@ We found a missing authorization check on our /api/users/{id} endpoint (OWASP A0
 ### Threat Model Document
 
 ```text
-Threat model this checkout flow — here's the architecture diagram. Users authenticate via Cognito and data is stored in PostgreSQL.
+Threat model this checkout flow — here's the architecture diagram. Users authenticate via Cognito and data is stored in PostgreSQL. For each threat, assign a CWE ID at Base or Variant level.
 ```
 
 ```text
-Run a STRIDE analysis on our new user authentication system. Users upload documents processed by a Lambda and stored in S3.
+Run a STRIDE analysis on our new user authentication system. Users upload documents processed by a Lambda and stored in S3. Map each threat to a CWE ID.
 ```
 
 ```text
@@ -111,11 +112,11 @@ Security review of my architecture: a Kafka-based event streaming platform with 
 ### Vulnerability Map
 
 ```text
-Produce a Vulnerability Map for our public-facing REST API. List every external and internal entry point with protocol and trust level, draw the trust boundary map, run STRIDE per component, and include a table of any deprecated or CVE-affected dependencies with recommended actions.
+Produce a Vulnerability Map for our public-facing REST API. List every external and internal entry point with protocol and trust level, draw the trust boundary map, run STRIDE per component with CWE IDs, and include a table of any deprecated or CVE-affected dependencies with recommended actions.
 ```
 
 ```text
-What are the attack surfaces for this architecture? Produce a Vulnerability Map covering the full attack surface inventory, STRIDE threat table, and a prioritized risk register with owner and remediation timelines.
+What are the attack surfaces for this architecture? Produce a Vulnerability Map covering the full attack surface inventory, STRIDE threat table with CWE IDs, and a prioritized risk register with owner and remediation timelines.
 ```
 
 ---
@@ -196,7 +197,7 @@ Help me set up a security gate in GitHub Actions that identifies and blocks any 
 
 ---
 
-## `devsec-compliance-framework` — Compliance & Metrics
+## `devsec-compliance-framework` — Compliance, Metrics & Confluence Publishing
 
 > **Persona:** Compliance/GRC professional, pre-audit
 
@@ -229,7 +230,25 @@ Produce a Compliance Log for our Q1 audit. Record every security control activit
 ```
 
 ```text
-Create a Compliance Log that tracks all findings from our last pen test and SAST scan cycle. For each finding include severity, OWASP category, SLA target, actual remediation date, and evidence link. Calculate our MTTD and MTTR against the targets in our compliance framework.
+Create a Compliance Log that tracks all findings from our last pen test and SAST scan cycle. For each finding include severity, OWASP category, CWE ID, SLA target, actual remediation date, and evidence link. Calculate our MTTD and MTTR against the targets in our compliance framework.
+```
+
+### Publish to Confluence
+
+```text
+Publish this compliance gap analysis to our Confluence security space. The parent page is "Security & Compliance" and the title should be "Q1 2025 ISO 27001 Gap Analysis".
+```
+
+```text
+Create a Confluence page from the threat model we just produced. Target the "Engineering" space under the "Architecture Decisions" page. Create it as a draft so I can review before publishing.
+```
+
+```text
+Update the existing "Security Metrics Dashboard" page in our Confluence compliance space with the latest MTTD and MTTR data from this quarter's scan results.
+```
+
+```text
+Produce a compliance gap analysis against SOC 2 Type II, then publish it as a Confluence page in our "Audit Readiness" space so the team can review it before the auditor call.
 ```
 
 ---
@@ -276,7 +295,7 @@ Here's the context: [paste code / architecture / requirements]
 ```text
 Review [this document / code / architecture] and give me:
 1. Issues or gaps found
-2. Recommended fixes  
+2. Recommended fixes
 3. Priority order
 ```
 
@@ -296,7 +315,7 @@ Keep it practical — give me something I can use today.
 Threat model this API design, then review the existing code for security issues that match those threats, and finally document the findings as an architecture decision record.
 ```
 
-*— This triggers `devsec-conducting-threat-modeling` + `devsec-reviewing-code-for-security` + `authoring-architecture-docs` in sequence.*
+*— This triggers threat modeling + secure code review + architecture documentation in sequence.*
 
 ---
 
@@ -322,9 +341,10 @@ Please perform a complete security assessment covering every domain below:
    layer for security issues. Target ASVS Level 2 given we handle PHI
    (Protected Health Information).
    → Produce a Real-Time Report: prioritized findings (Critical → Low)
-     each mapped to an OWASP Top 10 (2025) category, CWE ID, and ASVS
-     5.0 requirement, with before/after code fixes in Python/FastAPI.
-     Include the full OWASP Top 10 coverage table and automation notes.
+     each mapped to an OWASP Top 10 (2025) category, CWE ID at Base or
+     Variant level, and ASVS 5.0 requirement, with before/after code
+     fixes in Python/FastAPI. Include the full OWASP Top 10 coverage
+     table and automation notes.
    → For every Critical finding, also produce a Remediation Guide with
      step-by-step fix, security test, and prevention mechanism.
    → Generate a secure code review checklist tailored to Python/FastAPI.
@@ -332,15 +352,16 @@ Please perform a complete security assessment covering every domain below:
 2. Threat Modeling (devsec-threat-modeling)
    Threat model the full architecture: React SPA → Auth0 → API Gateway →
    FastAPI services → PostgreSQL + Pinecone → GPT-4 (external). Apply
-   STRIDE per component. Identify trust boundaries, prioritize threats by
-   exploitability × impact, and derive testable security requirements.
+   STRIDE per component. Identify trust boundaries, assign CWE IDs to
+   each threat, prioritize by exploitability × impact, and derive testable
+   security requirements.
    → Produce the Threat Model Document using the standard template.
    → Also produce a Vulnerability Map: full attack surface inventory,
-     trust boundary diagram, STRIDE threat table per component, deprecated
-     and CVE-affected dependency table (maps to OWASP A06), and a
-     prioritized risk register with owner and remediation timelines.
+     trust boundary diagram, STRIDE + CWE threat table per component,
+     deprecated and CVE-affected dependency table (maps to OWASP A06),
+     and a prioritized risk register with owner and remediation timelines.
 
-3. Security Architecture Review (devsec-architecture)
+3. Security Architecture Review
    a) API & Cloud Security: Audit our REST API against the OWASP API Top
       10. We suspect BOLA issues in our multi-tenant endpoints. Review
       our OAuth 2.0/PKCE flow and JWT lifecycle. Recommend zero-trust
@@ -376,6 +397,8 @@ Please perform a complete security assessment covering every domain below:
      SOC 2, NIST SSDF, ASVS, and GDPR Article in a single audit-ready
      table. Include the vulnerability SLA log, KPI dashboard, and an
      evidence index organized for SOC 2 Type II auditors.
+   → Publish the Compliance Log to our Confluence "Audit Readiness" space
+     under the parent page "SOC 2 Preparation".
 
 6. Security Program Design (devsec-program)
    - Run an OWASP SAMM assessment based on the context provided. Produce
@@ -398,16 +421,16 @@ GitHub Actions) — not generic advice.
 ### What This Prompt Activates
 
 | Step | Agent | Skill(s) | Output Type |
-| ---- | ----- | -------- | ----------- |
-| 1. Code Review | `devsec-code-review` | `devsec-reviewing-code-for-security` (OWASP Top 10, ASVS, secure coding practices) | **Real-Time Report** + **Remediation Guides** |
-| 2. Threat Model | `devsec-threat-modeling` | `devsec-conducting-threat-modeling` (STRIDE, threat model template) | Threat Model Doc + **Vulnerability Map** |
+| --- | --- | --- | --- |
+| 1. Code Review | `devsec-code-review` | `devsec-reviewing-code-for-security` (OWASP Top 10, ASVS, CWE Top 25, secure coding practices) | **Real-Time Report** + **Remediation Guides** |
+| 2. Threat Model | `devsec-threat-modeling` | `devsec-conducting-threat-modeling` (STRIDE, CWE mapping, threat model template) | Threat Model Doc + **Vulnerability Map** |
 | 3a. API & Cloud | `devsec-architecture` | `devsec-designing-security-architecture` (API/cloud security patterns) | Architecture review |
 | 3b. AI/LLM | `devsec-architecture` | `devsec-designing-security-architecture` (LLM/AI security, OWASP LLM Top 10) | Architecture review |
 | 4. Pipeline | `devsec-ops-pipeline` | `devsec-hardening-devsecops-pipelines` (CI/CD-SEC, SAST/DAST, SBOM) | Pipeline config (YAML) |
-| 5. Compliance | `devsec-compliance-framework` | `devsec-managing-compliance-frameworks` (compliance mapping, NIST SSDF, ASVS, KPIs) | **Compliance Log** |
+| 5. Compliance | `devsec-compliance-framework` | `devsec-managing-compliance-frameworks` + `devsec-publishing-compliance-report` | **Compliance Log** + **Confluence Page** |
 | 6. Program | `devsec-program` | `devsec-building-security-programs` + `devsec-managing-compliance-frameworks` (SAMM, Champions, roadmap) | Roadmap + SAMM scorecard |
 
-> **💡 Tip**: This is a very large prompt that spans all 6 agents. Depending on your AI assistant's capabilities, it may process domains sequentially or ask you to confirm before proceeding. You can also extract individual numbered sections as standalone prompts — each one maps to a specific agent.
+> **Tip**: This is a very large prompt that spans all 6 agents. Depending on your AI assistant's capabilities, it may process domains sequentially or ask you to confirm before proceeding. You can also extract individual numbered sections as standalone prompts — each one maps to a specific security domain.
 
 ### Short Version — Same Coverage, Fewer Words
 
@@ -416,16 +439,18 @@ If you prefer a concise prompt that still triggers every agent and skill:
 ```text
 Our "HealthBridge" SaaS (Python/FastAPI, React, Auth0, PostgreSQL, AWS EKS,
 GitHub Actions) handles PHI and has a RAG+GPT-4 clinical summarizer. SOC 2
-audit in 6 months, no AppSec team. Perform: (1) secure code review of our 
-auth middleware and tenant isolation, plus a scan for deprecated/EOL code, 
-ASVS L2, with fixes and a checklist; (2) STRIDE threat model of the full 
-architecture with security requirements; (3) OWASP API Top 10 audit, OAuth/JWT 
-review, zero-trust recommendations, plus OWASP LLM Top 10 review of the RAG 
-pipeline; (4) GitHub Actions pipeline hardening — SAST, SCA, secrets, container 
-scanning, SBOM, EOL checks, and security gates with YAML configs; (5) compliance 
-mapping to ISO 27001, NIST SSDF, HIPAA, ASVS L2 gap analysis, metrics dashboard, 
-and SOC 2 evidence checklist; (6) SAMM assessment, Security Champions launch 
-plan, 12-month roadmap, VDP policy, and executive summary for the CTO.
+audit in 6 months, no AppSec team. Perform: (1) secure code review of our
+auth middleware and tenant isolation, ASVS L2, CWE-mapped findings, with
+fixes and a checklist; (2) STRIDE threat model of the full architecture with
+CWE IDs per threat and security requirements; (3) OWASP API Top 10 audit,
+OAuth/JWT review, zero-trust recommendations, plus OWASP LLM Top 10 review
+of the RAG pipeline; (4) GitHub Actions pipeline hardening — SAST, SCA,
+secrets, container scanning, SBOM, EOL checks, and security gates with YAML
+configs; (5) compliance mapping to ISO 27001, NIST SSDF, HIPAA, ASVS L2 gap
+analysis, metrics dashboard, and SOC 2 evidence checklist — then publish the
+compliance log to our Confluence "Audit Readiness" space; (6) SAMM assessment,
+Security Champions launch plan, 12-month roadmap, VDP policy, and executive
+summary for the CTO.
 ```
 
 ### For Non-Technical Users
@@ -443,10 +468,11 @@ latest known attack types; (4) set up automatic security scanning in our
 build process and give us the configuration files ready to use; (5) map
 what we're doing today against the standards our auditors will check
 (ISO 27001, HIPAA, SOC 2) and tell us what's missing, with a dashboard
-to track progress; (6) design a security program for us: assess where we
-are today, propose a champions network, build a 12-month plan, draft a
-policy for handling reported vulnerabilities, and write a one-pager for
-our CTO explaining why this investment matters.
+to track progress — then post the results to our team wiki; (6) design a
+security program for us: assess where we are today, propose a champions
+network, build a 12-month plan, draft a policy for handling reported
+vulnerabilities, and write a one-pager for our CTO explaining why this
+investment matters.
 ```
 
 ---
@@ -458,3 +484,4 @@ our CTO explaining why this investment matters.
 3. **Specify compliance targets** — "We need SOC 2 / PCI-DSS / GDPR" triggers the right reference material.
 4. **Describe your current state** — "No scanning today" vs. "Replacing Veracode" leads to very different recommendations.
 5. **Ask for deliverables** — "Give me a gap analysis", "Produce a roadmap", "Generate the YAML config" ensures actionable output.
+6. **Request Confluence publishing** — Add "publish to our [Space Name] Confluence space" to any compliance or assessment request to get a formatted page created automatically.

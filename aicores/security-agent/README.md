@@ -8,22 +8,23 @@ The **Security Agent** is a comprehensive developer security governance AI Core.
 
 ## Architecture Overview
 
-```
+```text
 security-agent/
 ├── agents/
-│   ├── devsec-architecture.md       ← Secure API, cloud-native & AI/LLM system design
-│   ├── devsec-code-review.md        ← OWASP/ASVS-aligned secure code review
+│   ├── devsec-architecture.md         ← Secure API, cloud-native & AI/LLM system design
+│   ├── devsec-code-review.md          ← OWASP/ASVS/CWE-aligned secure code review
 │   ├── devsec-compliance-framework.md ← ISO 27001, SOC 2, PCI-DSS, NIST SSDF mapping
-│   ├── devsec-ops-pipeline.md       ← SAST/DAST/SCA, CI/CD security gates, SBOM
-│   ├── devsec-program.md            ← AppSec program, SAMM maturity, Security Champions
-│   └── devsec-threat-modeling.md    ← STRIDE threat modeling, attack surface analysis
+│   ├── devsec-ops-pipeline.md         ← SAST/DAST/SCA, CI/CD security gates, SBOM
+│   ├── devsec-program.md              ← AppSec program, SAMM maturity, Security Champions
+│   └── devsec-threat-modeling.md      ← STRIDE threat modeling, attack surface analysis
 └── skills/
-    ├── devsec-reviewing-code-for-security/     ← 14 secure coding domains, OWASP Top 10
-    ├── devsec-conducting-threat-modeling/      ← STRIDE, risk register, security requirements
+    ├── devsec-reviewing-code-for-security/     ← 14 secure coding domains, OWASP Top 10, CWE Top 25
+    ├── devsec-conducting-threat-modeling/      ← STRIDE, risk register, CWE mapping, security requirements
     ├── devsec-designing-security-architecture/ ← API/cloud/LLM security patterns
     ├── devsec-hardening-devsecops-pipelines/   ← CI/CD security tooling integration
     ├── devsec-managing-compliance-frameworks/  ← Cross-framework control mapping
-    └── devsec-building-security-programs/      ← SAMM, Security Champions, roadmaps
+    ├── devsec-building-security-programs/      ← SAMM, Security Champions, roadmaps
+    └── devsec-publishing-compliance-report/    ← Publish security reports to Confluence
 ```
 
 ---
@@ -31,6 +32,8 @@ security-agent/
 ## MCP Connections
 
 > The Security Agent does not require MCP connections by default. All skills operate on code, architecture descriptions, and documentation you provide directly.
+>
+> **Exception:** `devsec-publishing-compliance-report` requires the **Atlassian MCP** connection to publish reports to Confluence.
 
 ---
 
@@ -38,7 +41,7 @@ security-agent/
 
 ### `devsec-code-review`
 
-**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
+**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, CWE Top 25, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes mapped to CWE IDs, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
 
 **Triggers:** `"review this code for security"`, `"is this code secure?"`, `"check for XSS/SQLi/CSRF"`, `"scan for deprecated libraries"`, `"identify EOL components"`, `"what ASVS level should I target?"`
 
@@ -46,20 +49,20 @@ security-agent/
 
 **Examples:**
 
-```
-"Review this authentication module for security vulnerabilities"
-"Is this SQL query vulnerable to injection? Show me the fix"
-"Generate a secure code review checklist for our Node.js API"
-"What ASVS level should we target for our healthcare app?"
-"Scan this requirements.txt for deprecated or vulnerable libraries"
-"Review this JWT implementation — check for common weaknesses"
+```text
+Review this authentication module for security vulnerabilities
+Is this SQL query vulnerable to injection? Show me the fix
+Generate a secure code review checklist for our Node.js API
+What ASVS level should we target for our healthcare app?
+Scan this requirements.txt for deprecated or vulnerable libraries
+Review this JWT implementation — check for common weaknesses
 ```
 
 ---
 
 ### `devsec-threat-modeling`
 
-**Description:** Threat modeling facilitator using STRIDE methodology. Identifies threats to systems and architectures, documents attack surfaces, and derives testable security requirements before code is written.
+**Description:** Threat modeling facilitator using STRIDE methodology. Identifies threats to systems and architectures, documents attack surfaces with CWE mappings, and derives testable security requirements before code is written.
 
 **Triggers:** `"threat model this"`, `"what could go wrong with this design?"`, `"identify threats to my API"`, `"help me do STRIDE"`, `"what are the attack surfaces?"`, `"security review of my architecture"`
 
@@ -67,13 +70,13 @@ security-agent/
 
 **Examples:**
 
-```
-"Threat model this microservices architecture diagram"
-"Identify attack surfaces for our new payment API"
-"Run a STRIDE analysis on this authentication flow"
-"What security requirements do I need for this user registration feature?"
-"Produce a vulnerability map for our checkout service"
-"Do an architecture security review before we start coding"
+```text
+Threat model this microservices architecture diagram
+Identify attack surfaces for our new payment API
+Run a STRIDE analysis on this authentication flow
+What security requirements do I need for this user registration feature?
+Produce a vulnerability map for our checkout service
+Do an architecture security review before we start coding
 ```
 
 ---
@@ -88,13 +91,13 @@ security-agent/
 
 **Examples:**
 
-```
-"Secure this REST API against the OWASP API Top 10"
-"Set up OAuth 2.0 with PKCE for our mobile app"
-"Design a zero-trust service mesh for our Kubernetes cluster"
-"Review this LLM application for prompt injection risks"
-"How do I secure a RAG pipeline to prevent unauthorized content exposure?"
-"What mTLS configuration do I need for service-to-service auth?"
+```text
+Secure this REST API against the OWASP API Top 10
+Set up OAuth 2.0 with PKCE for our mobile app
+Design a zero-trust service mesh for our Kubernetes cluster
+Review this LLM application for prompt injection risks
+How do I secure a RAG pipeline to prevent unauthorized content exposure?
+What mTLS configuration do I need for service-to-service auth?
 ```
 
 ---
@@ -109,34 +112,35 @@ security-agent/
 
 **Examples:**
 
-```
-"Add SAST to our GitHub Actions pipeline — we use Python"
-"Set up SCA scanning and fail the build on critical CVEs"
-"Integrate OWASP ZAP into our GitLab CI staging stage"
-"Generate an SBOM for our container image"
-"Secure our supply chain — pin dependencies and add provenance verification"
-"Set up secret scanning with Gitleaks as a pre-commit hook"
+```text
+Add SAST to our GitHub Actions pipeline — we use Python
+Set up SCA scanning and fail the build on critical CVEs
+Integrate OWASP ZAP into our GitLab CI staging stage
+Generate an SBOM for our container image
+Secure our supply chain — pin dependencies and add provenance verification
+Set up secret scanning with Gitleaks as a pre-commit hook
 ```
 
 ---
 
 ### `devsec-compliance-framework`
 
-**Description:** Security compliance advisor mapping controls to standards (ISO 27001, SOC 2, PCI-DSS, HIPAA, NIST SSDF, OWASP ASVS, GDPR, CCPA). Produces gap analyses, control mapping tables, compliance logs, and security metrics dashboards.
+**Description:** Security compliance advisor mapping controls to standards (ISO 27001, SOC 2, PCI-DSS, HIPAA, NIST SSDF, OWASP ASVS, GDPR, CCPA). Produces gap analyses, control mapping tables, compliance logs, and security metrics dashboards. Can publish any compliance artifact directly to Confluence.
 
-**Triggers:** `"map our controls to ISO 27001"`, `"what controls do I need for SOC 2?"`, `"NIST SSDF alignment"`, `"security gap analysis"`, `"GDPR Article 32"`, `"MTTD/MTTR metrics"`, `"audit preparation"`
+**Triggers:** `"map our controls to ISO 27001"`, `"what controls do I need for SOC 2?"`, `"NIST SSDF alignment"`, `"security gap analysis"`, `"GDPR Article 32"`, `"MTTD/MTTR metrics"`, `"audit preparation"`, `"publish compliance report to Confluence"`
 
-**Skills loaded:** `devsec-managing-compliance-frameworks`
+**Skills loaded:** `devsec-managing-compliance-frameworks`, `devsec-publishing-compliance-report`
 
 **Examples:**
 
-```
-"Perform a gap analysis against SOC 2 Type II requirements"
-"Map our existing security controls to ISO 27001:2022"
-"What NIST SSDF tasks apply to our CI/CD pipeline?"
-"Create a compliance log for our Q1 security activities"
-"Show me a security metrics dashboard — MTTD, MTTR, and vulnerability density"
-"What GDPR Article 32 technical measures do we need for EU data processing?"
+```text
+Perform a gap analysis against SOC 2 Type II requirements
+Map our existing security controls to ISO 27001:2022
+What NIST SSDF tasks apply to our CI/CD pipeline?
+Create a compliance log for our Q1 security activities
+Show me a security metrics dashboard — MTTD, MTTR, and vulnerability density
+What GDPR Article 32 technical measures do we need for EU data processing?
+Publish this compliance gap analysis to our Confluence security space
 ```
 
 ---
@@ -151,13 +155,13 @@ security-agent/
 
 **Examples:**
 
-```
-"Assess our security maturity using OWASP SAMM"
-"Design a Security Champions program for our 200-person engineering org"
-"Build us a 12-month AppSec roadmap starting from scratch"
-"Make the case to our CTO for investing in application security"
-"Design a vulnerability disclosure program for our public APIs"
-"How do we prioritize our security investments given limited budget?"
+```text
+Assess our security maturity using OWASP SAMM
+Design a Security Champions program for our 200-person engineering org
+Build us a 12-month AppSec roadmap starting from scratch
+Make the case to our CTO for investing in application security
+Design a vulnerability disclosure program for our public APIs
+How do we prioritize our security investments given limited budget?
 ```
 
 ---
@@ -166,30 +170,30 @@ security-agent/
 
 ### `devsec-reviewing-code-for-security`
 
-**Description:** Structured secure code review capability covering OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains.
+**Description:** Structured secure code review capability covering OWASP Top 10 (2025), ASVS 5.0, CWE Top 25, and 14 secure coding domains. Every finding is mapped to OWASP category, ASVS requirement, and CWE ID at Base or Variant level.
 
 **14 Secure Coding Domains:** Input validation, output encoding, authentication/session, access control, cryptography, error handling, data protection, communication security, system configuration, database security, file/resource management, memory management, business logic, dependency management.
 
 **Output types:**
 
-| Request                   | Output                                                         |
-| ------------------------- | -------------------------------------------------------------- |
-| `"Review this code"`    | Real-Time Report: prioritized findings with code fixes         |
-| `"Give me a checklist"` | Tailored Secure Code Review Checklist                          |
-| `"What ASVS level?"`    | Level recommendation + gap list                                |
-| `"How do I prevent X?"` | Domain-specific guidance with examples                         |
-| `"Step-by-step fix"`    | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify) |
+| Request | Output |
+| --- | --- |
+| `"Review this code"` | Real-Time Report: prioritized findings with code fixes + CWE/OWASP/ASVS |
+| `"Give me a checklist"` | Tailored Secure Code Review Checklist |
+| `"What ASVS level?"` | Level recommendation + gap list |
+| `"How do I prevent X?"` | Domain-specific guidance with examples |
+| `"Step-by-step fix"` | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify) |
 
 ---
 
 ### `devsec-conducting-threat-modeling`
 
-**Description:** STRIDE-based threat modeling methodology. Identifies threats per component and data flow, prioritizes by exploitability and impact, and derives testable security requirements.
+**Description:** STRIDE-based threat modeling methodology. Identifies threats per component and data flow, assigns CWE IDs to each threat, prioritizes by exploitability and impact, and derives testable security requirements.
 
 **Outputs:**
 
-- **Threat Model Document** — System overview, trust boundaries, STRIDE inventory, risk register, security requirements
-- **Vulnerability Map** — Attack surface inventory, trust boundary diagram, STRIDE table, deprecated library risks
+- **Threat Model Document** — System overview, trust boundaries, STRIDE inventory with CWE mappings, risk register, security requirements
+- **Vulnerability Map** — Attack surface inventory, trust boundary diagram, STRIDE + CWE table, deprecated library risks
 
 ---
 
@@ -211,12 +215,12 @@ security-agent/
 
 **Pipeline Stages:**
 
-| Stage        | Controls                                                           |
-| ------------ | ------------------------------------------------------------------ |
-| Pre-commit   | Gitleaks, TruffleHog secret scanning; security linting             |
-| PR / Build   | SAST, SCA (dependency + license), container scanning, IaC scanning |
-| Pre-deploy   | DAST (OWASP ZAP, Nuclei), API security testing                     |
-| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance             |
+| Stage | Controls |
+| --- | --- |
+| Pre-commit | Gitleaks, TruffleHog secret scanning; security linting |
+| PR / Build | SAST, SCA (dependency + license), container scanning, IaC scanning |
+| Pre-deploy | DAST (OWASP ZAP, Nuclei), API security testing |
+| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance |
 
 ---
 
@@ -236,6 +240,33 @@ security-agent/
 
 **SAMM Functions:** Governance, Design, Implementation, Verification, Operations
 **Roadmap horizons:** 30 days, 60 days, 90 days, 6 months, 12 months
+
+---
+
+### `devsec-publishing-compliance-report`
+
+**Description:** Publishes any security artifact produced by the security-agent directly to Confluence. Supports creating new pages, updating existing ones, and creating draft pages for review. Formats content with proper metadata headers, preserves all CWE/OWASP/ASVS references, and confirms the Confluence URL after publishing.
+
+**Requires:** Atlassian MCP connection
+
+**Supported artifact types:** Code review reports, threat models, vulnerability maps, compliance logs, gap analyses, SAMM assessments, DevSecOps pipeline assessments.
+
+**Output layouts:** Code Review Report, Threat Model, Compliance Gap Analysis / Log, SAMM Assessment / Roadmap (see `assets/confluence-page-template.md`).
+
+---
+
+## CWE/MITRE Integration
+
+All security findings and threat model entries produced by this AI Core are mapped to [CWE (Common Weakness Enumeration)](https://cwe.mitre.org) at **Base or Variant level**, following the [MITRE CWE Usage Guidance](https://cwe.mitre.org/documents/cwe_usage/guidance.html).
+
+Key rules enforced:
+
+- Only ALLOWED or ALLOWED-with-review CWEs are cited
+- Pillar-level and Category-level CWEs are never used for mapping
+- Weakness language (root cause) is used, not impact/exploit language
+- Every finding header includes: `CWE-{ID} – {Name} [Base/Variant, ALLOWED]`
+
+Reference: `skills/devsec-reviewing-code-for-security/references/cwe-mitre.md`
 
 ---
 
@@ -259,8 +290,16 @@ npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-reviewing-code-for-security -a gemini
 ```
 
+### Install the Confluence publishing skill only
+
+```bash
+npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/security-agent/skills/devsec-publishing-compliance-report -a gemini
+```
+
+> **Note:** The `devsec-publishing-compliance-report` skill requires an active **Atlassian MCP** connection to publish to Confluence.
+
 ## ToDos
 
-- [ ] Add new skill to bilboard documentation in Confluence
-- [ ] Include CWE MITTRE
+- [X] Add new skill to publish security compliance report in Confluence (`devsec-publishing-compliance-report`)
+- [X] Include CWE MITRE (Top 25, abstraction levels, OWASP cross-reference, mapping guidance)
 - [X] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
