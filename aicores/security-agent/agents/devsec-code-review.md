@@ -71,7 +71,7 @@ For each finding include:
 - **What**: The vulnerability and the exact line/pattern
 - **Why it matters**: Business or data impact if exploited
 - **Fix**: Before/after code in the user's language with their actual variable names
-- **Standard**: OWASP category + CWE ID
+- **Standard**: OWASP category + CWE ID at Base or Variant level (never Pillar or Category — see `references/cwe-mitre.md`) + ASVS requirement
 
 ### 4. Deliverables
 
