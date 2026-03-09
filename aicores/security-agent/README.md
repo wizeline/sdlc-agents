@@ -41,7 +41,11 @@ security-agent/
 
 ### `devsec-code-review`
 
+<<<<<<< HEAD
 **Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, CWE Top 25, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes mapped to CWE IDs, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
+=======
+**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
+>>>>>>> 30a2774 (docs: All three READMEs updated:)
 
 **Triggers:** `"review this code for security"`, `"is this code secure?"`, `"check for XSS/SQLi/CSRF"`, `"scan for deprecated libraries"`, `"identify EOL components"`, `"what ASVS level should I target?"`
 

@@ -201,6 +201,7 @@ npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/inc
 ## Typical Usage
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### An engineer reports a vague incident with no context
 
 ```
@@ -220,6 +221,22 @@ incident-commander will (stack trace is sufficient context — no intake needed)
 ```
 incident-commander will:
 >>>>>>> 5bcf311 (docs: created a comprehensive README.md for the incident-support-agent AI Core that mirrors the structure and detail level of the security-agent README.)
+=======
+### An engineer reports a vague incident with no context
+
+```
+incident-commander will:
+  1. Run Phase 0 Intake → Ask for affected system, symptoms, timing, recent changes, user impact
+  2. Once user responds, invoke incident-triaging → Classify severity
+  3. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
+  4. Invoke incident-remediating → Show fast remediation options + code fix if needed
+  5. Invoke incident-documenting → Generate escalation brief (if P0/P1) + Jira ticket
+```
+
+### An engineer pastes a stack trace with no context
+```
+incident-commander will (stack trace is sufficient context — no intake needed):
+>>>>>>> 30a2774 (docs: All three READMEs updated:)
   1. Invoke incident-triaging → Classify severity (likely P1 or P2)
   2. Invoke incident-analyzing → Form hypothesis, gather evidence, write causal chain
   3. Invoke incident-remediating → Show fast remediation options + code fix if needed
@@ -259,4 +276,8 @@ incident-remediating directly:
 ## ToDos
 
 - [ ] Add new skill to read a JIRA ticket so the incident-commander can be triggered
+<<<<<<< HEAD
 - [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+=======
+- [x] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+>>>>>>> 30a2774 (docs: All three READMEs updated:)
