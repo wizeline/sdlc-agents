@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.npmjs.com)",
-      "WebFetch(domain:cwe.mitre.org)"
+      "WebFetch(domain:cwe.mitre.org)",
+      "Bash(python3:*)"
     ]
   }
 }

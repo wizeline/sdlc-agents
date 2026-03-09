@@ -13,6 +13,103 @@ Components can belong to an AI Core or exist as standalone modules—they don't 
 
 ---
 
+## 📖 Tutorial: How to Configure and Use SDLC AI Cores & Skills
+
+**AI Cores** are accelerators designed to help you implement AI into your software development lifecycle. They group together **Agents** (like Gemini, Cloud Code, Cursor, or Windsurf) and **Skills** (specific tasks formatted as Markdown files) to automate common workflows like Documentation, Security, Unit Testing, and Incident Management.
+
+Here is how to set them up and use them in your daily workflow.
+
+### 📋 Prerequisites
+
+Before you begin, ensure you have access to the repository:
+
+1. Link your GitHub account with your Wizeline email.
+2. Create a ticket to link your account to the Wizeline GitHub organization (`wizeline.org`).
+3. Have an AI Assistant installed in your IDE (e.g., Gemini, Cloud Code, Cursor, or Windsurf).
+
+---
+
+### ⚙️ Step 1: Install the AI Cores
+
+Instead of manually copying and pasting files, you can use the provided TypeScript CLI tool to install specific AI Cores directly into your project.
+
+1. Open your terminal in the root directory of your project.
+2. Run the following command, replacing the URL with the specific AI Core you want to install (e.g., the Documentation core):
+
+   ```bash
+   npx ai-cores add https://github.com/wizeline/sdlc-agents/tree/main/cores/documentation
+   ```
+
+3. **Follow the CLI prompts:** The tool will ask you which specific agents/skills you want to use. You can select all of them.
+4. **Select your AI Assistant:** Choose the assistants you are currently using (e.g., `Gemini`, `Cloud Code`, `Cursor`, or `Windsurf`).
+5. The tool will automatically create a `.agents` (or `.cursor/agents`) folder in your project root containing all the necessary Markdown files.
+
+---
+
+### 🔒 Step 2: Update your `.gitignore` (Crucial!)
+
+These AI Cores are internal Wizeline accelerators to help *you* work faster. **They should not be pushed to the client's repository.**
+
+Immediately open your project's `.gitignore` file and add the following lines to prevent committing the agent files:
+
+```text
+# AI Agents & Skills
+.agents/
+.cursor/agents/
+```
+
+---
+
+### 🛠️ Step 3: Using the Skills in your IDE
+
+Once installed, your AI Assistant will automatically detect the skills.
+
+1. **List Available Skills:** Open your AI Assistant's chat window (Gemini, Cloud Code, Cursor, etc.) and type the command `/skills` (or `/agents` in Cloud Code). It will list all the skills you just installed.
+2. **Trigger a Skill:** You don't always need to call a skill by its exact name. You can simply write a prompt with a clear intent, and the AI will trigger the appropriate Markdown skill file.
+   - *Example:* `"Document the architecture of this project using the C4 model."`
+3. **Automated Workflows:** Some skills can be triggered by actions. For example, if you have the documentation core installed, you can prompt: *"git commit changes and push them,"* and the AI can automatically trigger the skill to update the documentation alongside your commit.
+
+---
+
+### 💡 Pro-Tips & Best Practices
+
+- **Save Tokens by Being Specific:** While you *can* use ambiguous prompts (e.g., "Document the project"), this will consume a massive amount of tokens as the AI scans the entire codebase. Instead, use specific prompts (e.g., "Generate unit tests for `auth_service.java`") to save tokens and get faster results.
+- **Set Global Rules with Context Files:** If you want to set global rules (like token limits, tone of voice, or project context), you don't need to create a new skill. Instead, create a context file in your root folder named after your assistant (e.g., `gemini.md`, `cloud.md`, or `cursor.md`). The AI will read this file automatically before executing tasks.
+- **Clean Updates:** If a new version of an AI Core is released, the safest way to update is to manually delete the `.agents` folder and re-run the `npx ai-cores add` command to ensure a clean installation.
+- **Connect to Jira/Confluence:** If you need your agents to read tickets or wikis, check the [MCP Servers configuration](#-configuring-mcp-servers-jira-confluence--github) section below on how to configure **MCP (Model Context Protocol)** locally to connect your agents to Jira, Confluence, or GitHub.
+
+---
+
+## 🛠️ Available AI Cores
+
+| Core Name                                                           | Description                                                                      |
+| :------------------------------------------------------------------ | :------------------------------------------------------------------------------- |
+| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                            |
+| [`security-agent`](aicores/security-agent)                          | Developer security governance, OWASP, and compliance mapping.                    |
+| [`unit-testing-agent`](aicores/unit-testing-agent)                  | Automated unit testing, coverage analysis, and test suite generation.            |
+| [`incident-support-agent`](aicores/incident-support-agent)          | Incident triage, root cause analysis, remediation, and postmortem documentation. |
+
+> **Tip**: More AI cores are coming soon! Watch this repository for updates.
+
+## 🤖 Featured Agents
+
+| Agent Name                                                                                    | Core                           | Description                                                                          |
+| :-------------------------------------------------------------------------------------------- | :----------------------------- | :----------------------------------------------------------------------------------- |
+| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)                   | `documentation-writer-agent`   | Full documentation pipeline — research, draft, review, format, and export.           |
+| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)                   | `documentation-writer-agent`   | Specialized C4 Model diagram generation.                                             |
+| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md)         | `documentation-writer-agent`   | Fetches and structures content from Jira and Confluence via MCP.                     |
+| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)                   | `security-agent`               | Security-focused code review against OWASP Top 10 and ASVS.                          |
+| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)           | `security-agent`               | STRIDE-based threat modeling for architecture designs.                               |
+| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)                 | `security-agent`               | Security architecture for APIs, cloud-native, and AI/LLM systems.                    |
+| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)                 | `security-agent`               | DevSecOps pipeline hardening and CI/CD security gates.                               |
+| [`devsec-compliance-framework`](aicores/security-agent/agents/devsec-compliance-framework.md) | `security-agent`               | Compliance mapping and gap analysis for ISO 27001, SOC 2, PCI-DSS, HIPAA, and more.  |
+| [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                           | `security-agent`               | Security program maturity assessment, OWASP SAMM, and Security Champions planning.   |
+| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)             | `unit-testing-agent`           | Automated unit test generation and suite creation.                                   |
+| [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)       | `unit-testing-agent`           | Quality gate for generated test suites — reviews correctness, coverage, and style.   |
+| [`incident-commander`](aicores/incident-support-agent/agents/incident-commander-agent.md)     | `incident-support-agent`       | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.         |
+
+---
+
 ## 🚀 Quick Start
 
 > [!WARNING]
@@ -225,36 +322,6 @@ New to agent skills? Check out our comprehensive resources:
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
   - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
   - [Developer Security Governance](docs/prompt-examples-devsec-governance.md)
-
----
-
-## 🛠️ Available AI Cores
-
-| Core Name                                                         | Description                                                                      |
-| :---------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                            |
-| [`security-agent`](aicores/security-agent)                         | Developer security governance, OWASP, and compliance mapping.                    |
-| [`unit-testing-agent`](aicores/unit-testing-agent)                 | Automated unit testing, coverage analysis, and test suite generation.            |
-| [`incident-support-agent`](aicores/incident-support-agent)         | Incident triage, root cause analysis, remediation, and postmortem documentation. |
-
-> **Tip**: More AI cores are coming soon! Watch this repository for updates.
-
-## 🤖 Featured Agents
-
-| Agent Name                                                                                   | Core                           | Description                                                                         |
-| :------------------------------------------------------------------------------------------- | :----------------------------- | :---------------------------------------------------------------------------------- |
-| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)                   | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export.         |
-| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)                   | `documentation-writer-agent` | Specialized C4 Model diagram generation.                                            |
-| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md)         | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP.                    |
-| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)                   | `security-agent`             | Security-focused code review against OWASP Top 10 and ASVS.                         |
-| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)           | `security-agent`             | STRIDE-based threat modeling for architecture designs.                              |
-| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)                 | `security-agent`             | Security architecture for APIs, cloud-native, and AI/LLM systems.                   |
-| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)                 | `security-agent`             | DevSecOps pipeline hardening and CI/CD security gates.                              |
-| [`devsec-compliance-framework`](aicores/security-agent/agents/devsec-compliance-framework.md) | `security-agent`             | Compliance mapping and gap analysis for ISO 27001, SOC 2, PCI-DSS, HIPAA, and more. |
-| [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                           | `security-agent`             | Security program maturity assessment, OWASP SAMM, and Security Champions planning.  |
-| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)             | `unit-testing-agent`         | Automated unit test generation and suite creation.                                  |
-| [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)       | `unit-testing-agent`         | Quality gate for generated test suites — reviews correctness, coverage, and style. |
-| [`incident-commander`](aicores/incident-support-agent/agents/incident-commander-agent.md)     | `incident-support-agent`     | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.        |
 
 ---
 
