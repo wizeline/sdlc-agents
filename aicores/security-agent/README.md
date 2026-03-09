@@ -41,11 +41,7 @@ security-agent/
 
 ### `devsec-code-review`
 
-<<<<<<< HEAD
 **Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, CWE Top 25, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes mapped to CWE IDs, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
-=======
-**Description:** Security-focused code reviewer with deep knowledge of OWASP Top 10 (2025), ASVS 5.0, and 14 secure coding domains. Reviews code for vulnerabilities, produces prioritized findings with in-language code fixes, and generates secure code review checklists. When the request lacks code or security scope, runs a structured **Phase 0 Intake** — asking what to review, the trust boundary, data sensitivity, ASVS target level, and specific concerns — all in one prompt before proceeding.
->>>>>>> 30a2774 (docs: All three READMEs updated:)
 
 **Triggers:** `"review this code for security"`, `"is this code secure?"`, `"check for XSS/SQLi/CSRF"`, `"scan for deprecated libraries"`, `"identify EOL components"`, `"what ASVS level should I target?"`
 
@@ -180,13 +176,13 @@ How do we prioritize our security investments given limited budget?
 
 **Output types:**
 
-| Request | Output |
-| --- | --- |
-| `"Review this code"` | Real-Time Report: prioritized findings with code fixes + CWE/OWASP/ASVS |
-| `"Give me a checklist"` | Tailored Secure Code Review Checklist |
-| `"What ASVS level?"` | Level recommendation + gap list |
-| `"How do I prevent X?"` | Domain-specific guidance with examples |
-| `"Step-by-step fix"` | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify) |
+| Request                   | Output                                                                  |
+| ------------------------- | ----------------------------------------------------------------------- |
+| `"Review this code"`    | Real-Time Report: prioritized findings with code fixes + CWE/OWASP/ASVS |
+| `"Give me a checklist"` | Tailored Secure Code Review Checklist                                   |
+| `"What ASVS level?"`    | Level recommendation + gap list                                         |
+| `"How do I prevent X?"` | Domain-specific guidance with examples                                  |
+| `"Step-by-step fix"`    | Remediation Guide (5 steps: Scope, Fix, Test, Prevent, Verify)          |
 
 ---
 
@@ -219,12 +215,12 @@ How do we prioritize our security investments given limited budget?
 
 **Pipeline Stages:**
 
-| Stage | Controls |
-| --- | --- |
-| Pre-commit | Gitleaks, TruffleHog secret scanning; security linting |
-| PR / Build | SAST, SCA (dependency + license), container scanning, IaC scanning |
-| Pre-deploy | DAST (OWASP ZAP, Nuclei), API security testing |
-| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance |
+| Stage        | Controls                                                           |
+| ------------ | ------------------------------------------------------------------ |
+| Pre-commit   | Gitleaks, TruffleHog secret scanning; security linting             |
+| PR / Build   | SAST, SCA (dependency + license), container scanning, IaC scanning |
+| Pre-deploy   | DAST (OWASP ZAP, Nuclei), API security testing                     |
+| Release Gate | Fail/warn thresholds, SBOM generation, SLSA provenance             |
 
 ---
 
@@ -307,3 +303,4 @@ npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/securit
 - [X] Add new skill to publish security compliance report in Confluence (`devsec-publishing-compliance-report`)
 - [X] Include CWE MITRE (Top 25, abstraction levels, OWASP cross-reference, mapping guidance)
 - [X] Make the principal agent behave interactive with the user, so it can ask for what to document and provide questions as instructions to execute
+- [ ] Compliancia with CCPA and GDPR (Regulation compliance)
