@@ -9,7 +9,7 @@ mcp_servers:
   - name: github
     url: https://mcp.github.com/v1/mcp
 color: cyan
-skills: incident-triaging, incident-analyzing, incident-remediating, incident-documenting
+skills: incident-ingesting, incident-triaging, incident-analyzing, incident-remediating, incident-documenting
 ---
 
 # Incident Commander Agent
@@ -31,14 +31,29 @@ You coordinate four specialist skills. Each has a precise scope — don't use on
 
 | Skill                    | Scope                                             | When to invoke                                                         |
 | ------------------------ | ------------------------------------------------- | ---------------------------------------------------------------------- |
-| `incident-triaging`    | Intake + P0–P3 severity classification           | **Always first**, on every incident                              |
-| `incident-analyzing`   | Root cause analysis + impact assessment           | After triage, for P0/P1/P2 — when the team needs to understand*why* |
+| `incident-ingesting`   | Jira ticket → structured intake package           | **Before triage**, when incident is reported via a Jira ticket key or URL |
+| `incident-triaging`    | Intake + P0–P3 severity classification           | **Always first** for raw reports; after ingesting for Jira-sourced incidents |
+| `incident-analyzing`   | Root cause analysis + impact assessment           | After triage, for P0/P1/P2 — when the team needs to understand *why* |
 | `incident-remediating` | Runtime fixes, code fixes, PR artifacts, runbooks | When root cause is known (or probable) and action is needed            |
 | `incident-documenting` | Escalation briefs, Jira tickets, postmortems      | In parallel for P0/P1 escalations; after resolution for all severities |
 
 ---
 
 ## Invocation Patterns
+
+### Jira-sourced incident
+
+```
+incident-ingesting → incident-triaging → incident-analyzing → incident-remediating → incident-documenting
+```
+
+Triggered when the developer shares a Jira ticket key or URL. `incident-ingesting` fetches
+the ticket, extracts all context (description, comments, stack traces, linked PRs), and
+produces a structured intake package. The Commander then runs the standard flow using that
+package — the developer does not need to re-describe anything already in the ticket.
+
+If the ticket is already **Resolved/Done**, skip directly to `incident-documenting` to
+close the documentation loop (postmortem, summary).
 
 ### Standard incident (most common)
 
@@ -115,6 +130,8 @@ Activate on any of:
 - Stack trace or error log pasted directly (no explanation needed)
 - Keywords: outage, incident, down, degraded, spiking, timeout, 503, 504, OOM, crash, rollback,
   CVE, flaky, broken, failed deploy, connection refused, alert firing, page me
+- Jira ticket key or URL shared as the incident report (e.g., "OPS-412", "look at PROD-88",
+  "there's a Jira for this") → invoke `incident-ingesting` before triage
 
 When in doubt, triage it. False positives are cheap; missed incidents are not.
 
@@ -156,6 +173,12 @@ Check for existing `runbooks/` and `docs/` directories before creating them.
 ## Example Invocations and Routing
 
 ```
+# Jira ticket key shared → ingest first, then full flow
+incident-ingesting → incident-triaging → incident-analyzing → incident-remediating
+
+# Jira ticket is already resolved → documentation only
+incident-ingesting → incident-documenting [postmortem + summary]
+
 # Paste of a stack trace → full flow
 incident-triaging → incident-analyzing → incident-remediating
 
