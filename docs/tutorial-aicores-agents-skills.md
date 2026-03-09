@@ -872,4 +872,5 @@ You can also ask Codex in natural language to steer, pause, or close any running
 **Prompt examples for AI Cores in this repo:**
 
 - [Unit Testing Agent](prompt-examples-unit-testing-agent.md)
-- [Developer Security Governance](prompt-examples-devsec-governance.md)
+- [Security Agent](prompt-examples-devsec-governance.md)
+- [Document Writer Agent](prompt-examples-docs-engineering.md)
