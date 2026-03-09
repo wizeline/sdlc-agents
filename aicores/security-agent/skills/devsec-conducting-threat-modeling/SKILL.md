@@ -35,7 +35,8 @@ Before analyzing, read:
 
 - `assets/threat-model-template.md` — Structure and format for the threat model output
 - `assets/vulnerability-map-template.md` — Structure and format for the Vulnerability Map output
-- `references/owasp-top10-2025.md` — To map identified threats to known categories
+- `references/owasp-top10-2025.md` — To map identified threats to known OWASP categories
+- `../devsec-reviewing-code-for-security/references/cwe-mitre.md` — To assign CWE IDs to each threat at Base or Variant level
 
 ### 3. Apply STRIDE
 
@@ -80,7 +81,7 @@ Use `assets/vulnerability-map-template.md` for a structured, scannable artifact 
   authentication mechanism, and trust level
 - **Trust Boundary Map**: Visual or ASCII diagram of trust zones and data flows
 - **STRIDE Threat Inventory**: Per-component table mapping each STRIDE threat to likelihood,
-  impact, risk rating, and specific mitigation
+  impact, risk rating, CWE ID (Base/Variant level), and specific mitigation
 - **Deprecated & Vulnerable Library Risks**: Table of known-vulnerable or end-of-life
   dependencies with CVE, CVSS score, and recommended action — maps to OWASP A06:2025
 - **Risk Register**: Prioritized, owner-assigned list with remediation timelines

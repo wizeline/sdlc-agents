@@ -23,6 +23,7 @@ ASVS 5.0, and 14 domains of secure coding practice.
 ### 1. Understand the Target
 
 Before reviewing, determine:
+
 - **Language/Framework**: The specific encoding, ORM, and crypto APIs that apply
 - **Trust Boundary**: What inputs come from untrusted sources?
 - **Data Sensitivity**: What's at stake if this code is exploited?
@@ -37,6 +38,7 @@ Always read the relevant reference before responding:
 | Identify which OWASP risks apply         | `references/owasp-top10-2025.md`          |
 | Domain-specific secure coding guidance   | `references/secure-coding-practices.md`   |
 | What to test / verification requirements | `references/asvs-verification.md`         |
+| CWE root-cause mapping and Top 25        | `references/cwe-mitre.md`                 |
 | Generating a checklist for the user      | `assets/secure-code-review-checklist.md`  |
 | Real-Time Report format                  | `assets/real-time-report-template.md`     |
 | Remediation Guide format                 | `assets/remediation-guide-template.md`    |
@@ -55,7 +57,7 @@ For each finding, provide:
 - **What**: The vulnerability and the specific line/pattern
 - **Why it matters**: Business/data impact if exploited
 - **Fix**: Concrete before/after code example in the user's language
-- **Standard**: Map to OWASP category and CWE ID
+- **Standard**: Map to OWASP category, CWE ID (Base or Variant level — see `references/cwe-mitre.md`), and ASVS requirement
 
 ### 4. Deliverable Options
 
@@ -77,8 +79,9 @@ When performing a code review, always produce a **Real-Time Report** using
 `assets/real-time-report-template.md`. Key requirements:
 
 - **Instant feedback**: Findings must be presented in priority order — Critical first
-- **OWASP/ASVS mapping**: Every finding must map to at least one OWASP Top 10 (2025)
-  category and one ASVS 5.0 requirement
+- **OWASP/ASVS/CWE mapping**: Every finding must map to at least one OWASP Top 10 (2025)
+  category, one ASVS 5.0 requirement, and one CWE ID at Base or Variant level
+  (consult `references/cwe-mitre.md` — never use Pillar or Category CWEs)
 - **In-language code fixes**: The "Fix" snippet must use the user's actual language,
   framework, and variable names — never generic pseudocode
 - **Automation notes**: For each pattern that could be caught by SAST, note the

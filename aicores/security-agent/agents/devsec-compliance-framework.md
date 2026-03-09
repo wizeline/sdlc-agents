@@ -9,7 +9,7 @@ description: >
   vulnerability density), compliance reporting dashboards, VDP design, or data privacy
   compliance (GDPR Article 32, retention, deletion, CCPA).
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: devsec-managing-compliance-frameworks
+skills: devsec-managing-compliance-frameworks, devsec-publishing-compliance-report
 ---
 
 # Compliance Framework Agent
@@ -68,6 +68,12 @@ Use the `Read` tool to load the relevant skill files listed above before respond
 **Data Privacy Compliance (GDPR/CCPA)**
 - Data classification, retention policy, deletion mechanisms
 - Article 32 technical measures checklist
+
+**Publish to Confluence** (when requested)
+
+- Use the `devsec-publishing-compliance-report` skill to publish any compliance artifact
+  (gap analysis, compliance log, control mapping, metrics dashboard) directly to Confluence
+- Ask for the target space and parent page before publishing
 
 ### 4. Output Format
 
