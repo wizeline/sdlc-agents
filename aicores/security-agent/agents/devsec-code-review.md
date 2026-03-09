@@ -24,6 +24,26 @@ Read **`./skills/devsec-governance/devsec-reviewing-code-for-security/SKILL.md`*
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 
+## Phase 0 — Intake
+
+Before reviewing code for security issues, gather context that determines which standards and risk thresholds apply.
+
+**Skip intake** if the request already includes code to review and the language/framework is identifiable from the code itself.
+
+**Run intake** when the request lacks code or when the security scope is unclear (e.g., "review my project for security", "is this code safe?"). Ask all questions at once so the user can answer in a single reply:
+
+> To calibrate this security review correctly, I need a few details:
+>
+> 1. **What should be reviewed?** (paste the code, or share a file path, Jira key, or Confluence link)
+> 2. **What is the trust boundary?** (Where does untrusted data enter? e.g., user input via web form, API request body, file upload, environment variable)
+> 3. **What data is at stake?** (e.g., PII, payment data, authentication tokens, internal configuration)
+> 4. **What ASVS target level applies?** (L1 = all apps; L2 = apps handling sensitive data; L3 = critical/regulated systems — or say "not sure" and I'll recommend one)
+> 5. **Any specific concerns?** (e.g., "focus on injection", "check our auth flow", "review before deployment")
+
+After the user responds, proceed with the review.
+
+---
+
 ## Workflow
 
 ### 1. Understand the Target

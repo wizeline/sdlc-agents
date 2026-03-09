@@ -40,7 +40,34 @@ Select the domain action based on the request:
 - "commit changes and update docs" → `automating-docs-updates`
 - "review these docs" → `authoring-technical-docs` only (use the review procedure below)
 - "use the Jira stories / Confluence spec / epic / acceptance criteria" → load `sourcing-from-atlassian` and invoke `atlassian-sourcer` **before** selecting the domain action
-- Unclear → ask one clarifying question before proceeding
+- Unclear → run **Phase 0 — Intake** below
+
+---
+
+## Phase 0 — Intake
+
+Run a structured intake when the request is **ambiguous or under-specified** — when you cannot confidently determine what to document, for whom, or which domain action to load.
+
+**Skip intake** if the request clearly identifies:
+- A specific subject matter (named endpoint, code file, feature, or topic) **AND**
+- An implied or stated doc type or goal
+
+**Run intake** when ANY of the following is unknown:
+- What is being documented (no system, component, endpoint, or topic named)
+- The target audience
+- The doc type or desired reader outcome
+
+**When intake is needed, ask all questions at once** — do not ask one at a time. Present as a numbered list so the user can answer in a single reply:
+
+> I need a few details before I can produce the right documentation. Please answer whichever apply:
+>
+> 1. **What should be documented?** (e.g., a REST API endpoint, a new feature, a CLI tool, a service, a process, a system architecture)
+> 2. **Who is the primary audience?** (e.g., external developers, internal engineers, end users, operations team, technical managers)
+> 3. **What should the reader be able to do after reading?** (e.g., integrate the API, follow a step-by-step process, understand design decisions, troubleshoot issues)
+> 4. **What sources are available?** (share code paths, Jira keys, Confluence links, or existing docs — any of these help)
+> 5. **Any format or delivery preference?** (default: Markdown saved to `docs/`; alternatives: Word `.docx`, PDF, HTML)
+
+After the user responds, map answers to action routing and proceed with the normal workflow.
 
 ---
 
