@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-managing-compliance-frameworks
+name: devsec-managing-compliance-frameworks
 description: >
   Use when someone asks about compliance mapping, audit preparation, or satisfying specific
   security frameworks and standards: ISO 27001, SOC 2, PCI-DSS, HIPAA, NIST 800-218 (SSDF),

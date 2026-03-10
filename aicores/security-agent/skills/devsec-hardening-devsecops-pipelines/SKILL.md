@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-hardening-devsecops-pipelines
+name: devsec-hardening-devsecops-pipelines
 description: >
   Use when someone asks about DevSecOps, securing CI/CD pipelines, setting up SAST/DAST/SCA
   scanning, supply chain security, SBOM generation, dependency security, pipeline hardening,

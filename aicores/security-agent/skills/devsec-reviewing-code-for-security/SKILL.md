@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-reviewing-code-for-security
+name: devsec-reviewing-code-for-security
 description: >
   Use when someone asks to review code for security issues, asks "is this code secure?", wants
   a secure code review checklist, asks how to prevent specific vulnerabilities (XSS, SQLi,

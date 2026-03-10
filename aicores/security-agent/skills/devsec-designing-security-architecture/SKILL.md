@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-designing-security-architecture
+name: devsec-designing-security-architecture
 description: >
   Use when someone asks about securing APIs, microservices, cloud-native systems, or
   AI/LLM applications. Triggers: "secure my REST API", "API security top 10", "OAuth 2.0

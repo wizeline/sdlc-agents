@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-conducting-threat-modeling
+name: devsec-conducting-threat-modeling
 description: >
   Use when someone wants to create a threat model, perform a STRIDE analysis, identify
   security threats to an architecture, define security requirements from a design, run
