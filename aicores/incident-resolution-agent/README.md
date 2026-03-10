@@ -1,15 +1,15 @@
-# Incident Support Agent — AI Core
+# Incident Resolution Agent — AI Core
 
 > **AI Core** | Incident Management & Rapid Response | From triage to resolution, escalation briefs to postmortems.
 
-The **Incident Support Agent** is a comprehensive incident management AI Core. It covers the full incident lifecycle: rapid triage and severity classification, systematic root cause analysis, remediation planning and execution, and production-ready documentation artifacts.
+The **Incident Resolution Agent** is a comprehensive incident management AI Core. It covers the full incident lifecycle: rapid triage and severity classification, systematic root cause analysis, remediation planning and execution, and production-ready documentation artifacts.
 
 ---
 
 ## Architecture Overview
 
 ```text
-incident-support-agent/
+incident-resolution-agent/
 ├── agents/
 │   └── incident-commander-agent.md      ← Multi-phase incident orchestration
 └── skills/
@@ -24,7 +24,7 @@ incident-support-agent/
 
 ## MCP Connections
 
-The Incident Support Agent integrates with external systems via MCP servers:
+The Incident Resolution Agent integrates with external systems via MCP servers:
 
 - **Atlassian** — Read Jira tickets to trigger incident response; create/update tickets, Confluence pages, postmortems
 - **GitHub** — Link PRs, commits, and remediation artifacts to incidents
@@ -233,19 +233,19 @@ incident-triaging → incident-documenting [Jira ticket only]
 ### Install the full AI Core (all agents)
 
 ```bash
-npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent
+npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-resolution-agent
 ```
 
 ### Install a single agent
 
 ```bash
-npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent/agents/incident-commander-agent
+npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-resolution-agent/agents/incident-commander-agent
 ```
 
 ### Install a single skill
 
 ```bash
-npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-support-agent/skills/incident-triaging
+npx aicore-cli add https://github.com/wizeline/sdlc-agents/tree/main/aicores/incident-resolution-agent/skills/incident-triaging
 ```
 
 ---
