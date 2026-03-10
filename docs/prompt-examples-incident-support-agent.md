@@ -1,4 +1,4 @@
-# Incident Support Agent — Prompt Examples
+# Incident Resolution Agent — Prompt Examples
 
 Ready-to-use prompts for the **Incident Support** AI Core.
 This core includes **1 agent** backed by **4 skills**.

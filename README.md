@@ -87,7 +87,7 @@ Once installed, your AI Assistant will automatically detect the skills.
 | [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                            |
 | [`security-agent`](aicores/security-agent)                          | Developer security governance, OWASP, and compliance mapping.                    |
 | [`unit-testing-agent`](aicores/unit-testing-agent)                  | Automated unit testing, coverage analysis, and test suite generation.            |
-| [`incident-support-agent`](aicores/incident-support-agent)          | Incident triage, root cause analysis, remediation, and postmortem documentation. |
+| [`incident-resolution-agent`](aicores/incident-resolution-agent)          | Incident triage, root cause analysis, remediation, and postmortem documentation. |
 
 > **Tip**: More AI cores are coming soon! Watch this repository for updates.
 
@@ -106,7 +106,7 @@ Once installed, your AI Assistant will automatically detect the skills.
 | [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                           | `security-agent`               | Security program maturity assessment, OWASP SAMM, and Security Champions planning.   |
 | [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)             | `unit-testing-agent`           | Automated unit test generation and suite creation.                                   |
 | [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)       | `unit-testing-agent`           | Quality gate for generated test suites — reviews correctness, coverage, and style.   |
-| [`incident-commander`](aicores/incident-support-agent/agents/incident-commander-agent.md)     | `incident-support-agent`       | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.         |
+| [`incident-commander`](aicores/incident-resolution-agent/agents/incident-commander-agent.md)     | `incident-resolution-agent`       | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.         |
 
 ---
 
