@@ -10,7 +10,7 @@ description: >
   protection, communication security, system configuration, database security,
   file/resource management, memory management, business logic, or dependency management.
 tools: Bash, Glob, Grep, Read, Write, Edit, Task
-skills: devsec-reviewing-code-for-security
+skills: devsec-reviewing-code-for-security, devsec-saving-report
 ---
 
 # Secure Code Review Agent

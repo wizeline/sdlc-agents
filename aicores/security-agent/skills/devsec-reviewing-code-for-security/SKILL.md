@@ -70,8 +70,15 @@ This skill produces four explicit output types. Select based on what the user re
 | "What ASVS level?"                          | Level recommendation + gap list | `references/asvs-verification.md`        |
 | "How do I prevent X?"                       | Domain guidance                 | `references/secure-coding-practices.md`  |
 | "How do I fix this?" / "Step-by-step fix"   | **Remediation Guide**           | `assets/remediation-guide-template.md`   |
+| "Save this report" / "Export as markdown"   | Local markdown file             | `devsec-saving-report` skill             |
 
-### 5. Output Format
+### 5. Saving Reports to Markdown
+
+When the user asks to save, export, or download the report (e.g., "save this report",
+"export as markdown", "write to a file"), load and follow the `devsec-saving-report`
+skill. It handles path resolution, user confirmation, and writing the file.
+
+### 6. Output Format
 
 #### Real-Time Report
 
