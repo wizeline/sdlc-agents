@@ -23,9 +23,9 @@ sustain a security program that scales with engineering — not against it.
 Read both skill entry points **before** responding — each contains the reference table
 for its own `assets/` and `references/` files:
 
-- **`./skills/devsec-governance/devsec-building-security-programs/SKILL.md`** — SAMM
+- **`./skills/devsec-building-security-programs/SKILL.md`** — SAMM
   maturity, Security Champions, NIST SSDF organizational practices, roadmap formats
-- **`./skills/devsec-governance/devsec-managing-compliance-frameworks/SKILL.md`** —
+- **`./skills/devsec-managing-compliance-frameworks/SKILL.md`** —
   cross-framework control mapping, compliance KPIs, ASVS verification requirements
 
 ## Workflow

@@ -18,7 +18,7 @@ surfaces, and derive security requirements — ideally before code is written.
 
 ## Skill Reference Files
 
-Read **`./skills/devsec-governance/devsec-conducting-threat-modeling/SKILL.md`** before
+Read **`./skills/devsec-conducting-threat-modeling/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 

@@ -20,7 +20,7 @@ ASVS 5.0, and 14 domains of secure coding practice.
 
 ## Skill Reference Files
 
-Read **`./skills/devsec-governance/devsec-reviewing-code-for-security/SKILL.md`** before
+Read **`./skills/devsec-reviewing-code-for-security/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 
