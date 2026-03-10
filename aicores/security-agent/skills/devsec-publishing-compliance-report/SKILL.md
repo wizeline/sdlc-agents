@@ -26,15 +26,15 @@ Confluence page in the correct space and location.
 
 Determine what is being published:
 
-| Artifact Type | Typical Source Skill |
-|---------------|---------------------|
-| Code review report / Real-Time Report | `devsec-reviewing-code-for-security` |
-| Threat model document | `devsec-conducting-threat-modeling` |
-| Vulnerability map | `devsec-conducting-threat-modeling` |
-| Compliance gap analysis / log | `devsec-managing-compliance-frameworks` |
-| Security architecture review | `devsec-designing-security-architecture` |
-| DevSecOps pipeline assessment | `devsec-hardening-devsecops-pipelines` |
-| SAMM maturity assessment / roadmap | `devsec-building-security-programs` |
+| Artifact Type                           | Typical Source Skill                     |
+|-----------------------------------------|------------------------------------------|
+| Code review report / Real-Time Report   | `devsec-reviewing-code-for-security`     |
+| Threat model document                   | `devsec-conducting-threat-modeling`      |
+| Vulnerability map                       | `devsec-conducting-threat-modeling`      |
+| Compliance gap analysis / log           | `devsec-managing-compliance-frameworks`  |
+| Security architecture review            | `devsec-designing-security-architecture` |
+| DevSecOps pipeline assessment           | `devsec-hardening-devsecops-pipelines`   |
+| SAMM maturity assessment / roadmap      | `devsec-building-security-programs`      |
 
 ### 2. Gather Publishing Context
 
@@ -47,6 +47,7 @@ Before publishing, collect (ask the user if not provided):
 - **Audience**: Technical team, leadership, auditors? (affects formatting emphasis)
 
 Use `getAccessibleAtlassianResources` to get the cloud ID, then:
+
 - `getConfluenceSpaces` to list available spaces if the user is unsure
 - `searchConfluenceUsingCql` to check if a page with the same title already exists
 
@@ -71,13 +72,14 @@ Requirements:
 
 Depending on the action:
 
-| Action | MCP Tool |
-|--------|----------|
-| Create new page | `createConfluencePage` |
-| Update existing page | `updateConfluencePage` |
+| Action                            | MCP Tool                        |
+|-----------------------------------|---------------------------------|
+| Create new page                   | `createConfluencePage`          |
+| Update existing page              | `updateConfluencePage`          |
 | Add a comment to an existing page | `createConfluenceFooterComment` |
 
 Always:
+
 - Use `contentFormat: "markdown"` when calling Confluence MCP tools
 - Confirm the URL of the created/updated page to the user
 - Notify the user if a page with the same title already exists before overwriting
@@ -85,18 +87,24 @@ Always:
 ### 6. Confirm and Return
 
 After publishing:
+
 - Return the direct Confluence page URL to the user
 - State the space, parent page, and page title for traceability
 - Suggest next steps (e.g., notify team via Slack, link from Jira issue, schedule review)
 
 ## Deliverable Options
 
-| User Request | Action |
-|--------------|--------|
-| "Publish this report to Confluence" | Create new page in specified space |
-| "Update the existing compliance log page" | Update page by title/ID |
-| "Add this finding as a comment" | Footer comment on existing page |
-| "Create a draft for review" | Create page with `status: "draft"` |
+| User Request                              | Action                                                            |
+|-------------------------------------------|-------------------------------------------------------------------|
+| "Publish this report to Confluence"       | Create new page in specified space                                |
+| "Update the existing compliance log page" | Update page by title/ID                                           |
+| "Add this finding as a comment"           | Footer comment on existing page                                   |
+| "Create a draft for review"               | Create page with `status: "draft"`                                |
+| "Save this report" / "Export as markdown" | Load and follow the `devsec-saving-report` skill for a local file |
+
+When the user wants to save the report locally rather than (or before) publishing to
+Confluence, load and follow the `devsec-saving-report` skill. Both actions can be
+combined: save locally first, then publish to Confluence.
 
 ## Key Principles
 

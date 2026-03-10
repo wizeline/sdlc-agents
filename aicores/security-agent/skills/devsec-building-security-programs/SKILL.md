@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-building-security-programs
+name: devsec-building-security-programs
 description: >
   Use when someone asks about building or maturing an organizational security program,
   assessing security maturity, running a Security Champions program, creating a security

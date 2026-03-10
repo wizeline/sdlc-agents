@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-managing-compliance-frameworks
+name: devsec-managing-compliance-frameworks
 description: >
   Use when someone asks about compliance mapping, audit preparation, or satisfying specific
   security frameworks and standards: ISO 27001, SOC 2, PCI-DSS, HIPAA, NIST 800-218 (SSDF),
@@ -51,14 +51,19 @@ Determine:
 
 This skill produces the following explicit outputs. Select based on what the user requests:
 
-| Request | Output Type | Template |
-|---------|-------------|----------|
-| "Gap analysis", "what controls do I need?" | Compliance Gap Analysis | `assets/security-assessment-template.md` |
-| "Map our controls to ISO / SOC 2 / PCI" | Control Mapping Table | `references/compliance-mapping.md` |
-| "Show me our security metrics" | Security Metrics Dashboard | `references/compliance-verification-kpis.md` |
-| "NIST SSDF alignment" | SSDF Alignment Report | `references/nist-ssdf.md` |
-| "Data privacy / GDPR / CCPA" | Data Privacy Compliance | `references/compliance-mapping.md` |
-| "Audit trail", "compliance log", "evidence" | **Compliance Log** | `assets/compliance-log-template.md` |
+| Request                                       | Output Type                | Template                                      |
+|-----------------------------------------------|----------------------------|-----------------------------------------------|
+| "Gap analysis", "what controls do I need?"    | Compliance Gap Analysis    | `assets/security-assessment-template.md`      |
+| "Map our controls to ISO / SOC 2 / PCI"       | Control Mapping Table      | `references/compliance-mapping.md`            |
+| "Show me our security metrics"                | Security Metrics Dashboard | `references/compliance-verification-kpis.md`  |
+| "NIST SSDF alignment"                         | SSDF Alignment Report      | `references/nist-ssdf.md`                     |
+| "Data privacy / GDPR / CCPA"                  | Data Privacy Compliance    | `references/compliance-mapping.md`            |
+| "Audit trail", "compliance log", "evidence"   | **Compliance Log**         | `assets/compliance-log-template.md`           |
+| "Save this report" / "Export as markdown"     | Local markdown file        | `devsec-saving-report` skill                  |
+
+When the user asks to save, export, or download any compliance artifact, load and
+follow the `devsec-saving-report` skill. It handles path resolution, user confirmation,
+and writing the file to `./security-reports/` by default.
 
 ### 4. Output Format
 

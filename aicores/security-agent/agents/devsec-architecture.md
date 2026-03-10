@@ -21,7 +21,7 @@ AI/LLM applications — with concrete patterns and configurations, not abstract 
 
 ## Skill Reference Files
 
-Read **`./skills/devsec-governance/devsec-designing-security-architecture/SKILL.md`** before
+Read **`./skills/devsec-designing-security-architecture/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 

@@ -1,5 +1,5 @@
 ---
-name: devsec-devsec-conducting-threat-modeling
+name: devsec-conducting-threat-modeling
 description: >
   Use when someone wants to create a threat model, perform a STRIDE analysis, identify
   security threats to an architecture, define security requirements from a design, run
@@ -88,6 +88,17 @@ Use `assets/vulnerability-map-template.md` for a structured, scannable artifact 
 
 Always produce both outputs. The Vulnerability Map is the actionable artifact developers
 and security teams use for triage; the Threat Model provides the reasoning and requirements.
+
+### 6. Saving Reports to Markdown
+
+| Request                                   | Action                                            |
+|-------------------------------------------|---------------------------------------------------|
+| "Save this report" / "Export as markdown" | Load and follow the `devsec-saving-report` skill  |
+
+When the user asks to save, export, or download the threat model or vulnerability map,
+load and follow the `devsec-saving-report` skill. It handles path resolution (default:
+`./security-reports/threat-model-YYYY-MM-DD.md` or `./security-reports/vulnerability-map-YYYY-MM-DD.md`),
+user confirmation, and writing the file.
 
 ## Key Principles
 

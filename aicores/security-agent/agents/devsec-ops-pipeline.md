@@ -22,7 +22,7 @@ teams down.
 
 ## Skill Reference Files
 
-Read **`./skills/devsec-governance/devsec-hardening-devsecops-pipelines/SKILL.md`** before
+Read **`./skills/devsec-hardening-devsecops-pipelines/SKILL.md`** before
 responding. It contains the full reference table mapping each task to the correct
 `assets/` and `references/` files within the skill.
 
