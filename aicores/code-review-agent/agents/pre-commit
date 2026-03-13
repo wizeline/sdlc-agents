@@ -1,0 +1,64 @@
+#!/bin/sh
+# =============================================================================
+# code-review-agenting — Git Pre-Commit Hook
+#
+# Installation:
+#   cp .claude/agents/code-review-agenting/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+# =============================================================================
+
+set -e
+
+REVIEWABLE_EXTENSIONS="py|js|ts|jsx|tsx|go|java|rb|rs|cs|cpp|c|php|swift|kt"
+REPORT_DIR="code_review_reports"
+DIFF_TMP="/tmp/code_review_staged_$$.diff"
+
+# Collect staged source files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E "\.($REVIEWABLE_EXTENSIONS)$" || true)
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "ℹ️  No reviewable files staged. Skipping code review."
+  exit 0
+fi
+
+echo "🔍 Running code review on staged changes..."
+echo "   Files: $(echo "$STAGED_FILES" | tr '\n' ' ')"
+
+# Export staged diff
+git diff --cached > "$DIFF_TMP"
+
+# Ensure report directories exist
+mkdir -p "$REPORT_DIR/full" "$REPORT_DIR/securing" \
+         "$REPORT_DIR/optimizing" "$REPORT_DIR/validating" \
+         "$REPORT_DIR/refactoring"
+
+# ---------------------------------------------------------------------------
+# Invoke the subagent — replace with your runtime's invocation
+#
+# Claude Code:
+#   claude agent run code-review-agenting \
+#     --mode pre-commit --input "$DIFF_TMP"
+#
+# Cursor:
+#   cursor agent run code-review-agenting \
+#     --mode pre-commit --input "$DIFF_TMP"
+# ---------------------------------------------------------------------------
+AGENT_EXIT_CODE=0
+
+# your-runtime agent run code-review-agenting \
+#   --mode pre-commit \
+#   --input "$DIFF_TMP" \
+#   --report-dir "$REPORT_DIR"
+# AGENT_EXIT_CODE=$?
+
+rm -f "$DIFF_TMP"
+
+if [ "$AGENT_EXIT_CODE" -ne 0 ]; then
+  echo ""
+  echo "❌ Commit blocked. Fix the Critical findings above, then retry."
+  echo "   Report: $REPORT_DIR/full/"
+  exit 1
+fi
+
+exit 0

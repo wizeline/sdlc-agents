@@ -84,29 +84,31 @@ Once installed, your AI Assistant will automatically detect the skills.
 
 | Core Name                                                           | Description                                                                      |
 | :------------------------------------------------------------------ | :------------------------------------------------------------------------------- |
-| [`documentation-writer-agent`](aicores/documentation-writer-agent) | Documentation engineering workflows and QA processes.                            |
+| [`documentation-writer-agent`](aicores/documentation-writer-agent)    | Documentation engineering workflows and QA processes.                            |
 | [`security-agent`](aicores/security-agent)                          | Developer security governance, OWASP, and compliance mapping.                    |
+| [`code-review-agent`](aicores/code-review-agent)                    | Autonomous code reviews across security, performance, and maintainability.       |
 | [`unit-testing-agent`](aicores/unit-testing-agent)                  | Automated unit testing, coverage analysis, and test suite generation.            |
-| [`incident-resolution-agent`](aicores/incident-resolution-agent)          | Incident triage, root cause analysis, remediation, and postmortem documentation. |
+| [`incident-resolution-agent`](aicores/incident-resolution-agent)    | Incident triage, root cause analysis, remediation, and postmortem documentation. |
 
-> **Tip**: More AI cores are coming soon! Watch this repository for updates.
+> **Tip**: More AI cores like **QA Agent** are coming soon! Watch this repository for updates.
 
 ## 🤖 Featured Agents
 
-| Agent Name                                                                                    | Core                           | Description                                                                          |
-| :-------------------------------------------------------------------------------------------- | :----------------------------- | :----------------------------------------------------------------------------------- |
-| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)                   | `documentation-writer-agent`   | Full documentation pipeline — research, draft, review, format, and export.           |
-| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)                   | `documentation-writer-agent`   | Specialized C4 Model diagram generation.                                             |
-| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md)         | `documentation-writer-agent`   | Fetches and structures content from Jira and Confluence via MCP.                     |
-| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)                   | `security-agent`               | Security-focused code review against OWASP Top 10 and ASVS.                          |
-| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)           | `security-agent`               | STRIDE-based threat modeling for architecture designs.                               |
-| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)                 | `security-agent`               | Security architecture for APIs, cloud-native, and AI/LLM systems.                    |
-| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)                 | `security-agent`               | DevSecOps pipeline hardening and CI/CD security gates.                               |
-| [`devsec-compliance-framework`](aicores/security-agent/agents/devsec-compliance-framework.md) | `security-agent`               | Compliance mapping and gap analysis for ISO 27001, SOC 2, PCI-DSS, HIPAA, and more.  |
-| [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                           | `security-agent`               | Security program maturity assessment, OWASP SAMM, and Security Champions planning.   |
-| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)             | `unit-testing-agent`           | Automated unit test generation and suite creation.                                   |
-| [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)       | `unit-testing-agent`           | Quality gate for generated test suites — reviews correctness, coverage, and style.   |
-| [`incident-commander`](aicores/incident-resolution-agent/agents/incident-commander-agent.md)     | `incident-resolution-agent`       | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.         |
+| Agent Name                                                                                    | Core                         | Description                                                                        |
+| :-------------------------------------------------------------------------------------------- | :--------------------------- | :--------------------------------------------------------------------------------- |
+| [`doc-engineer`](aicores/documentation-writer-agent/agents/doc-engineer.md)                   | `documentation-writer-agent` | Full documentation pipeline — research, draft, review, format, and export.         |
+| [`c4-architect`](aicores/documentation-writer-agent/agents/c4-architect.md)                   | `documentation-writer-agent` | Specialized C4 Model diagram generation.                                           |
+| [`atlassian-sourcer`](aicores/documentation-writer-agent/agents/atlassian-sourcer.md)         | `documentation-writer-agent` | Fetches and structures content from Jira and Confluence via MCP.                   |
+| [`code-reviewer`](aicores/code-review-agent/agents/code-reviewer.md)                          | `code-review-agent`          | Autonomous pipeline for security, performance, and maintenance reviews.            |
+| [`devsec-code-review`](aicores/security-agent/agents/devsec-code-review.md)                   | `security-agent`             | Security-focused code review against OWASP Top 10 and ASVS.                        |
+| [`devsec-threat-modeling`](aicores/security-agent/agents/devsec-threat-modeling.md)           | `security-agent`             | STRIDE-based threat modeling for architecture designs.                             |
+| [`devsec-architecture`](aicores/security-agent/agents/devsec-architecture.md)                 | `security-agent`             | Security architecture for APIs, cloud-native, and AI/LLM systems.                  |
+| [`devsec-ops-pipeline`](aicores/security-agent/agents/devsec-ops-pipeline.md)                 | `security-agent`             | DevSecOps pipeline hardening and CI/CD security gates.                             |
+| [`devsec-compliance-framework`](aicores/security-agent/agents/devsec-compliance-framework.md) | `security-agent`             | Compliance mapping and gap analysis for ISO 27001, SOC 2, PCI-DSS, HIPAA, and more. |
+| [`devsec-program`](aicores/security-agent/agents/devsec-program.md)                           | `security-agent`             | Security program maturity assessment, OWASP SAMM, and Security Champions planning.  |
+| [`test-unit-gen-agent`](aicores/unit-testing-agent/agents/test-unit-gen-agent.md)             | `unit-testing-agent`         | Automated unit test generation and suite creation.                                 |
+| [`test-unit-review-agent`](aicores/unit-testing-agent/agents/test-unit-review-agent.md)       | `unit-testing-agent`         | Quality gate for generated test suites — reviews correctness, coverage, and style.  |
+| [`incident-commander`](aicores/incident-resolution-agent/agents/incident-commander-agent.md)  | `incident-resolution-agent` | Orchestrates triage, RCA, remediation, and postmortem for any SDLC incident.       |
 
 ---
 
@@ -122,26 +124,26 @@ Skills and agents are installed via the **[`aicore-cli`](https://github.com/wize
 [optional] First, install the `aicore-cli`:
 
 ```bash
-npm install aicores
+npm install -g aicores
 ```
 
 Then use `npx aicore` to install both agents and skills from an aicore package in one command:
 
 ```bash
 # Install all agents and skills from SDLC Agents interactively
-npx aicores add wizeline/sdlc-agents/aicore-name
+npx aicore add wizeline/sdlc-agents/aicore-name
 
 # Or with the GitHub URL
-npx aicores add https://github.com/wizeline/sdlc-agents/aicore-name
+npx aicore add https://github.com/wizeline/sdlc-agents/aicore-name
 
 # Install to a specific AI assistant
-npx aicores add wizeline/sdlc-agents/aicore-name -a claude-code
+npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code
 
 # Install to multiple assistants
-npx aicores add wizeline/sdlc-agents/aicore-name -a claude-code -a cursor
+npx aicore add wizeline/sdlc-agents/aicore-name -a claude-code -a cursor
 
 # List available items before installing
-npx aicores wizeline/sdlc-agents --list
+npx aicore wizeline/sdlc-agents --list
 ```
 
 ### Install Agents or Skills Separately
@@ -320,8 +322,11 @@ New to agent skills? Check out our comprehensive resources:
 - **[Practical Tutorial](docs/tutorial-aicores-agents-skills.md)**: A deep dive into skills and subagents for Gemini, Claude, and Codex.
 - **[Subagents FAQ](docs/FAQs.md#6-what-is-a-subagent)**: A short and concise explanation of what subagents are and how they work.
 - **[Prompt Examples](docs/)**: A collection of curated prompts to see our skills in action:
-  - [Documentation Engineering](docs/prompt-examples-docs-engineering.md)
-  - [Developer Security Governance](docs/prompt-examples-devsec-governance.md)
+  - [Documentation Writer](docs/prompt-examples-doc-writer-agent.md)
+  - [Code Review](docs/prompt-examples-code-review-agent.md)
+  - [Security](docs/prompt-examples-security-agent.md)
+  - [Unit Testing](docs/prompt-examples-unit-testing-agent.md)
+  - [Incident Support](docs/prompt-examples-incident-support-agent.md)
 
 ---
 
@@ -358,7 +363,7 @@ We welcome contributions! Please adhere to the [Agent Skills standard](https://a
 
 An AI Core follows this directory structure:
 
-```
+```text
 my-aicore/
 ├── agents/
 │   └── agent-name.md        ← Required: YAML frontmatter + instructions
