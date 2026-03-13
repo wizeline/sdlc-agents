@@ -153,7 +153,7 @@ npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documen
 rm -rf .claude/agents/doc-engineer
 
 # Reinstall the subagent
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
 ```
 
 > **Note:** If you customized any templates or references before deleting, back them up first. The reinstall overwrites the directory completely.
@@ -222,10 +222,10 @@ cp -r /tmp/sdlc-agents/aicores/documentation-writer-agent/skills .cursor/skills/
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a cursor
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/agents/documentation-writer-agent.md -a cursor
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent -a cursor
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/agents -a cursor
 ```
 
 Cursor discovers skills from:

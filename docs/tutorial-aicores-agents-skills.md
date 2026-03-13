@@ -141,7 +141,7 @@ Gemini CLI discovers skills from three locations (highest to lowest precedence):
 **Install a skill from GitHub:**
 
 ```bash
-# Using the agents-skills CLI (recommended)
+# Using the skills CLI (recommended)
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a gemini
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/skills -a gemini
 
@@ -242,16 +242,16 @@ To use specialized agents like `atlassian-sourcer`, you need to configure the [A
 | `cli_help` | Expert on Gemini CLI commands and configuration |
 | `generalist_agent` | Routes tasks to the right specialist automatically |
 
-**Install a subagent from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+**Install a subagent from a repository using the [`subagents`](https://www.npmjs.com/package/aicores) CLI:**
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a gemini
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a gemini
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a gemini
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a gemini
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a gemini
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a gemini
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a gemini
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a gemini
 ```
 
 **Create a custom subagent manually** by adding a `.md` file with YAML frontmatter to `.gemini/agents/` (project) or `~/.gemini/agents/` (user):
@@ -343,7 +343,7 @@ Claude Code follows the Agent Skills open standard and extends it with additiona
 
 > Note: `.claude/commands/` (legacy custom slash commands) still works and is equivalent to `.claude/skills/`.
 
-**Install a skill from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+**Install a skill from a repository using the [`subagents`](https://www.npmjs.com/package/aicores) CLI:**
 
 ```bash
 npx skills add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills -a claude-code
@@ -438,16 +438,16 @@ Or use the interactive agent manager:
 
 **Built-in subagents:** Claude Code includes a general-purpose helper agent used automatically for research and exploration tasks when `Task` is in your allowed tools.
 
-**Install a subagent from a repository using the [`agents-skills`](https://www.npmjs.com/package/agents-skills) CLI:**
+**Install a subagent from a repository using the [`subagents`](https://www.npmjs.com/package/aicores) CLI:**
 
 ```bash
 # Install a single subagent
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a claude-code
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents/test-unit-gen-agent -a claude-code
 
 # Install an entire agent group
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
-npx agents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a claude-code
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents -a claude-code
+npx subagents add https://github.com/wizeline/sdlc-agents/tree/main/aicores/unit-testing-agent/agents -a claude-code
 ```
 
 **Create a custom subagent manually:**

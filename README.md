@@ -148,14 +148,14 @@ npx aicore wizeline/sdlc-agents --list
 
 ### Install Agents or Skills Separately
 
-Use `npx agents` or `npx skills` to install items independently:
+Use `npx subagents` or `npx skills` to install items independently:
 
 ```bash
 # Install all agents from a specific core
-npx agents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents
+npx subagents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents
 
 # Install a specific agent
-npx agents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
+npx subagents add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/agents/doc-engineer -a claude-code
 
 # Install all skills from a specific core
 npx skills add wizeline/sdlc-agents/tree/main/aicores/documentation-writer-agent/skills/
