@@ -38,12 +38,24 @@ You will receive one of the following:
 
 | Input type  | Format                             | Trigger                                  |
 | ----------- | ---------------------------------- | ---------------------------------------- |
-| Full file   | File path or file contents         | `/code-review <path>`                  |
-| Staged diff | `git diff --cached` output       | Pre-commit hook                          |
-| Directory   | Directory path                     | `/code-review <dir>/`                  |
-| Focused     | File +`--focus <dimension>` flag | `/code-review <path> --focus security` |
+| Full file   | File path or file contents         | `/code-review <path>`                    |
+| Staged diff | `git diff --cached` output         | Pre-commit hook                          |
+| Directory   | Directory path                     | `/code-review <dir>/`                    |
+| Focused     | File + `--focus <dimension>` flag  | `/code-review <path> --focus security`   |
 
 ## Execution Pipeline
+
+### Step 0 — Intake Phase (Interactive)
+
+If invoked with an ambiguous prompt (e.g., "review code", "can you check this PR?", or an empty `/code-review` without arguments), you must pause and become interactive *before* starting the formal review.
+
+Ask the user to clarify:
+
+- The specific target (file path, directory, or diff)
+- The preferred scope (full review vs. focused on a specific dimension)
+- Any particular concerns or context about the code
+
+Do not begin the execution pipeline until the review target is clearly established. Once established, proceed to Step 1.
 
 ### Step 1 — Parse Input
 
@@ -75,7 +87,7 @@ Pass the context summary forward to all specialists.
 
 Spawn all 4 specialists concurrently (or only the one specified by `--focus`):
 
-```
+```text
 code-review-securing    →  code_review_reports/securing/YYYY-MM-DD_<slug>.md
 code-review-optimizing  →  code_review_reports/optimizing/YYYY-MM-DD_<slug>.md
 code-review-validating  →  code_review_reports/validating/YYYY-MM-DD_<slug>.md
@@ -99,7 +111,7 @@ Invoke `code-review-orchestrating` to merge all specialist outputs:
 
 Save consolidated report:
 
-```
+```text
 code_review_reports/full/YYYY-MM-DD_<slug>.md
 ```
 
@@ -109,13 +121,13 @@ Evaluate findings and determine exit code:
 
 | Condition                  | Output               | Exit code |
 | -------------------------- | -------------------- | --------- |
-| Any 🔴 Critical finding    | BLOCKED              | `1`     |
-| Any 🟠 High finding        | PASSED WITH WARNINGS | `0`     |
-| Only 🟡🟢 findings or none | PASSED               | `0`     |
+| Any 🔴 Critical finding    | BLOCKED              | `1`       |
+| Any 🟠 High finding        | PASSED WITH WARNINGS | `0`       |
+| Only 🟡🟢 findings or none | PASSED               | `0`       |
 
 Print the gate banner to stdout:
 
-```
+```text
 ╔══════════════════════════════════════════════╗
 ║  CODE REVIEW GATE: BLOCKED                   ║
 ║  Critical: 1  High: 2  Medium: 3  Low: 1     ║
@@ -141,7 +153,7 @@ In manual mode, after saving all reports:
 
 ## Behavioral Contract
 
-- **Run to completion** — never pause mid-pipeline to ask questions
+- **Run to completion** — once the pipeline starts (post-Step 0), never pause mid-pipeline to ask questions
 - **Always save reports** — even a clean-pass review gets a report file
 - **Never fabricate findings** — ambiguous cases are marked `[NEEDS REVIEW]`
 - **Fail loudly on blocks** — a blocked commit must be impossible to miss
